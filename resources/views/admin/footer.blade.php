@@ -184,10 +184,17 @@
 
     <script src="{{asset('admin/assets/js/ui/component.fileupload.js')}}"></script>
 
-    <script src="assets/js/vendor.min.js"></script>
-        <script src="assets/js/app.min.js"></script>
+    <script src="{{asset('admin/assets/js/vendor.min.js')}}"></script>
+        <script src="{{asset('admin/assets/js/app.min.js')}}"></script>
 
-        <script src="assets/js/pages/demo.form-wizard.js"></script>
+        <script src="{{asset('admin/assets/js/pages/demo.form-wizard.js')}}"></script>
+
+        <script src="{{asset('admin/assets/js/vendor/dataTables.checkboxes.min.js')}}"></script>
+        <script src="{{asset('admin/assets/js/vendor/responsive.bootstrap5.min.js')}}"></script>
+        <script src="{{asset('admin/assets/js/vendor/dataTables.responsive.min.js')}}"></script>
+        <script src="{{asset('admin/assets/js/vendor/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('admin/assets/js/vendor/dataTables.bootstrap5.js')}}"></script>
+        <script src="{{asset('admin/assets/js/pages/demo.products.js')}}"></script>
     </body>
 
 <!-- Mirrored from coderthemes.com/hyper/saas/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 Jul 2022 10:20:07 GMT -->
