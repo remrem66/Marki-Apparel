@@ -74,7 +74,6 @@ Route::get('/chartsparkline', function () {
 Route::get('/order', function () {
     return view('admin/orderList');
 });
-
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);
 

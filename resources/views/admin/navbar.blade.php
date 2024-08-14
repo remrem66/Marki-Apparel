@@ -71,16 +71,31 @@
                         </a>
                     </li> --}}
 
-                    <li class="side-nav-item">
+                    <!-- <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarCrm" aria-expanded="false" aria-controls="sidebarCrm" class="side-nav-link">
-                            <i class="uil uil-tachometer-fast"></i>
-                            <span> CRM </span>
+                            <i class="uil uil-shopping-cart-alt"></i>
+                            <span> View Product </span>
                         </a>
                         <div class="collapse" id="sidebarCrm">
                             <ul class="side-nav-second-level">
 
                                 <li>
-                                    <a href="/order">Orders List</a>
+                                    <a href="/order">Product</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li> -->
+
+                    <li class="side-nav-item">
+                        <a data-bs-toggle="collapse" href="#sidebarCrm" aria-expanded="false" aria-controls="sidebarCrm" class="side-nav-link">
+                            <i class="uil uil-tachometer-fast"></i>
+                            <span> View Product </span>
+                        </a>
+                        <div class="collapse" id="sidebarCrm">
+                            <ul class="side-nav-second-level">
+
+                                <li>
+                                    <a href="/viewproduct">Product</a>
                                 </li>
                             </ul>
                         </div>
@@ -95,7 +110,7 @@
                         <div class="collapse" id="sidebarEcommerce">
                             <ul class="side-nav-second-level">
                                 <li>
-                                    <a href="apps-ecommerce-products.html">Products</a>
+                                    <a href="/viewproduct">Products</a>
                                 </li>
                                 <li>
                                     <a href="apps-ecommerce-products-details.html">Products Details</a>
