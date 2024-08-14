@@ -398,6 +398,7 @@
                             <ul class="side-nav-second-level">
                                 <li>
                                     <a href="/addnewproduct">Add New Product</a>
+                                    <a href="/viewproduct">View Products</a>
                                 </li>
                             </ul>
                         </div>
