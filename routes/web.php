@@ -57,6 +57,10 @@ Route::get('/editors', function () {
     return view('admin/formEditors');
 });
 
+Route::get('/addnewproduct', function () {
+    return view('admin.addNewProduct');
+});
+
 Route::get('/chartjs', function () {
     return view('admin/chartjs');
 });
@@ -70,8 +74,9 @@ Route::get('/chartsparkline', function () {
 Route::get('/order', function () {
     return view('admin/orderList');
 });
-Route::post('/registeruser', [Controller::class, 'registerUser']);
 
+Route::post('/registeruser', [Controller::class, 'registerUser']);
+Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);
 
 
 // Route::middleware('auth')->group(function () {

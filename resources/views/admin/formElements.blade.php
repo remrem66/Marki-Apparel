@@ -1,5 +1,5 @@
 @include('admin.header')
-    @include('admin.navbar')
+@include('admin.navbar')
 
 
                     <!-- Start Content-->
