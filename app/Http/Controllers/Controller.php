@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Products;
 
 class Controller extends BaseController
 {
@@ -17,5 +18,12 @@ class Controller extends BaseController
         User::registerUser($info);
 
         return view('mainpage.LoginRegister');
+    }
+
+    public function insertnewproduct(Request $info){
+
+        Products::insertnewproduct($info);
+
+        return redirect('/addnewproduct');
     }
 }
