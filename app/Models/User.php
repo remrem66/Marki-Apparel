@@ -33,38 +33,40 @@ class User extends Authenticatable
         'date_created'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 
     public static function registeruser($info){
 
-        DB::table('users')
-            ->insert([
-                'first_name' => $info['first_name'],
-                'last_name' => $info['last_name'],
-                'gender' => $info['gender'],
-                'birthday' => $info['birthday'],
-                'address' => $info['address'],
-                'email_address' => $info['email_address'],
-                'contact_number' => $info['contact_number'],
-                'password' => Hash::make($info['password']),
-            ]);
+        if(!empty($info['profile_picture'])){
+
+            DB::table('users')
+                ->insert([
+                    'first_name' => $info['first_name'],
+                    'last_name' => $info['last_name'],
+                    'gender' => $info['gender'],
+                    'birthday' => $info['birthday'],
+                    'address' => $info['address'],
+                    'email_address' => $info['email_address'],
+                    'contact_number' => $info['contact_number'],
+                    'password' => Hash::make($info['password']),
+                    'profile_picture' => $info->file('profile_picture')->getClientOriginalName()
+                ]);
+
+            $data->file('profile_picture')->move(public_path('/profile pictures'),$data->file('profile_picture')->getClientOriginalName());
+        }
+        else{
+            DB::table('users')
+                ->insert([
+                    'first_name' => $info['first_name'],
+                    'last_name' => $info['last_name'],
+                    'gender' => $info['gender'],
+                    'birthday' => $info['birthday'],
+                    'address' => $info['address'],
+                    'email_address' => $info['email_address'],
+                    'contact_number' => $info['contact_number'],
+                    'password' => Hash::make($info['password'])
+                ]);
+        }
+        
     }
 }
 
