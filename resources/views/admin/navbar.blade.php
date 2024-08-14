@@ -73,14 +73,14 @@
 
                     <!-- <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarCrm" aria-expanded="false" aria-controls="sidebarCrm" class="side-nav-link">
-                            <i class="uil uil-tachometer-fast"></i>
-                            <span> CRM </span>
+                            <i class="uil uil-shopping-cart-alt"></i>
+                            <span> View Product </span>
                         </a>
                         <div class="collapse" id="sidebarCrm">
                             <ul class="side-nav-second-level">
 
                                 <li>
-                                    <a href="/order">Orders List</a>
+                                    <a href="/order">Product</a>
                                 </li>
                             </ul>
                         </div>
