@@ -72,7 +72,7 @@ Route::get('/order', function () {
 });
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 
-echo "test";
+
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
