@@ -25,6 +25,9 @@ Route::get('/single-product', function () {
 Route::get('/account', function () {
     return view('mainpage/LoginRegister');
 });
+Route::get('/faqs', function () {
+    return view('mainpage/faqs');
+});
 
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
