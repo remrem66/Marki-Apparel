@@ -80,10 +80,13 @@ Route::get('/order', function () {
 
 
 Route::get('/viewproducts', [Controller::class, 'viewproducts']);
+Route::get('/editproduct/{id}', [Controller::class, 'editproduct']);
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);
 Route::post('/addproductvariation', [Controller::class, 'addproductvariation']);
+Route::post('/productedit', [Controller::class, 'productedit']);
+
 
 
 // Route::middleware('auth')->group(function () {

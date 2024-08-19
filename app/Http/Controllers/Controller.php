@@ -45,4 +45,20 @@ class Controller extends BaseController
 
         return redirect('/viewproducts');
     }
+
+    public function editproduct($id){
+        $info = DB::table('products')
+                    ->select('*')
+                    ->where('product_id',$id)
+                    ->first();
+
+        return view('admin.editproduct',compact('info'));
+    }
+
+    public function productedit(Request $info){
+
+        Products::productedit($info);
+
+        return redirect('/viewproducts');
+     }
 }

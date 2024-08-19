@@ -71,4 +71,19 @@ class Products extends Model
              $counter = $counter + 1;
          }
      }
+
+    public static function productedit($info){
+
+        DB::table('products')
+            ->where('product_id',$info['product_id'])
+            ->update([
+                'product_name' => $info['product_name'],
+                    'category' => $info['category'],
+                    'color' => $info['color'],
+                    'size' => $info['size'],
+                    'price' => $info['price'],
+                    'quantity' => $info['quantity'],
+                    'description' => $info['description']
+            ]);
+    }
 }
