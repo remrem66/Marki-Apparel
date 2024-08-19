@@ -87,25 +87,25 @@
                 <h6 class="my-0">Grey Hoodie</h6>
                 <small class="text-body-secondary">Brief description</small>
               </div>
-              <span class="text-body-secondary">$120</span>
+              <span class="text-body-secondary">120</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
               <div>
                 <h6 class="my-0">Graphic T-Shirt</h6>
                 <small class="text-body-secondary">Brief description</small>
               </div>
-              <span class="text-body-secondary">$80</span>
+              <span class="text-body-secondary">80</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
               <div>
                 <h6 class="my-0">Black T-Shirt</h6>
                 <small class="text-body-secondary">Brief description</small>
               </div>
-              <span class="text-body-secondary">$50</span>
+              <span class="text-body-secondary">50</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span class="fw-bold">Total (USD)</span>
-              <strong>$250</strong>
+              <span class="fw-bold">Total</span>
+              <strong>250</strong>
             </li>
           </ul>
   
@@ -169,23 +169,20 @@
 
                   <li><a href="/shop" class="dropdown-item">T-shirt</a></li>
                   <li><a href="/single-product" class="dropdown-item">Polo Shirt</a></li>
-                  <li><a href="/" class="dropdown-item">Polo</a></li>
-                  <li><a href="/" class="dropdown-item">Long Sleeve</a></li>
-                  <li><a href="/" class="dropdown-item">Hoodie</a></li>
-                  <li><a href="/" class="dropdown-item">Jacket</a></li>
-                  <li><a href="/" class="dropdown-item">Short</a></li>
-                  <li><a href="/" class="dropdown-item">Pants</a></li>
-                  <li><a href="/" class="dropdown-item">FAQs</a></li>
+                  <li><a href="/shop" class="dropdown-item">Polo</a></li>
+                  <li><a href="/shop" class="dropdown-item">Long Sleeve</a></li>
+                  <li><a href="/shop" class="dropdown-item">Hoodie</a></li>
+                  <li><a href="/shop" class="dropdown-item">Jacket</a></li>
+                  <li><a href="/shop" class="dropdown-item">Short</a></li>
+                  <li><a href="/shop" class="dropdown-item">Pants</a></li>
+                  <li><a href="/faqs" class="dropdown-item">FAQs</a></li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a href="/shop" class="nav-link mx-2">Shop</a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link mx-2">About Us</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link mx-2">Faqs</a>
+                <a href="/faqs" class="nav-link mx-2">Faqs</a>
               </li>
 
             </ul>

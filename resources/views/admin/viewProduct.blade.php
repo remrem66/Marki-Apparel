@@ -54,19 +54,19 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <img src="admin/assets/images/products/product-1.jpg" alt="contact-img" title="contact-img" class="rounded me-3" height="48" />
+                                                            <img src="mainpage/images/item-lg3.jpg" alt="contact-img" title="contact-img" class="rounded me-3" height="48" />
                                                             <p class="m-0 d-inline-block align-middle font-16">
-                                                                <a href="apps-ecommerce-products-details.html" class="text-body">Amazing Modern Chair</a>
+                                                                <a href="apps-ecommerce-products-details.html" class="text-body">T-Shirt</a>
                                                             </p>
                                                         </td>
                                                         <td>
-                                                            Aeron Chairs
+                                                        T-Shirt
                                                         </td>
                                                         <td>
-                                                            09/12/2018
+                                                            09/12/2024
                                                         </td>
                                                         <td>
-                                                            $148.66
+                                                            Large
                                                         </td>
                     
                                                         <td>

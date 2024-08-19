@@ -22,7 +22,7 @@
             <div class="showing-product">
               <p class="m-0">Showing 1–9 of 55 results</p>
             </div>
-            <div class="sort-by">
+            <!-- <div class="sort-by">
               <select class="filter-categories border-0 m-0">
                 <option value="">Default sorting</option>
                 <option value="">Name (A - Z)</option>
@@ -34,7 +34,7 @@
                 <option value="">Model (A - Z)</option>
                 <option value="">Model (Z - A)</option>
               </select>
-            </div>
+            </div> -->
           </div>
 
           <div class="row product-store">
@@ -58,9 +58,9 @@
                 </div>
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="single-product.html">Seven Zero Five</a>
+                    <a href="/single-product">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="m-0 fs-5 fw-normal">40.00</p>
                 </div>
               </div>
             </div>
@@ -77,7 +77,7 @@
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
                     </a>
-                    <a href="single-product.html" class="view-btn">
+                    <a href="/single-product" class="view-btn">
                       <i class="icon icon-screen-full"></i>
                     </a>
                     <a href="#" class="wishlist-btn">
@@ -87,9 +87,9 @@
                 </div>
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="single-product.html">Seven Zero Five</a>
+                    <a href="/single-product">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="m-0 fs-5 fw-normal">40.00</p>
                 </div>
               </div>
             </div>
@@ -103,7 +103,7 @@
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
                     </a>
-                    <a href="single-product.html" class="view-btn">
+                    <a href="/single-product" class="view-btn">
                       <i class="icon icon-screen-full"></i>
                     </a>
                     <a href="#" class="wishlist-btn">
@@ -113,9 +113,9 @@
                 </div>
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="single-product.html">Seven Zero Five</a>
+                    <a href="/single-product">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="m-0 fs-5 fw-normal">40.00</p>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
                     </a>
-                    <a href="single-product.html" class="view-btn">
+                    <a href="/single-product" class="view-btn">
                       <i class="icon icon-screen-full"></i>
                     </a>
                     <a href="#" class="wishlist-btn">
@@ -142,9 +142,9 @@
                 </div>
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="single-product.html">Seven Zero Five</a>
+                    <a href="/single-product">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="m-0 fs-5 fw-normal">40.00</p>
                 </div>
               </div>
             </div>
@@ -158,7 +158,7 @@
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
                     </a>
-                    <a href="single-product.html" class="view-btn">
+                    <a href="/single-product" class="view-btn">
                       <i class="icon icon-screen-full"></i>
                     </a>
                     <a href="#" class="wishlist-btn">
@@ -166,11 +166,11 @@
                     </a>
                   </div>
                 </div>
-                <div class="product-detail d-flex justify-content-between align-items-center mt-4">
+                <div class="product-detail d-flex justify-content-between align-ite ms-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="single-product.html">Seven Zero Five</a>
+                    <a href="/single-product">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="m-0 fs-5 fw-normal">400.00</p>
                 </div>
               </div>
             </div>
@@ -184,7 +184,7 @@
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
                     </a>
-                    <a href="single-product.html" class="view-btn">
+                    <a href="/single-product" class="view-btn">
                       <i class="icon icon-screen-full"></i>
                     </a>
                     <a href="#" class="wishlist-btn">
@@ -196,7 +196,7 @@
                   <h4 class="product-title mb-0">
                     <a href="single-product.html">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="/single-product">400.00</p>
                 </div>
               </div>
             </div>
@@ -210,7 +210,7 @@
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
                     </a>
-                    <a href="single-product.html" class="view-btn">
+                    <a href="/single-product" class="view-btn">
                       <i class="icon icon-screen-full"></i>
                     </a>
                     <a href="#" class="wishlist-btn">
@@ -220,9 +220,9 @@
                 </div>
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="single-product.html">Seven Zero Five</a>
+                    <a href="/single-product">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="m-0 fs-5 fw-normal">400.00</p>
                 </div>
               </div>
             </div>
@@ -239,7 +239,7 @@
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
                     </a>
-                    <a href="single-product.html" class="view-btn">
+                    <a href="/single-productsingle-product.html" class="view-btn">
                       <i class="icon icon-screen-full"></i>
                     </a>
                     <a href="#" class="wishlist-btn">
@@ -249,9 +249,9 @@
                 </div>
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="single-product.html">Seven Zero Five</a>
+                    <a href="/single-product">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="m-0 fs-5 fw-normal">400.00</p>
                 </div>
               </div>
             </div>
@@ -265,7 +265,7 @@
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
                     </a>
-                    <a href="single-product.html" class="view-btn">
+                    <a href="/single-product" class="view-btn">
                       <i class="icon icon-screen-full"></i>
                     </a>
                     <a href="#" class="wishlist-btn">
@@ -275,9 +275,9 @@
                 </div>
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="single-product.html">Seven Zero Five</a>
+                    <a href="/single-product">Seven Zero Five</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">$40.00</p>
+                  <p class="m-0 fs-5 fw-normal">400.00</p>
                 </div>
               </div>
             </div>
@@ -323,44 +323,25 @@
                   <a href="#" class="nav-link fw-semibold">T-Shirt</a>
                 </li>
                 <li class="cat-item">
+                  <a href="#" class="nav-link fw-semibold">Polo Shirt</a>
+                </li>
+                <li class="cat-item">
+                  <a href="#" class="nav-link fw-semibold">Polo</a>
+                </li>
+                <li class="cat-item">
+                  <a href="#" class="nav-link fw-semibold">Long Sleeve</a>
+                </li>
+                <li class="cat-item">
                   <a href="#" class="nav-link fw-semibold">Hoodies</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Pants</a>
+                  <a href="#" class="nav-link fw-semibold">Jacket</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Sweaters</a>
+                  <a href="#" class="nav-link fw-semibold">Short</a>
                 </li>
-              </ul>
-            </div>
-            <div class="widget-product-tags pt-3">
-              <h4 class="widget-title">Tags</h4>
-              <ul class="product-tags sidebar-list list-unstyled">
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">T-shirts</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">Clothes</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">Cotton</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">Woolen</a>
-                </li>
-              </ul>
-            </div>
-            <div class="widget-product-brands pt-3">
-              <h4 class="widget-title">Brands</h4>
-              <ul class="product-tags sidebar-list list-unstyled">
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">Addidas</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">Puma</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">Nike</a>
+                <li class="cat-item">
+                  <a href="#" class="nav-link fw-semibold">Pants</a>
                 </li>
               </ul>
             </div>
@@ -368,19 +349,19 @@
               <h4 class="widget-titlewidget-title">Filter By Price</h4>
               <ul class="product-tags sidebar-list list-unstyled">
                 <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">Less than $10</a>
+                  <a href="#" class="nav-link fw-semibold">Less than 100</a>
                 </li>
                 <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">$10- $20</a>
+                  <a href="#" class="nav-link fw-semibold">100- 200</a>
                 </li>
                 <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">$20- $30</a>
+                  <a href="#" class="nav-link fw-semibold">200- 300</a>
                 </li>
                 <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">$30- $40</a>
+                  <a href="#" class="nav-link fw-semibold">300-400</a>
                 </li>
                 <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">$40- $50</a>
+                  <a href="#" class="nav-link fw-semibold">400- 500</a>
                 </li>
               </ul>
             </div>
