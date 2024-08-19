@@ -77,12 +77,13 @@ Route::get('/chartsparkline', function () {
 Route::get('/order', function () {
     return view('admin/orderList');
 });
-Route::get('/viewproduct', function () {
-    return view('admin.viewProduct');
-});
+
+
+Route::get('/viewproducts', [Controller::class, 'viewproducts']);
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);
+Route::post('/addproductvariation', [Controller::class, 'addproductvariation']);
 
 
 // Route::middleware('auth')->group(function () {

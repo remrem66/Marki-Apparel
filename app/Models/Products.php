@@ -41,4 +41,34 @@ class Products extends Model
             $counter = $counter + 1;
         }
     }
+
+    public static function addproductvariation($info,$product){
+
+        $counter = 1;
+ 
+ 
+         $id = DB::table('products')
+                 ->insertGetId([
+                     'product_name' => $product->product_name,
+                     'category' => $product->category,
+                     'color' => $info['color'],
+                     'size' => $info['size'],
+                     'price' => $info['price'],
+                     'quantity' => $info['quantity'],
+                     'description' => $product->description,
+                 ]);
+         
+         
+         foreach($info->file('pictures') as $file){
+             $file->move(public_path('/mainpage/images'), $file->getClientOriginalName());
+             
+             DB::table('products')
+                 ->where('product_id',$id)
+                 ->update([
+                     'picture'.$counter => $file->getClientOriginalName()
+                 ]);
+             
+             $counter = $counter + 1;
+         }
+     }
 }

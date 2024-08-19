@@ -26,4 +26,23 @@ class Controller extends BaseController
 
         return redirect('/addnewproduct');
     }
+
+    public function viewproducts(){
+
+        $data = Products::all();
+
+        return view('admin.viewProduct',compact('data'));
+    }
+
+    public function addproductvariation(Request $info){
+
+        $product = DB::table('products')
+                    ->select('*')
+                    ->where('product_id',$info['product_id'])
+                    ->first();
+
+        Products::addproductvariation($info,$product);
+
+        return redirect('/viewproducts');
+    }
 }
