@@ -16,12 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('mainpage/index');
 });
-Route::get('shop', function () {
-    return view('mainpage/shop');
-});
-Route::get('/single-product', function () {
-    return view('mainpage/single-product');
-});
+
+// Route::get('/single-product', function () {
+//     return view('mainpage/single-product');
+// });
 Route::get('/account', function () {
     return view('mainpage/LoginRegister');
 });
@@ -81,6 +79,9 @@ Route::get('/order', function () {
 
 Route::get('/viewproducts', [Controller::class, 'viewproducts']);
 Route::get('/editproduct/{id}', [Controller::class, 'editproduct']);
+Route::get('/shop/{category}', [Controller::class, 'shopcategory']);
+Route::get('/shop/{category}', [Controller::class, 'shopcategory']);
+Route::get('/single-product/{name}', [Controller::class, 'singleproduct']);
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);

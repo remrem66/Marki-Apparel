@@ -1,7 +1,7 @@
 @include('mainpage.header')
 @include('mainpage.navbar')
 
-  <section id="banner" style="background-image:url(mainpage/images/banner-img2.jpg);">
+  <section id="banner" style="background-image:url({{asset('mainpage/images/banner-img2.jpg')}});">
     <div class="container padding-medium-2">
       <div class="hero-content ">
         <h2 class="display-1 fw-bold mt-5 mb-0">Shop Product</h2>
@@ -24,16 +24,13 @@
               <div class="swiper product-thumbnail-slider">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <img src="mainpage/images/item1.jpg" alt="" class="thumb-image img-fluid">
+                    <img src="{{asset('mainpage/images/'.$productsFirst->picture1)}}" alt="" class="thumb-image img-fluid">
                   </div>
                   <div class="swiper-slide">
-                    <img src="mainpage/images/item2.jpg" alt="" class="thumb-image img-fluid">
+                    <img src="{{asset('mainpage/images/'.$productsFirst->picture2)}}" alt="" class="thumb-image img-fluid">
                   </div>
                   <div class="swiper-slide">
-                    <img src="mainpage/images/item3.jpg" alt="" class="thumb-image img-fluid">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="mainpage/images/item4.jpg" alt="" class="thumb-image img-fluid">
+                    <img src="{{asset('mainpage/images/'.$productsFirst->picture3)}}" alt="" class="thumb-image img-fluid">
                   </div>
                 </div>
               </div>
@@ -44,16 +41,13 @@
               <div class="swiper product-large-slider">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <img src="mainpage/images/item-lg1.jpg" alt="product-large" class="img-fluid">
+                    <img src="{{asset('mainpage/images/'.$productsFirst->picture1)}}" alt="product-large" class="img-fluid">
                   </div>
                   <div class="swiper-slide">
-                    <img src="mainpage/images/item-lg2.jpg" alt="product-large" class="img-fluid">
+                    <img src="{{asset('mainpage/images/'.$productsFirst->picture2)}}" alt="product-large" class="img-fluid">
                   </div>
                   <div class="swiper-slide">
-                    <img src="mainpage/images/item-lg3.jpg" alt="product-large" class="img-fluid">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="mainpage/images/item-lg4.jpg" alt="product-large" class="img-fluid">
+                    <img src="{{asset('mainpage/images/'.$productsFirst->picture3)}}" alt="product-large" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -65,7 +59,7 @@
         <div class="col-lg-6 mt-5 ">
           <div class="product-info">
             <div class="element-header">
-              <h2 itemprop="name" class="display-6 fw-bold">Printed T-Shirt</h2>
+              <h2 itemprop="name" class="display-6 fw-bold">{{$productsFirst->product_name}}</h2>
               <div class="rating-container d-flex gap-0 align-items-center">
                 <span class="rating secondary-font">
                   <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
@@ -77,46 +71,33 @@
               </div>
             </div>
             <div class="product-price pt-3 pb-3">
-              <strong class="text-primary display-6 ">$170.00</strong><del class="ms-2">$240.00</del>
+              <strong class="text-primary display-6 ">₱{{$productsFirst->price}}</strong>
             </div>
-            <p>Justo, cum feugiat imperdiet nulla molestie ac vulputate scelerisque amet. Bibendum adipiscing platea
-              blandit sit sed quam semper rhoncus. Diam ultrices maecenas consequat eu tortor orci, cras lectus mauris,
-              cras egestas quam venenatis neque.</p>
+            <p>{{$productsFirst->description}}</p>
             <div class="cart-wrap">
               <div class="color-options product-select">
                 <div class="color-toggle pt-2" data-option-index="0">
-                  <h6 class="item-title fw-bold">Color:</h6>
+                  <h6 class="item-title fw-bold">Colors:</h6>
                   <ul class="select-list list-unstyled d-flex">
-                    <li class="select-item pe-3" data-val="Gray" title="Gray">
+                    @for($x = 0; $x < count($colors); $x++)
+                    <li class="select-item pe-3" data-val="{{$colors[$x]}}" title="Black">
+                      <button class="btn btn-light fs-6 @if($colors[$x] == $productsFirst->color) active @endif">{{$colors[$x]}}</button>
+                    </li>
+                    {{-- <li class="select-item pe-3" data-val="Gray" title="Gray">
                       <a href="#" class="btn btn-light fs-6 active">Gray</a>
-                    </li>
-                    <li class="select-item pe-3" data-val="Black" title="Black">
-                      <a href="#" class="btn btn-light fs-6">Black</a>
-                    </li>
-                    <li class="select-item pe-3" data-val="Blue" title="Blue">
-                      <a href="#" class="btn btn-light fs-6">Blue</a>
-                    </li>
-                    <li class="select-item" data-val="Red" title="Red">
-                      <a href="#" class="btn btn-light fs-6 disabled">Red</a>
-                    </li>
+                    </li> --}}
+                    @endfor
                   </ul>
                 </div>
               </div>
               <div class="swatch product-select pt-3" data-option-index="1">
-                <h6 class="item-title fw-bold">Size:</h6>
+                <h6 class="item-title fw-bold">Sizes:</h6>
                 <ul class="select-list list-unstyled d-flex">
-                  <li data-value="XL" class="select-item pe-3">
-                    <a href="#" class="btn btn-light fs-6">XL</a>
+                  @for($x = 0; $x < count($sizes); $x++)
+                  <li data-value="{{$sizes[$x]}}" class="select-item pe-3">
+                    <button class="btn btn-light fs-6 @if($sizes[$x] == $productsFirst->size) active @endif">{{$sizes[$x]}}</button>
                   </li>
-                  <li data-value="L" class="select-item pe-3">
-                    <a href="#" class="btn btn-light fs-6 active">L</a>
-                  </li>
-                  <li data-value="M" class="select-item pe-3">
-                    <a href="#" class="btn btn-light fs-6">M</a>
-                  </li>
-                  <li data-value="S" class="select-item">
-                    <a href="#" class="btn btn-light fs-6">S</a>
-                  </li>
+                  @endfor
                 </ul>
               </div>
               <div class="product-quantity pt-2">
@@ -145,9 +126,6 @@
                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                       <h5 class="text-capitalize m-0">Add to Cart</h5>
                     </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
                   </div>
 
                 </div>
@@ -155,30 +133,10 @@
             </div>
             <div class="meta-product pt-4">
               <div class="meta-item d-flex align-items-baseline">
-                <h6 class="item-title fw-bold no-margin pe-2">SKU:</h6>
-                <ul class="select-list list-unstyled d-flex">
-                  <li data-value="S" class="select-item">1223</li>
-                </ul>
-              </div>
-              <div class="meta-item d-flex align-items-baseline">
                 <h6 class="item-title fw-bold no-margin pe-2">Category:</h6>
                 <ul class="select-list list-unstyled d-flex">
-                  <li data-value="S" class="select-item">
-                    <a href="#">T-shirt</a>,
-                  </li>
-                  <li data-value="S" class="select-item">
-                    <a href="#">Hoodies</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="meta-item d-flex align-items-baseline">
-                <h6 class="item-title fw-bold no-margin pe-2">Tags:</h6>
-                <ul class="select-list list-unstyled d-flex">
-                  <li data-value="S" class="select-item">
-                    <a href="#">Clothes</a>,
-                  </li>
-                  <li data-value="S" class="select-item">
-                    <a href="#">Cotton</a>
+                  <li data-value="{{$productsFirst->category}}" class="select-item">
+                    <a href="#">{{$productsFirst->category}}</a>
                   </li>
                 </ul>
               </div>
@@ -195,57 +153,18 @@
         <div class="d-flex flex-column flex-md-row align-items-start gap-5">
           <div class="nav flex-row flex-wrap flex-md-column nav-pills me-3 col-lg-3" id="v-pills-tab" role="tablist"
             aria-orientation="vertical">
-            <button class="nav-link fs-5 text-capitalize mb-2 text-start active" id="v-pills-description-tab"
-              data-bs-toggle="pill" data-bs-target="#v-pills-description" type="button" role="tab"
-              aria-controls="v-pills-description" aria-selected="false" tabindex="-1">Description</button>
-            <button class="nav-link fs-5 text-capitalize mb-2 text-start" id="v-pills-additional-tab"
-              data-bs-toggle="pill" data-bs-target="#v-pills-additional" type="button" role="tab"
-              aria-controls="v-pills-additional" aria-selected="false" tabindex="-1">Additional Information</button>
             <button class="nav-link fs-5 text-capitalize mb-2 text-start" id="v-pills-reviews-tab" data-bs-toggle="pill"
               data-bs-target="#v-pills-reviews" type="button" role="tab" aria-controls="v-pills-reviews"
               aria-selected="true">Customer Reviews</button>
           </div>
           <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade active show" id="v-pills-description" role="tabpanel"
-              aria-labelledby="v-pills-description-tab" tabindex="0">
-              <h2>Product Description</h2>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
-                Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec
-                nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula
-                vulputate sem tristique cursus.</p>
-              <ul style="list-style-type:disc;" class="list-unstyled ps-4">
-                <li>Donec nec justo eget felis facilisis fermentum.</li>
-                <li>Suspendisse urna viverra non, semper suscipit pede.</li>
-                <li>Aliquam porttitor mauris sit amet orci.</li>
-              </ul>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
-                Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec
-                nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula
-                vulputate sem tristique cursus. </p>
-            </div>
-            <div class="tab-pane fade" id="v-pills-additional" role="tabpanel" aria-labelledby="v-pills-additional-tab"
-              tabindex="0">
-              <h2>How to Use the Product</h2>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                id est laborum.</p>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
-                Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec
-                nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula
-                vulputate sem tristique cursus.</p>
-            </div>
-            <div class="tab-pane fade" id="v-pills-reviews" role="tabpanel" aria-labelledby="v-pills-reviews-tab"
+            <div class="tab-pane fade active show" id="v-pills-reviews" role="tabpanel" aria-labelledby="v-pills-reviews-tab"
               tabindex="0">
               <div class="review-box d-flex flex-wrap">
                 <div class="col-lg-6 d-flex flex-wrap gap-3">
                   <div class="col-md-2">
                     <div class="image-holder">
-                      <img src="mainpage/images/reviewer-1.jpg" alt="review" class="img-fluid rounded-circle">
+                      <img src="{{asset('mainpage/images/reviewer-1.jpg')}}" alt="review" class="img-fluid rounded-circle">
                     </div>
                   </div>
                   <div class="col-md-8">
@@ -290,7 +209,7 @@
                 <div class="col-lg-6 d-flex flex-wrap gap-3">
                   <div class="col-md-2">
                     <div class="image-holder">
-                      <img src="mainpage/images/reviewer-2.jpg" alt="review" class="img-fluid rounded-circle">
+                      <img src="{{asset('mainpage/images/reviewer-2.jpg')}}" alt="review" class="img-fluid rounded-circle">
                     </div>
                   </div>
                   <div class="col-md-8">

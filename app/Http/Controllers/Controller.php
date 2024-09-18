@@ -61,4 +61,48 @@ class Controller extends BaseController
 
         return redirect('/viewproducts');
      }
+
+     public function shopcategory($category){
+
+        $products = DB::table('products')
+                    ->select('*')
+                    ->groupBy('product_name')
+                    ->where('category',$category)
+                    ->get();
+
+        return view('mainpage.shop',compact('products'));
+     }
+
+     public function singleproduct($nameCategory){
+
+       $nameCategory = explode(":",$nameCategory);  
+
+       $sizes = [];
+       $colors = [];
+
+       $productsFirst = DB::table('products')
+                    ->select('*')
+                    ->where('category',$nameCategory[1])
+                    ->where('product_name',$nameCategory[0])
+                    ->first();
+
+        $products = DB::table('products')
+                    ->select('*')
+                    ->where('category',$nameCategory[1])
+                    ->where('product_name',$nameCategory[0])
+                    ->groupBy('size','color')
+                    ->get();
+
+        foreach($products as $product){
+            array_push($sizes, $product->size);
+            array_push($colors, $product->color);
+        }
+        
+        $sizes = array_unique($sizes);
+        $sizes = array_values($sizes);
+        $colors = array_unique($colors);
+        $colors = array_values($colors);
+
+        return view('mainpage.single-product',compact('productsFirst','sizes','colors'));
+     }
 }

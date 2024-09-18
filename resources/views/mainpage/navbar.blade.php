@@ -140,7 +140,7 @@
       <div class="container">
         <div class="main-logo">
           <a href="/">
-            <img src="mainpage/images/marki.png" width="100" height="auto" alt="logo" class="img-fluid">
+            <img src="{{asset('mainpage/images/marki.png')}}" width="100" height="auto" alt="logo" class="img-fluid">
           </a>
         </div>
   
@@ -163,13 +163,10 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link mx-2 dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                  aria-expanded="false">Pages</a>
+                  aria-expanded="false">Categories</a>
                 <ul class="dropdown-menu" aria-labelledby="pages">
-                  <li><a href="about.html" class="dropdown-item">About Us<a></li>
-
-                  <li><a href="/shop" class="dropdown-item">T-shirt</a></li>
-                  <li><a href="/single-product" class="dropdown-item">Polo Shirt</a></li>
-                  <li><a href="/shop" class="dropdown-item">Polo</a></li>
+                  <li><a href="/shop/T-shirt" class="dropdown-item">T-shirt</a></li>
+                  <li><a href="/shop/Polo Shirt" class="dropdown-item">Polo Shirt</a></li>
                   <li><a href="/shop" class="dropdown-item">Long Sleeve</a></li>
                   <li><a href="/shop" class="dropdown-item">Hoodie</a></li>
                   <li><a href="/shop" class="dropdown-item">Jacket</a></li>

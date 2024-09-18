@@ -123,6 +123,8 @@
   <script src="{{asset('mainpage/js/plugins.js')}}"></script>
   <script src="{{asset('mainpage/js/script.js')}}"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  @include('mainpage.ajax')
 </body>
 
 </html>
