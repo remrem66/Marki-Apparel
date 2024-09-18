@@ -1,6 +1,6 @@
 @include('mainpage.header')
 @include('mainpage.navbar')
-  <section id="banner" style="background-image:url(mainpage/images/banner-img2.jpg);">
+  <section id="banner" style="background-image:url({{asset('mainpage/images/banner-img2.jpg')}});">
     <div class="container padding-medium-2">
       <div class="hero-content ">
         <h2 class="display-1 fw-bold mt-5 mb-0">Shop</h2>
@@ -38,12 +38,13 @@
           </div>
 
           <div class="row product-store">
+            @foreach($products as $product)
             <div class="col-md-6 col-lg-4 my-4">
               <div class="product-item">
                 <div class="image-holder" style="width: 100%; height: 100%;">
-                  <img src="mainpage/images/item1.jpg" alt="Books" class="product-image img-fluid">
+                  <img src="{{asset('mainpage/images/'.$product->picture1)}}" alt="Books" class="product-image img-fluid">
                 </div>
-                <div class="cart-concern">
+                {{-- <div class="cart-concern">
                   <div class="cart-button d-flex justify-content-between align-items-center">
                     <a href="#" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">add to cart
                       <i class="icon icon-arrow-io pe-1"></i>
@@ -55,16 +56,17 @@
                       <i class="icon icon-heart"></i>
                     </a>
                   </div>
-                </div>
+                </div> --}}
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="/single-product">Seven Zero Five</a>
+                    <a href="/single-product/{{$product->product_name}}:{{$product->category}}">{{$product->product_name}}</a>
                   </h4>
-                  <p class="m-0 fs-5 fw-normal">40.00</p>
+                  <p class="m-0 fs-5 fw-normal">₱{{$product->price}}</p>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 col-lg-4 my-4">
+            @endforeach
+            {{-- <div class="col-md-6 col-lg-4 my-4">
               <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
                 New
               </div>
@@ -280,7 +282,7 @@
                   <p class="m-0 fs-5 fw-normal">400.00</p>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
 
           <nav class="navigation paging-navigation text-center mt-5" role="navigation">
