@@ -167,6 +167,7 @@
                 <ul class="dropdown-menu" aria-labelledby="pages">
                   <li><a href="/shop/T-shirt" class="dropdown-item">T-shirt</a></li>
                   <li><a href="/shop/Polo Shirt" class="dropdown-item">Polo Shirt</a></li>
+                  <li><a href="/shop/Polo" class="dropdown-item">Polo</a></li>
                   <li><a href="/shop" class="dropdown-item">Long Sleeve</a></li>
                   <li><a href="/shop" class="dropdown-item">Hoodie</a></li>
                   <li><a href="/shop" class="dropdown-item">Jacket</a></li>
