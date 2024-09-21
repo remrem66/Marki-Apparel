@@ -36,7 +36,7 @@ class Controller extends BaseController
             ]);
         }
         
-        // Products::insertnewproduct($info);
+        Products::insertnewproduct($info);
 
         return redirect('/addnewproduct');
     }
