@@ -182,7 +182,11 @@
               <li class="nav-item">
                 <a href="/faqs" class="nav-link mx-2">Faqs</a>
               </li>
-
+              @if(session('logged') == true)
+                <li class="nav-item">
+                  <a href="/logout" class="nav-link mx-2">logout</a>
+                </li>
+              @endif
             </ul>
   
             <div class="d-none d-lg-flex align-items-end">
@@ -192,12 +196,7 @@
                     <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                   </a>
                 </li>
-                <li>
-                  <a href="wishlist.html" class="mx-3">
-                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                  </a>
-                </li>
-  
+                @if(session('logged') == true)
                 <li class="">
                   <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
                     aria-controls="offcanvasCart">
@@ -207,7 +206,7 @@
                     </span>
                   </a>
                 </li>
-  
+                @endif
                 <li>
                   <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
                     aria-controls="offcanvasSearch">
@@ -236,7 +235,8 @@
                 <iconify-icon icon="mdi:heart" class="fs-4 me-2"></iconify-icon>
               </a>
             </li>
-  
+            
+            @if(session('logged') == true)
             <li>
               <a href="#" class="me-4" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
                 aria-controls="offcanvasCart">
@@ -246,7 +246,7 @@
                 </span>
               </a>
             </li>
-  
+            @endif
             <li>
               <a href="#" class="me-4" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
                 aria-controls="offcanvasSearch">

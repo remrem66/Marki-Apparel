@@ -131,9 +131,15 @@
                         </button>
                       </span>
                     </div>
+                    @if(session('logged') == true)
                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                       <h5 class="text-capitalize m-0">Add to Cart</h5>
                     </a>
+                    @else
+                    <a href="/account" class="btn-cart me-3 px-4 pt-3 pb-3">
+                      <h5 class="text-capitalize m-0">Login to shop!</h5>
+                    </a>
+                    @endif
                   </div>
 
                 </div>

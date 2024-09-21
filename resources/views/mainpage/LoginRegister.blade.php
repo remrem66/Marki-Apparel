@@ -36,12 +36,12 @@
                 <p class="mb-0">Log-In</p>
                 <hr class="my-1">
 
-                <form id="form1" class="form-group flex-wrap" method="POST" action="/login">
+                <form id="form1" class="form-group flex-wrap" method="POST" action="/userlogin">
                     @CSRF
                   <div class="form-input col-lg-12 my-4">
 
-                    <input type="text" id="exampleInputEmail1" name="email" placeholder="Enter email address" class="form-control mb-3 p-4">
-                    <input type="password" id="inputPassword1" placeholder="Enter password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock">
+                    <input type="text" id="exampleInputEmail1" name="email_address" placeholder="Enter email address" class="form-control mb-3 p-4">
+                    <input type="password" id="inputPassword1" name="password" placeholder="Enter password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock">
 
                     {{-- <label class="py-3 d-flex flex-wrap justify-content-between">
                       <div>
@@ -59,7 +59,11 @@
 
                   </div>
                 </form>
-
+                @if ($errors->has('message'))
+                  <div class="alert alert-danger alert-dismissible" role="alert">
+                      <strong>{{ $errors->first('message') }}</strong>
+                  </div>
+                @endif
               </div>
 
             </div>

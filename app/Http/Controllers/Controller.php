@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Products;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class Controller extends BaseController
 {
@@ -158,6 +161,56 @@ class Controller extends BaseController
 
         
         return view('mainpage.single-product',compact('productsFirst','sizes','colors','sizesStock','colorsStock'));
+    }
+
+    public function userlogin(Request $info){
+
+        if (Auth::attempt(['email_address' => $info['email_address'], 'password' => $info['password']])) {
+
+            $userData = User::all()->where('email',$info['email'])->first();
+
+            if($userData->user_status == 0){
+                return back()->withErrors([
+                    'email' => 'Your account is disabled. Please contact your administrator for further assistance.',
+                ])->onlyInput('email');
+            }
+
+            if($userData->user_type == 0){
+                
+                return redirect()->route('dashboard');
+
+            }
+
+            if($userData->is_verified == 0){
+
+                $data->session()->put('temp_user_id', $userData->user_id);
+                return redirect()->route('emailVerification');
+            }
+            else{
+                $info->session()->regenerate();
+
+                $info->session()->put('logged', true);
+                $info->session()->put('user_id', $userData->user_id);
+                $info->session()->put('user_type', $userData->user_type);
+        
+                return redirect('/')->with('message', 'Successful Login!');
+            }
+        }
+
+        return back()->withErrors([
+            'message' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
+    public function logout(){
+
+        auth()->logout();
+
+        session()->invalidate();
+        session()->regenerateToken();
+        session()->flush();
+
+        return redirect('/')->with('message', 'Logout Successful');
     }
 
     public function test(){
