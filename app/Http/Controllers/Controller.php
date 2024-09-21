@@ -22,7 +22,21 @@ class Controller extends BaseController
 
     public function insertnewproduct(Request $info){
 
-        Products::insertnewproduct($info);
+        $validateProduct = Products::query()
+                            ->where([
+                                'product_name' => $info['product_name'],
+                                'category' => $info['category'],
+                                'color' => $info['color'],
+                                'size' => $info['size']
+                            ])->exists();
+        
+        if($validateProduct){
+            return back()->withErrors([
+                'message' => 'Product with this kind of details already exists in the database! Please input a unique one.'
+            ]);
+        }
+        
+        // Products::insertnewproduct($info);
 
         return redirect('/addnewproduct');
     }
