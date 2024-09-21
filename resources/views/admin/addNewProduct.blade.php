@@ -75,7 +75,13 @@
                                     <textarea class="form-control" placeholder="Place product description here" id="description" name="description" style="height: 100px"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>                      
+                            </form>
+                            @if ($errors->has('message'))
+                                <br>
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <strong>{{ $errors->first('message') }}</strong>
+                                </div>
+                            @endif                      
                         </div> 
                     </div> 
                 </div>
