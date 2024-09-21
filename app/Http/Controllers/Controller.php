@@ -68,28 +68,36 @@ class Controller extends BaseController
                     ->select('*')
                     ->groupBy('product_name')
                     ->where('category',$category)
+                    ->where('quantity','>=',1)
                     ->get();
 
         return view('mainpage.shop',compact('products'));
      }
 
-     public function singleproduct($nameCategory){
+    public function singleproduct($itemDetails){
 
-       $nameCategory = explode(":",$nameCategory);  
+        $itemDetails = explode(":",$itemDetails);  
 
        $sizes = [];
        $colors = [];
+       $colorsStock = [];
+       $sizesStock = [];
 
        $productsFirst = DB::table('products')
                     ->select('*')
-                    ->where('category',$nameCategory[1])
-                    ->where('product_name',$nameCategory[0])
-                    ->first();
-
+                    ->where([
+                        'category' => $itemDetails[1],
+                        'product_name' => $itemDetails[0],
+                        'color' => $itemDetails[2],
+                        'size' => $itemDetails[3],
+                    ])->first();
+        
+    
+        
         $products = DB::table('products')
                     ->select('*')
-                    ->where('category',$nameCategory[1])
-                    ->where('product_name',$nameCategory[0])
+                    ->where('category',$itemDetails[1])
+                    ->where('product_name',$itemDetails[0])
                     ->groupBy('size','color')
                     ->get();
 
@@ -103,6 +111,50 @@ class Controller extends BaseController
         $colors = array_unique($colors);
         $colors = array_values($colors);
 
-        return view('mainpage.single-product',compact('productsFirst','sizes','colors'));
-     }
+        for($x = 0; $x < count($colors); $x++){
+            $colorQuantity = DB::table('products')
+                                        ->select('quantity')
+                                        ->where([
+                                            'category' => $itemDetails[1],
+                                            'product_name' => $itemDetails[0],
+                                            'color' => $colors[$x],
+                                            'size' => $productsFirst->size,
+                                        ])->first();
+            $colorsStock[$colors[$x]] = $colorQuantity->quantity;
+        }
+
+        for($x = 0; $x < count($sizes); $x++){
+            $sizeQuantity = DB::table('products')
+                                        ->select('quantity')
+                                        ->where([
+                                            'category' => $itemDetails[1],
+                                            'product_name' => $itemDetails[0],
+                                            'color' => $productsFirst->color,
+                                            'size' => $sizes[$x],
+                                        ])->first();
+            if($sizeQuantity){
+                $sizesStock[$sizes[$x]] = $sizeQuantity->quantity;
+            }
+            else{
+                $sizesStock[$sizes[$x]] = 0;
+            }
+            
+            
+        }
+
+        
+        return view('mainpage.single-product',compact('productsFirst','sizes','colors','sizesStock','colorsStock'));
+    }
+
+    public function test(){
+        $productsFirst = DB::table('products')
+                    ->select('*')
+                    ->where([
+                        'category' => 'Polo Shirt',
+                        'product_name' => 'Casual Knitted',
+                        'color' => 'Black',
+                        'size' => 'L'
+                    ])
+                    ->first();
+    }
 }

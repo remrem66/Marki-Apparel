@@ -82,11 +82,13 @@ Route::get('/editproduct/{id}', [Controller::class, 'editproduct']);
 Route::get('/shop/{category}', [Controller::class, 'shopcategory']);
 Route::get('/shop/{category}', [Controller::class, 'shopcategory']);
 Route::get('/single-product/{name}', [Controller::class, 'singleproduct']);
+Route::get('/test', [Controller::class, 'test']);
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);
 Route::post('/addproductvariation', [Controller::class, 'addproductvariation']);
 Route::post('/productedit', [Controller::class, 'productedit']);
+Route::post('/singleproductdetails', [Controller::class, 'singleproductdetails']);
 
 
 

@@ -81,7 +81,7 @@
                   <ul class="select-list list-unstyled d-flex">
                     @for($x = 0; $x < count($colors); $x++)
                     <li class="select-item pe-3" data-val="{{$colors[$x]}}" title="Black">
-                      <button class="btn btn-light fs-6 @if($colors[$x] == $productsFirst->color) active @endif">{{$colors[$x]}}</button>
+                      <a href="/single-product/{{$productsFirst->product_name}}:{{$productsFirst->category}}:{{$colors[$x]}}:{{$productsFirst->size}}" class=" productcolor btn btn-light fs-6 @if($colors[$x] == $productsFirst->color) active @endif @if($colorsStock[$colors[$x]] <= 0) disabled @endif">{{$colors[$x]}}</a>
                     </li>
                     {{-- <li class="select-item pe-3" data-val="Gray" title="Gray">
                       <a href="#" class="btn btn-light fs-6 active">Gray</a>
@@ -95,13 +95,17 @@
                 <ul class="select-list list-unstyled d-flex">
                   @for($x = 0; $x < count($sizes); $x++)
                   <li data-value="{{$sizes[$x]}}" class="select-item pe-3">
-                    <button class="btn btn-light fs-6 @if($sizes[$x] == $productsFirst->size) active @endif">{{$sizes[$x]}}</button>
+                    <a href="/single-product/{{$productsFirst->product_name}}:{{$productsFirst->category}}:{{$productsFirst->color}}:{{$sizes[$x]}}" class=" productsize btn btn-light fs-6 @if($sizes[$x] == $productsFirst->size) active @endif @if($sizesStock[$sizes[$x]] <= 0) disabled @endif">{{$sizes[$x]}}</a>
                   </li>
                   @endfor
                 </ul>
               </div>
               <div class="product-quantity pt-2">
-                <div class="stock-number text-dark"><em>2 in stock</em></div>
+                @if($productsFirst->quantity <= 5)
+                  <div class="stock-number text-dark"><em>@if($productsFirst->quantity == 1)only {{$productsFirst->quantity}} item remains @else only {{$productsFirst->quantity}} items remain @endif</em></div>
+                @else
+                  <br>
+                @endif
                 <div class="stock-button-wrap">
                   <div class="d-flex flex-wrap">
                     <div class="input-group product-qty align-items-center w-25 me-3">
@@ -112,8 +116,12 @@
                           </svg>
                         </button>
                       </span>
-                      <input type="text" id="quantity" name="quantity"
-                        class="form-control input-number text-center p-2 mx-1" value="1">
+                      <input type="number" id="quantity" name="quantity"
+                        class="form-control input-number text-center p-2 mx-1" value="1" min="1" max="2">
+                      <input type="hidden" id="productname" value="{{$productsFirst->product_name}}">
+                      <input type="hidden" id="productcategory" value="{{$productsFirst->category}}">
+                      <input type="hidden" id="currentproductcolor" value="{{$productsFirst->color}}">
+                      <input type="hidden" id="currentproductsize" value="{{$productsFirst->size}}">
                       <span class="input-group-btn">
                         <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus"
                           data-field="">
@@ -253,7 +261,7 @@
                 </div>
               </div>
 
-              <div class="add-review mt-5">
+              {{-- <div class="add-review mt-5">
                 <h3>Add a review</h3>
                 <p>Your email address will not be published. Required fields are marked *</p>
                 <form id="form" class="form-group">
@@ -297,33 +305,10 @@
                   <button type="submit" name="submit"
                     class="btn btn-dark btn-large text-uppercase w-100">Submit</button>
                 </form>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="register" style="background-image:url(mainpage/images/background-img.jpg);">
-    <div class="container padding-medium">
-      <div class="row banner-content align-items-center">
-        <div class="col-md-4 offset-md-1">
-          <h2 class="register-text text-white mt-3">Get <span> <em>20% OFF</em> </span> on your first purchase</h2>
-          <p class="mb-4">Sign Up for our newsletter and never miss any offers</p>
-        </div>
-        <div class="col-md-4 offset-md-1">
-          <form>
-            <div class="mb-3">
-              <input type="email" class="form-control form-control-lg rounded-3" name="email" id="email"
-                placeholder="Enter Your Email Address">
-            </div>
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-dark btn-lg rounded-3">Register it now</button>
-            </div>
-          </form>
-        </div>
-
       </div>
     </div>
   </section>
