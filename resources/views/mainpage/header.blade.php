@@ -11,6 +11,7 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   <meta name="description" content="">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="mainpage/images/shop.png">
 </head>
 

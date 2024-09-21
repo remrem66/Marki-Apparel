@@ -59,7 +59,7 @@
                 </div> --}}
                 <div class="product-detail d-flex justify-content-between align-items-center mt-4">
                   <h4 class="product-title mb-0">
-                    <a href="/single-product/{{$product->product_name}}:{{$product->category}}">{{$product->product_name}}</a>
+                    <a href="/single-product/{{$product->product_name}}:{{$product->category}}:{{$product->color}}:{{$product->size}}">{{$product->product_name}}</a>
                   </h4>
                   <p class="m-0 fs-5 fw-normal">₱{{$product->price}}</p>
                 </div>
