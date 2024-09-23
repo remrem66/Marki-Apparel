@@ -222,31 +222,41 @@ class Controller extends BaseController
             return redirect('/');
         }
         else{
-            $str_result = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $code = substr(str_shuffle($str_result),0,6);
-            $userID = session('temp_user_id');
+                $userInfo = User::all()->where('user_id',session('temp_user_id'))->first();
 
-            $userInfo = User::all()->where('user_id',$userID)->first();
+                if($userInfo->verification_code == ""){
 
-            User::insertVerificationCode($code,$userID);
+                    $str_result = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $code = substr(str_shuffle($str_result),0,6);
+                    $userID = session('temp_user_id');
 
-            $data = [
-                'name' => $userInfo->first_name,
-                'body1' => 'We are happy you signed up for Marki Apparel!',
-                'body2' => 'To start exploring Marki Apparel and neighborhood,',
-                'body3' => 'please confirm your email address by entering the code below on the Marki Apparel website',
-                'code' => $code,
-                'body4' => 'Welcome!',
-                'body5' => 'Marki Apparel team'
-            ];
+                    $userInfo = User::all()->where('user_id',$userID)->first();
+
+                    User::insertVerificationCode($code,$userID);
+
+                    $data = [
+                        'name' => $userInfo->first_name,
+                        'body1' => 'We are happy you signed up for Marki Apparel!',
+                        'body2' => 'To start exploring Marki Apparel and neighborhood,',
+                        'body3' => 'please confirm your email address by entering the code below on the Marki Apparel website',
+                        'code' => $code,
+                        'body4' => 'Welcome!',
+                        'body5' => 'Marki Apparel team'
+                    ];
 
 
-            Mail::to($userInfo->email_address)->send(new EmailVerification($data));
+                    Mail::to($userInfo->email_address)->send(new EmailVerification($data));
 
 
-            return view('mainpage.emailVerification',compact('userID'));
-            
-        }
+                    return view('mainpage.emailVerification',compact('userID'));
+                }
+                else{
+
+                    $userID = session('temp_user_id');
+                    return view('mainpage.emailVerification',compact('userID'));
+                }
+                
+            }
 
         
     }
@@ -278,8 +288,10 @@ class Controller extends BaseController
     public function verifyemail(Request $info){
 
         $userData = User::all()->where('user_id',$info['user_id'])->first();
+        $userID = $info['user_id'];
 
         if($userData->verification_code == $info['code']){
+
             User::verifyUser($info['user_id']);
 
             session()->invalidate();
@@ -304,9 +316,10 @@ class Controller extends BaseController
 
         }
         else{
-            return back()->withErrors([
-                'notif' => 'Incorrect code. Please try again'
-            ])->onlyInput('email');
+
+            $codeError = "Incorrect code. Please try again";
+            
+            return view('mainpage.emailVerification',compact('userID','codeError'));
         }
     }
 
