@@ -25,6 +25,9 @@
 <link rel="stylesheet" type="text/css" href="{{asset('mainpage/css/vendor.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('mainpage/style.css')}}">
 
+<!-- Toastr -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" async>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link

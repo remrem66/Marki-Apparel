@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Products;
+use Mail;
+use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -183,7 +185,7 @@ class Controller extends BaseController
 
             if($userData->is_verified == 0){
 
-                $data->session()->put('temp_user_id', $userData->user_id);
+                $info->session()->put('temp_user_id', $userData->user_id);
                 return redirect()->route('emailVerification');
             }
             else{
@@ -198,7 +200,7 @@ class Controller extends BaseController
         }
 
         return back()->withErrors([
-            'message' => 'The provided credentials do not match our records.',
+            'notif' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
 
@@ -212,16 +214,104 @@ class Controller extends BaseController
 
         return redirect('/')->with('message', 'Logout Successful');
     }
+    
+    public function emailverification(){
+
+        if(empty(session('temp_user_id'))){
+
+            return redirect('/');
+        }
+        else{
+            $str_result = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $code = substr(str_shuffle($str_result),0,6);
+            $userID = session('temp_user_id');
+
+            $userInfo = User::all()->where('user_id',$userID)->first();
+
+            User::insertVerificationCode($code,$userID);
+
+            $data = [
+                'name' => $userInfo->first_name,
+                'body1' => 'We are happy you signed up for Marki Apparel!',
+                'body2' => 'To start exploring Marki Apparel and neighborhood,',
+                'body3' => 'please confirm your email address by entering the code below on the Marki Apparel website',
+                'code' => $code,
+                'body4' => 'Welcome!',
+                'body5' => 'Marki Apparel team'
+            ];
+
+
+            Mail::to($userInfo->email_address)->send(new EmailVerification($data));
+
+
+            return view('mainpage.emailVerification',compact('userID'));
+            
+        }
+
+        
+    }
+
+    public function resendcode(Request $info){
+
+        $str_result = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $code = substr(str_shuffle($str_result),0,6);
+
+        $userID = $info['user_id'];
+
+        $userInfo = User::all()->where('user_id',$userID)->first();
+
+        User::insertVerificationCode($code,$userID);
+
+        $data = [
+            'name' => $userInfo->first_name,
+            'body1' => 'We are happy you signed up for Marki Apparel!',
+            'body2' => 'To start exploring Marki Apparel and neighborhood,',
+            'body3' => 'please confirm your email address by entering the code below on the Marki Apparel website',
+            'code' => $code,
+            'body4' => 'Welcome!',
+            'body5' => 'Marki Apparel team'
+        ];
+        
+        Mail::to($userInfo->email_address)->send(new EmailVerification($data));
+    }
+
+    public function verifyemail(Request $info){
+
+        $userData = User::all()->where('user_id',$info['user_id'])->first();
+
+        if($userData->verification_code == $info['code']){
+            User::verifyUser($info['user_id']);
+
+            session()->invalidate();
+            session()->regenerateToken();
+            session()->flush();
+
+            if($userData->user_status == 0){
+                return back()->withErrors([
+                    'message' => 'Your account is disabled. Please contact your administrator for further assistance.',
+                ])->onlyInput('email');
+            }
+            else{
+
+                $info->session()->regenerate();
+
+                $info->session()->put('logged', true);
+                $info->session()->put('user_id', $userData->user_id);
+                $info->session()->put('user_type', $userData->user_type);
+        
+                return redirect('/')->with('message', 'Successful Login!');
+            }
+
+        }
+        else{
+            return back()->withErrors([
+                'notif' => 'Incorrect code. Please try again'
+            ])->onlyInput('email');
+        }
+    }
 
     public function test(){
-        $productsFirst = DB::table('products')
-                    ->select('*')
-                    ->where([
-                        'category' => 'Polo Shirt',
-                        'product_name' => 'Casual Knitted',
-                        'color' => 'Black',
-                        'size' => 'L'
-                    ])
-                    ->first();
+        
+        return view('mainpage.emailVerification');
     }
 }

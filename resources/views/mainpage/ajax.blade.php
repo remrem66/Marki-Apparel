@@ -6,7 +6,62 @@ $.ajaxSetup({
     }
 });
 
-    // $('.try').click(function(e){
-    //     alert("hello");
-    // })
+@if(session()->has('message'))
+    toastr.options =
+        {
+            "closeButton" : true,
+            "progressBar" : true
+        }
+    toastr.success("{{ session()->get('message') }}");
+@endif
+
+@if(session()->has('warning'))
+    toastr.options =
+        {
+            "closeButton" : true,
+            "progressBar" : true
+        }
+    toastr.warning("{{ session()->get('warning') }}");
+@endif
+
+$('#resend').click(function(e){
+
+    var user_id = $('#user_id').val();
+
+    $.ajax({
+        url: '/resendcode',
+        type: 'POST',
+        data: {
+            user_id:user_id,
+        },
+        dataType: 'HTML',
+        success: function(response){
+
+        }
+    });
+
+    var timer2 = "2:00";
+    $('#codenotreceived').hide();
+    var interval = setInterval(function() {
+
+        var timer = timer2.split(':');
+        $('#codecountdown').show();
+
+        var minutes = parseInt(timer[0], 10);
+        var seconds = parseInt(timer[1], 10);
+        --seconds;
+        minutes = (seconds < 0) ? --minutes : minutes;
+        if (minutes < 0) clearInterval(interval);
+        seconds = (seconds < 0) ? 59 : seconds;
+        seconds = (seconds < 10) ? '0' + seconds : seconds;
+        //minutes = (minutes < 10) ?  minutes : minutes;
+        $('#codecountdown').html("<strong id='codecountdown'>You can request a code again in " + minutes + ":" + seconds);
+        timer2 = minutes + ':' + seconds;
+        if(timer2 == "-1:59"){
+            $('#codecountdown').hide();
+            $('#codenotreceived').show()
+        }
+    }, 1000);
+
+});
 </script>

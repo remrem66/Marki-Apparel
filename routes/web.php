@@ -83,6 +83,7 @@ Route::get('/shop/{category}', [Controller::class, 'shopcategory']);
 Route::get('/shop/{category}', [Controller::class, 'shopcategory']);
 Route::get('/single-product/{name}', [Controller::class, 'singleproduct']);
 Route::get('/logout', [Controller::class, 'logout']);
+Route::get('/emailverification', [Controller::class, 'emailverification'])->name('emailVerification');
 Route::get('/test', [Controller::class, 'test']);
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
@@ -91,8 +92,8 @@ Route::post('/addproductvariation', [Controller::class, 'addproductvariation']);
 Route::post('/productedit', [Controller::class, 'productedit']);
 Route::post('/singleproductdetails', [Controller::class, 'singleproductdetails']);
 Route::post('/userlogin', [Controller::class, 'userlogin']);
-
-
+Route::post('/resendcode', [Controller::class, 'resendcode']);
+Route::post('/verifyemail', [Controller::class, 'verifyemail']);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
