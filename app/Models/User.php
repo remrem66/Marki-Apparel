@@ -68,6 +68,22 @@ class User extends Authenticatable
         }
         
     }
+
+    public static function insertVerificationCode($code,$userID){
+        DB::table('users')
+            ->where('user_id',$userID)
+            ->update([
+                'verification_code' => $code,
+            ]);
+    }
+
+    public static function verifyUser($userID){
+        DB::table('users')
+            ->where('user_id',$userID)
+            ->update([
+                'is_verified' => 1
+            ]);
+    }
 }
 
 

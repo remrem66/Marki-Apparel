@@ -59,9 +59,9 @@
 
                   </div>
                 </form>
-                @if ($errors->has('message'))
+                @if ($errors->has('notif'))
                   <div class="alert alert-danger alert-dismissible" role="alert">
-                      <strong>{{ $errors->first('message') }}</strong>
+                      <strong>{{ $errors->first('notif') }}</strong>
                   </div>
                 @endif
               </div>
