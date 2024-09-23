@@ -36,12 +36,11 @@
                     <div class="d-grid my-3">
                       <button type="submit" class="btn btn-dark btn-lg rounded-1">Verify</a>
                     </div>
-
                   </div>
                 </form>
-                @if ($errors->has('notif'))
+                @if (isset($codeError))
                   <div class="alert alert-danger alert-dismissible" role="alert">
-                      <strong>{{ $errors->first('notif') }}</strong>
+                      <strong>{{$codeError}}</strong>
                   </div>
                 @endif
                 <div class="alert alert-dismissible" role="alert">
