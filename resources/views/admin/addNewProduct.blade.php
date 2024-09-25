@@ -32,6 +32,7 @@
                                             <option>T-Shirt</option>
                                             <option>Polo Shirt</option>
                                             <option>Polo</option>
+                                            <option>Long Sleeve</option>
                                             <option>Hoodie</option>
                                             <option>Jacket</option>
                                             <option>Shorts</option>
