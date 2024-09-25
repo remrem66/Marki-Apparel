@@ -168,12 +168,11 @@
                   <li><a href="/shop/T-shirt" class="dropdown-item">T-shirt</a></li>
                   <li><a href="/shop/Polo Shirt" class="dropdown-item">Polo Shirt</a></li>
                   <li><a href="/shop/Polo" class="dropdown-item">Polo</a></li>
-                  <li><a href="/shop" class="dropdown-item">Long Sleeve</a></li>
-                  <li><a href="/shop" class="dropdown-item">Hoodie</a></li>
-                  <li><a href="/shop" class="dropdown-item">Jacket</a></li>
-                  <li><a href="/shop" class="dropdown-item">Short</a></li>
-                  <li><a href="/shop" class="dropdown-item">Pants</a></li>
-                  <li><a href="/faqs" class="dropdown-item">FAQs</a></li>
+                  <li><a href="/shop/Long Sleeve" class="dropdown-item">Long Sleeve</a></li>
+                  <li><a href="/shop/Hoodie" class="dropdown-item">Hoodie</a></li>
+                  <li><a href="/shop/Jacket" class="dropdown-item">Jacket</a></li>
+                  <li><a href="/shop/Shorts" class="dropdown-item">Short</a></li>
+                  <li><a href="/shop/Pants" class="dropdown-item">Pants</a></li>
                 </ul>
               </li>
               <li class="nav-item">
