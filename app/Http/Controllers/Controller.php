@@ -97,12 +97,12 @@ class Controller extends BaseController
 
         $itemDetails = explode(":",$itemDetails);  
 
-       $sizes = [];
-       $colors = [];
-       $colorsStock = [];
-       $sizesStock = [];
+        $sizes = [];
+        $colors = [];
+        $colorsStock = [];
+        $sizesStock = [];
 
-       $productsFirst = DB::table('products')
+        $productsFirst = DB::table('products')
                     ->select('*')
                     ->where([
                         'category' => $itemDetails[1],
@@ -110,9 +110,7 @@ class Controller extends BaseController
                         'color' => $itemDetails[2],
                         'size' => $itemDetails[3],
                     ])->first();
-        
     
-        
         $products = DB::table('products')
                     ->select('*')
                     ->where('category',$itemDetails[1])
@@ -139,7 +137,14 @@ class Controller extends BaseController
                                             'color' => $colors[$x],
                                             'size' => $productsFirst->size,
                                         ])->first();
-            $colorsStock[$colors[$x]] = $colorQuantity->quantity;
+
+            if($colorQuantity){
+                $colorsStock[$colors[$x]] = $colorQuantity->quantity;
+            }
+            else{
+                $colorsStock[$colors[$x]] = 0;
+            }
+            
         }
 
         for($x = 0; $x < count($sizes); $x++){
