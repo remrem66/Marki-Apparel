@@ -325,6 +325,6 @@ class Controller extends BaseController
 
     public function test(){
         
-        return view('mainpage.emailVerification');
+        echo "hello";
     }
 }
