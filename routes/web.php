@@ -76,6 +76,11 @@ Route::get('/order', function () {
     return view('admin/orderList');
 });
 
+Route::get('/cart', function () {
+    return view('mainpage/cart');
+});
+
+
 
 Route::get('/viewproducts', [Controller::class, 'viewproducts']);
 Route::get('/editproduct/{id}', [Controller::class, 'editproduct']);
