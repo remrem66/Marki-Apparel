@@ -80,6 +80,9 @@ Route::get('/cart', function () {
     return view('mainpage/cart');
 });
 
+Route::get('/checkout', function () {
+    return view('mainpage/checkout');
+});
 
 
 Route::get('/viewproducts', [Controller::class, 'viewproducts']);
