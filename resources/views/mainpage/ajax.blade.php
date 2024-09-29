@@ -64,4 +64,60 @@ $('#resend').click(function(e){
     }, 1000);
 
 });
+
+$('#addtocart').click(function(e){
+
+    e.preventDefault();
+
+    let quantity = $('#quantity').val();
+    let productStock = $('#currentproductstock').val();
+    let productID = $('#productID').val();
+    let productName = $('#productname').val();
+    let productCategory = $('#productcategory').val();
+    let productColor = $('#currentproductcolor').val();
+    let productSize = $('#currentproductsize').val();
+
+    if(quantity <= 0){
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "You cannot put zero or a negative number",
+        });
+    }
+    else{
+        if(quantity > productStock){
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "The quantity entered is greater than the product stock (" + productStock + ")",
+            });
+        }
+        else{
+            Swal.fire(
+                'Success!',
+                'Successfully added this item on your cart.',
+                'success'
+            ).then((confirmCart) => {
+                if(confirmCart){
+                    $.ajax({
+                        url: '/addtocart',
+                        type: 'POST',
+                        data: {
+                            productID:productID,
+                            quantity:quantity,
+                            productName:productName,
+                            productCategory:productCategory,
+                            productColor:productColor,
+                            productSize:productSize
+                        },
+                        dataType: 'HTML',
+                        success: function(response){
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        }
+    }
+})
 </script>

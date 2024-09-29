@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Products;
+use App\Models\Cart;
 use Mail;
 use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Auth;
@@ -182,12 +183,6 @@ class Controller extends BaseController
                 ])->onlyInput('email');
             }
 
-            if($userData->user_type == 0){
-                
-                return redirect()->route('dashboard');
-
-            }
-
             if($userData->is_verified == 0){
 
                 $info->session()->put('temp_user_id', $userData->user_id);
@@ -199,8 +194,26 @@ class Controller extends BaseController
                 $info->session()->put('logged', true);
                 $info->session()->put('user_id', $userData->user_id);
                 $info->session()->put('user_type', $userData->user_type);
+
+                if($userData->user_type == 0){
+                
+                    return redirect()->route('dashboard');
+    
+                }
+                else{
+
+                    $cartProducts = DB::table('carts')
+                        ->join('products','products.product_id','=','carts.product_id')
+                        ->select('products.*','carts.*')
+                        ->where('carts.user_id',session('user_id'))
+                        ->get();
+
+                    $info->session()->put('cartCount', count($cartProducts));
+                    $info->session()->put('cartItems', $cartProducts);
+
+                    return redirect('/')->with('message', 'Successful Login!');
+                }
         
-                return redirect('/')->with('message', 'Successful Login!');
             }
         }
 
@@ -328,8 +341,31 @@ class Controller extends BaseController
         }
     }
 
+    public function addtocart(Request $info){
+        
+        $data = [
+            'user_id' => session('user_id'),
+            'product_id' => $info['productID'],
+            'quantity' => $info['quantity']
+        ];
+
+        $details = $info['productName'].":".$info['productCategory'].":".$info['productColor'].":".$info['productSize'];
+        Cart::addtocart($data);
+
+        
+        $cartProducts = DB::table('carts')
+                        ->join('products','products.product_id','=','carts.product_id')
+                        ->select('products.*','carts.*')
+                        ->where('carts.user_id',session('user_id'))
+                        ->get();
+        
+        session()->put('cartCount', count($cartProducts));
+        session()->put('cartItems', $cartProducts);
+
+    }
+
     public function test(){
         
-        return view('mainpage.emailVerification');
+        
     }
 }
