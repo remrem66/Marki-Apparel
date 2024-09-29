@@ -78,18 +78,22 @@
         <div class="order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-4">
             <span class="text-primary">Your cart</span>
-            <span class="badge bg-primary rounded-circle pt-2">3</span>
+            <span class="badge bg-primary rounded-circle pt-2">{{session('cartCount')}}</span>
           </h4>
   
           <ul class="list-group mb-4">
+            @if(!empty(session('cartItems')))
+            @foreach(session('cartItems') as $items)
             <li class="list-group-item d-flex justify-content-between lh-sm">
               <div>
-                <h6 class="my-0">Grey Hoodie</h6>
-                <small class="text-body-secondary">Brief description</small>
+                <h6 class="my-0">{{$items->product_name}}</h6>
+                <small class="text-body-secondary">{{$items->category}}</small>
               </div>
-              <span class="text-body-secondary">120</span>
+              <span class="text-body-secondary">₱{{$items->price}}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
+            @endforeach
+            @endif
+            {{-- <li class="list-group-item d-flex justify-content-between lh-sm">
               <div>
                 <h6 class="my-0">Graphic T-Shirt</h6>
                 <small class="text-body-secondary">Brief description</small>
@@ -106,7 +110,7 @@
             <li class="list-group-item d-flex justify-content-between">
               <span class="fw-bold">Total</span>
               <strong>250</strong>
-            </li>
+            </li> --}}
           </ul>
   
           <button class="w-100 btn btn-dark" type="submit">Continue to checkout</button>
@@ -201,7 +205,7 @@
                     aria-controls="offcanvasCart">
                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                     <span class="position-absolute translate-middle badge rounded-circle bg-primary">
-                      03
+                      {{session('cartCount')}}
                     </span>
                   </a>
                 </li>
@@ -241,7 +245,7 @@
                 aria-controls="offcanvasCart">
                 <iconify-icon icon="mdi:cart" class="fs-4 me-2 position-relative"></iconify-icon>
                 <span class="position-absolute translate-middle badge rounded-circle bg-primary">
-                  03
+                  {{session('cartCount')}}
                 </span>
               </a>
             </li>

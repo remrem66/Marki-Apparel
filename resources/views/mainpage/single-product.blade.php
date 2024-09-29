@@ -116,23 +116,25 @@
                           </svg>
                         </button>
                       </span>
-                      <input type="number" id="quantity" name="quantity"
-                        class="form-control input-number text-center p-2 mx-1" value="1" min="1" max="2">
-                      <input type="hidden" id="productname" value="{{$productsFirst->product_name}}">
-                      <input type="hidden" id="productcategory" value="{{$productsFirst->category}}">
-                      <input type="hidden" id="currentproductcolor" value="{{$productsFirst->color}}">
-                      <input type="hidden" id="currentproductsize" value="{{$productsFirst->size}}">
-                      <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus"
-                          data-field="">
-                          <svg width="16" height="16">
-                            <use xlink:href="#plus"></use>
-                          </svg>
-                        </button>
-                      </span>
+                        <input type="number" id="quantity" name="quantity"
+                          class="form-control input-number text-center p-2 mx-1" value="1" min="1" max="2">
+                        <input type="hidden" id="productname" value="{{$productsFirst->product_name}}">
+                        <input type="hidden" id="productID" value="{{$productsFirst->product_id}}">
+                        <input type="hidden" id="productcategory" value="{{$productsFirst->category}}">
+                        <input type="hidden" id="currentproductcolor" value="{{$productsFirst->color}}">
+                        <input type="hidden" id="currentproductsize" value="{{$productsFirst->size}}">
+                        <input type="hidden" id="currentproductstock" value="{{$productsFirst->quantity}}">
+                        <span class="input-group-btn">
+                          <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus"
+                            data-field="">
+                            <svg width="16" height="16">
+                              <use xlink:href="#plus"></use>
+                            </svg>
+                          </button>
+                        </span>
                     </div>
                     @if(session('logged') == true)
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                    <a href="#" onclick="return false;" class="btn-cart me-3 px-4 pt-3 pb-3" id="addtocart">
                       <h5 class="text-capitalize m-0">Add to Cart</h5>
                     </a>
                     @else
