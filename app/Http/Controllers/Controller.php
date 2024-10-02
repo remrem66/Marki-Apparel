@@ -343,13 +343,29 @@ class Controller extends BaseController
 
     public function addtocart(Request $info){
         
+        $productDetails = DB::table('carts')
+                            ->select('*')
+                            ->where([
+                                'user_id' => session('user_id'),
+                                'product_id' => $info['productID']
+                            ])->first();
+
+        if($productDetails){
+
+            $totalQuantity = $productDetails->quantity + $info['quantity'];
+        }
+        else{
+            $totalQuantity = $info['quantity'];
+        }
+
+
         $data = [
             'user_id' => session('user_id'),
             'product_id' => $info['productID'],
-            'quantity' => $info['quantity']
+            'quantity' => $totalQuantity
         ];
 
-        $details = $info['productName'].":".$info['productCategory'].":".$info['productColor'].":".$info['productSize'];
+        
         Cart::addtocart($data);
 
         

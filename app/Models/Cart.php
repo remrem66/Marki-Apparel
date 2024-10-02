@@ -21,7 +21,7 @@ class Cart extends Model
     public static function addtocart($data){
 
         DB::table('carts')
-            ->insert([
+            ->updateOrInsert([
                 'user_id' => $data['user_id'],
                 'product_id' => $data['product_id'],
                 'quantity' => $data['quantity']

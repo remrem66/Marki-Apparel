@@ -89,7 +89,7 @@ $('#addtocart').click(function(e){
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "The quantity entered is greater than the product stock (" + productStock + ")",
+                text: "The quantity entered is greater than the product stock (" + productStock + ")"
             });
         }
         else{
@@ -112,7 +112,7 @@ $('#addtocart').click(function(e){
                         },
                         dataType: 'HTML',
                         success: function(response){
-                            location.reload();
+                            // window.location.href = window.location.href;
                         }
                     });
                 }
