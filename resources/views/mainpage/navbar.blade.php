@@ -113,7 +113,7 @@
             </li> --}}
           </ul>
   
-          <button class="w-100 btn btn-dark" type="submit">Continue to checkout</button>
+          <a href="/fullcartdetails" class="w-100 btn btn-dark" type="submit">Full Cart Details</a>
         </div>
       </div>
     </div>

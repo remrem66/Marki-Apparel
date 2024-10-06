@@ -389,8 +389,43 @@ class Controller extends BaseController
 
     }
 
+    public function fullcartdetails(){
+
+        $grandTotal = 0;
+
+        $cartProducts = DB::table('carts')
+                        ->join('products','products.product_id','=','carts.product_id')
+                        ->select('products.*','carts.*')
+                        ->where('carts.user_id',session('user_id'))
+                        ->get();
+
+        foreach($cartProducts as $product){
+            $grandTotal = $grandTotal + ($product->price * $product->cart_quantity);
+        }
+        
+        return view('mainpage.cartdetails',compact('cartProducts','grandTotal'));
+    }
+
+    public function editproductcart(Request $info){
+        Cart::editproductcart($info);
+    }
+
+    public function deletecartproduct(Request $info){
+        
+        Cart::where('cart_id',$info['cartID'])->delete();
+
+        $cartProducts = DB::table('carts')
+                        ->join('products','products.product_id','=','carts.product_id')
+                        ->select('products.*','carts.*')
+                        ->where('carts.user_id',session('user_id'))
+                        ->get();
+        
+        session()->put('cartCount', count($cartProducts));
+        session()->put('cartItems', $cartProducts);
+    }
+
     public function test(){
         
-        
+        return view('mainpage.cartdetails');
     }
 }

@@ -15,7 +15,8 @@ class Cart extends Model
     protected $fillable = [
         'cart_id',
         'user_id',
-        'product_id'
+        'product_id',
+        'cart_quantity'
     ];
 
     public static function addtocart($data){
@@ -24,7 +25,7 @@ class Cart extends Model
             ->updateOrInsert([
                 'user_id' => $data['user_id'],
                 'product_id' => $data['product_id'],
-                'quantity' => $data['quantity']
+                'cart_quantity' => $data['quantity']
             ]);
     }
 
@@ -35,7 +36,15 @@ class Cart extends Model
                 'user_id' => $data['user_id'],
                 'product_id' => $data['product_id']
             ])->update([
-                'quantity' => $data['quantity']
+                'cart_quantity' => $data['quantity']
+            ]);
+    }
+
+    public static function editproductcart($data){
+        DB::table('carts')
+            ->where('cart_id',$data['cartID'])
+            ->update([
+                'cart_quantity' => $data['cartProductQuantity']
             ]);
     }
 }

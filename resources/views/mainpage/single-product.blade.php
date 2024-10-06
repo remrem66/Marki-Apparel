@@ -117,7 +117,7 @@
                         </button>
                       </span>
                         <input type="number" id="quantity" name="quantity"
-                          class="form-control input-number text-center p-2 mx-1" value="1" min="1" max="2">
+                          class="form-control input-number text-center p-2 mx-1" value="1" min="1">
                         <input type="hidden" id="productname" value="{{$productsFirst->product_name}}">
                         <input type="hidden" id="productID" value="{{$productsFirst->product_id}}">
                         <input type="hidden" id="productcategory" value="{{$productsFirst->category}}">

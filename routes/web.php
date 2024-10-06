@@ -76,10 +76,6 @@ Route::get('/order', function () {
     return view('admin/orderList');
 });
 
-Route::get('/cart', function () {
-    return view('mainpage/cart');
-});
-
 Route::get('/checkout', function () {
     return view('mainpage/checkout');
 });
@@ -91,6 +87,7 @@ Route::get('/shop/{category}', [Controller::class, 'shopcategory']);
 Route::get('/single-product/{name}', [Controller::class, 'singleproduct']);
 Route::get('/logout', [Controller::class, 'logout']);
 Route::get('/emailverification', [Controller::class, 'emailverification'])->name('emailVerification');
+Route::get('/fullcartdetails', [Controller::class, 'fullcartdetails'])->name('fullcartdetails');
 Route::get('/test', [Controller::class, 'test']);
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
@@ -102,6 +99,8 @@ Route::post('/userlogin', [Controller::class, 'userlogin']);
 Route::post('/resendcode', [Controller::class, 'resendcode']);
 Route::post('/verifyemail', [Controller::class, 'verifyemail']);
 Route::post('/addtocart', [Controller::class, 'addtocart']);
+Route::post('/editproductcart', [Controller::class, 'editproductcart']);
+Route::post('/deletecartproduct', [Controller::class, 'deletecartproduct']);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
