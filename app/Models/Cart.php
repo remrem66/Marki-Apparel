@@ -27,4 +27,15 @@ class Cart extends Model
                 'quantity' => $data['quantity']
             ]);
     }
+
+    public static function addQuantityToProductCart($data){
+
+        DB::table('carts')
+            ->where([
+                'user_id' => $data['user_id'],
+                'product_id' => $data['product_id']
+            ])->update([
+                'quantity' => $data['quantity']
+            ]);
+    }
 }

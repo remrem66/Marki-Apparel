@@ -353,20 +353,29 @@ class Controller extends BaseController
         if($productDetails){
 
             $totalQuantity = $productDetails->quantity + $info['quantity'];
+
+            $data = [
+                'user_id' => session('user_id'),
+                'product_id' => $info['productID'],
+                'quantity' => $totalQuantity
+            ];
+
+
+            Cart::addQuantityToProductCart($data);
         }
         else{
+
             $totalQuantity = $info['quantity'];
+
+            $data = [
+                'user_id' => session('user_id'),
+                'product_id' => $info['productID'],
+                'quantity' => $totalQuantity
+            ];
+    
+            
+            Cart::addtocart($data);
         }
-
-
-        $data = [
-            'user_id' => session('user_id'),
-            'product_id' => $info['productID'],
-            'quantity' => $totalQuantity
-        ];
-
-        
-        Cart::addtocart($data);
 
         
         $cartProducts = DB::table('carts')
