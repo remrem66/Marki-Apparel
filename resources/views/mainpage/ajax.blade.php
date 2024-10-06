@@ -119,5 +119,98 @@ $('#addtocart').click(function(e){
             });
         }
     }
+});
+
+$('.editproductcart').click(function(e){
+
+    let cartID = $(this).attr("id")
+    let cartProductQuantity = $("." + cartID + "-quantity").val();
+    let cartProductStock = $("#" + cartID + "-stock").val();
+    let actualQuantity = $("#" + cartID + "-actualquantity").val();
+
+    cartProductStock = parseInt(cartProductStock);
+    cartProductQuantity = parseInt(cartProductQuantity);
+    actualQuantity = parseInt(actualQuantity);
+
+
+    if(cartProductQuantity <= 0){
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "You cannot put zero or a negative number",
+        });
+    }
+    else{
+        if(cartProductQuantity > cartProductStock){
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "The quantity entered is greater than the product stock (" + cartProductStock + ")"
+            });
+        }
+        else{
+            if(actualQuantity != cartProductQuantity){
+                Swal.fire(
+                    'Success!',
+                    'Successfully edit this item on your cart.',
+                    'success'
+                ).then((confirmCart) => {
+                    if(confirmCart){
+                        $.ajax({
+                            url: '/editproductcart',
+                            type: 'POST',
+                            data: {
+                                cartID : cartID,
+                                cartProductQuantity : cartProductQuantity
+                            },
+                            dataType: 'HTML',
+                            success: function(response){
+                                window.location.href = window.location.href;
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    }
+
+});
+
+$('.deleteproductcart').click(function(e){
+
+    let cartID = $(this).attr("id");
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "you want to delete this item on your cart?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes!'
+    }).then((willDelete) => {
+        if (willDelete.isConfirmed) {
+            Swal.fire(
+                'Success!',
+                'This item is now removed from your cart!.',
+                'success'
+            ).then((confirmdelete) => {
+                if(confirmdelete){
+                    $.ajax({
+                        url: '/deletecartproduct',
+                        type: 'POST',
+                        data: {
+                            cartID : cartID,
+                        },
+                        dataType: 'HTML',
+                        success: function(response){
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+        
+        }
+    }); 
 })
 </script>
