@@ -194,11 +194,13 @@
   
             <div class="d-none d-lg-flex align-items-end">
               <ul class="d-flex justify-content-end list-unstyled m-0">
+                @if(session('logged') == False)
                 <li>
                   <a href="/account" class="mx-3">
                     <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                   </a>
                 </li>
+                @endif
                 @if(session('logged') == true)
                 <li class="">
                   <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
@@ -210,12 +212,6 @@
                   </a>
                 </li>
                 @endif
-                <li>
-                  <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                    aria-controls="offcanvasSearch">
-                    <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                  </a>
-                </li>
   
               </ul>
   
@@ -228,17 +224,13 @@
       <div class="container d-lg-none">
         <div class="d-flex  align-items-end mt-3">
           <ul class="d-flex justify-content-end list-unstyled m-0">
+            @if(session('logged') == False)
             <li>
               <a href="/account" class="me-4">
                 <iconify-icon icon="healthicons:person" class="fs-4 me-2"></iconify-icon>
               </a>
             </li>
-            <li>
-              <a href="wishlist.html" class="me-4">
-                <iconify-icon icon="mdi:heart" class="fs-4 me-2"></iconify-icon>
-              </a>
-            </li>
-            
+            @endif
             @if(session('logged') == true)
             <li>
               <a href="#" class="me-4" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
@@ -250,12 +242,6 @@
               </a>
             </li>
             @endif
-            <li>
-              <a href="#" class="me-4" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                aria-controls="offcanvasSearch">
-                <iconify-icon icon="tabler:search" class="fs-4 me-2"></iconify-icon>
-              </a>
-            </li>
           </ul>
   
         </div>
