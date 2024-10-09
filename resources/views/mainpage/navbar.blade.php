@@ -196,7 +196,7 @@
               <ul class="d-flex justify-content-end list-unstyled m-0">
                 @if(session('logged') == False)
                 <li>
-                  <a href="/account" class="mx-3">
+                  <a href="/loginregister" class="mx-3">
                     <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                   </a>
                 </li>
@@ -226,7 +226,7 @@
           <ul class="d-flex justify-content-end list-unstyled m-0">
             @if(session('logged') == False)
             <li>
-              <a href="/account" class="me-4">
+              <a href="/loginregister" class="me-4">
                 <iconify-icon icon="healthicons:person" class="fs-4 me-2"></iconify-icon>
               </a>
             </li>

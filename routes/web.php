@@ -20,9 +20,6 @@ Route::get('/', function () {
 // Route::get('/single-product', function () {
 //     return view('mainpage/single-product');
 // });
-Route::get('/account', function () {
-    return view('mainpage/LoginRegister');
-});
 Route::get('/faqs', function () {
     return view('mainpage/faqs');
 });
@@ -88,6 +85,8 @@ Route::get('/single-product/{name}', [Controller::class, 'singleproduct']);
 Route::get('/logout', [Controller::class, 'logout']);
 Route::get('/emailverification', [Controller::class, 'emailverification'])->name('emailVerification');
 Route::get('/fullcartdetails', [Controller::class, 'fullcartdetails'])->name('fullcartdetails');
+Route::get('/loginregister', [Controller::class, 'loginregister'])->name('loginregister');
+Route::get('/checkoutdetails', [Controller::class, 'checkoutdetails']);
 Route::get('/test', [Controller::class, 'test']);
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
@@ -101,6 +100,8 @@ Route::post('/verifyemail', [Controller::class, 'verifyemail']);
 Route::post('/addtocart', [Controller::class, 'addtocart']);
 Route::post('/editproductcart', [Controller::class, 'editproductcart']);
 Route::post('/deletecartproduct', [Controller::class, 'deletecartproduct']);
+Route::post('/getmunicipality', [Controller::class, 'getmunicipality']);
+Route::post('/getbarangay', [Controller::class, 'getbarangay']);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
