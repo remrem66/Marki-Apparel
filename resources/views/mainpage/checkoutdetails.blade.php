@@ -6,7 +6,7 @@
       <div class="hero-content ">
         <h2 class="display-1 fw-bold mt-5 mb-0">Checkout</h2>
         <nav class="breadcrumb">
-          <a class="breadcrumb-item nav-link" href="#">Home</a>
+          <a class="breadcrumb-item nav-link" href="/">Home</a>
           <a class="breadcrumb-item nav-link" href="#">Pages</a>
           <span class="breadcrumb-item active" aria-current="page">Checkout</span>
         </nav>
@@ -21,50 +21,35 @@
           <div class="col-lg-6">
             <h2 class="text-dark pb-3">Billing Details</h2>
             <div class="billing-details">
-              <label for="fname">First Name*</label>
-              <input type="text" id="fname" name="firstname" class="form-control mt-2 mb-4 ps-3">
-              <label for="lname">Last Name*</label>
-              <input type="text" id="lname" name="lastname" class="form-control mt-2 mb-4 ps-3">
-              <label for="cname">Company Name(optional)*</label>
-              <input type="text" id="cname" name="companyname" class="form-control mt-2 mb-4">
-              <label for="cname">Country / Region*</label>
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstname" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->first_name}}">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastname" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->last_name}}">
+              <label for="province">Province </label>
               <select class="form-select form-control mt-2 mb-4" aria-label="Default select example">
-                <option selected="" hidden="">United States</option>
-                <option value="1">UK</option>
-                <option value="2">Australia</option>
-                <option value="3">Canada</option>
+                @foreach($provinces as $province)
+                  <option @if($province->province_code == $userinfo->province) selected @endif>{{$province->province_name}}</option>
+                @endforeach
               </select>
-              <label for="address">Street Address*</label>
-              <input type="text" id="adr" name="address" placeholder="House number and street name"
-                class="form-control mt-3 ps-3 mb-3">
-              <input type="text" id="adr" name="address" placeholder="Appartments, suite, etc."
-                class="form-control ps-3 mb-4">
-              <label for="city">Town / City *</label>
-              <input type="text" id="city" name="city" class="form-control mt-3 ps-3 mb-4">
-              <label for="state">State *</label>
+              <label for="state">Municipality</label>
               <select class="form-select form-control mt-2 mb-4" aria-label="Default select example">
-                <option selected="" hidden="">Florida</option>
-                <option value="1">New York</option>
-                <option value="2">Chicago</option>
-                <option value="3">Texas</option>
-                <option value="3">San Jose</option>
-                <option value="3">Houston</option>
+                @foreach($municipalities as $municipality)
+                  <option @if($municipality->municipality_code == $userinfo->municipality) selected @endif>{{$municipality->municipality_name}}</option>
+                @endforeach
               </select>
-              <label for="zip">Zip Code *</label>
-              <input type="text" id="zip" name="zip" class="form-control mt-2 mb-4 ps-3">
-              <label for="email">Phone *</label>
-              <input type="text" id="phone" name="phone" class="form-control mt-2 mb-4 ps-3">
-              <label for="email">Email address *</label>
-              <input type="text" id="email" name="email" class="form-control mt-2 mb-4 ps-3">
+              <label for="state">Barangay</label>
+              <select class="form-select form-control mt-2 mb-4" aria-label="Default select example">
+                @foreach($barangays as $barangay)
+                  <option @if($barangay->barangay_id == $userinfo->barangay) selected @endif>{{$barangay->barangay_name}}</option>
+                @endforeach
+              </select>
+              <label for="address_information">Address additional information </label>
+              <input type="text" id="address_information" name="address_information" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->address_information}}">
+              <label for="phone">Phone number </label>
+              <input type="text" id="phone" name="phone" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->contact_number}}">
             </div>
           </div>
           <div class="col-lg-6">
-            <h2 class="text-dark pb-3">Additional Information</h2>
-            <div class="billing-details">
-              <label for="fname">Order notes (optional)</label>
-              <textarea class="form-control pt-3 pb-3 ps-3 mt-2"
-                placeholder="Notes about your order. Like special notes for delivery."></textarea>
-            </div>
             <div class="your-order mt-5">
               <h2 class="display-7 text-dark pb-3">Cart Totals</h2>
               <div class="total-price">
@@ -75,7 +60,16 @@
                       <td data-title="Subtotal">
                         <span class="price-amount amount ps-5">
                           <bdi>
-                            <span class="price-currency-symbol">$</span>1,500.00 </bdi>
+                            <span class="price-currency-symbol">₱</span>{{$grandTotal}} </bdi>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="subtotal border-top border-bottom pt-2 pb-2 text-uppercase">
+                      <th>Shipping Fee</th>
+                      <td data-title="Subtotal">
+                        <span class="price-amount amount ps-5">
+                          <bdi>
+                            <span class="price-currency-symbol"></span>FREE </bdi>
                         </span>
                       </td>
                     </tr>
@@ -84,7 +78,7 @@
                       <td data-title="Total">
                         <span class="price-amount amount ps-5">
                           <bdi>
-                            <span class="price-currency-symbol">$</span>1,500.00 </bdi>
+                            <span class="price-currency-symbol">₱</span>{{$grandTotal}} </bdi>
                         </span>
                       </td>
                     </tr>
@@ -103,32 +97,14 @@
                   </label>
                   <label class="list-group-item d-flex gap-2 border-0">
                     <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
-                      id="listGroupRadios2" value="">
-                    <span>
-                      <strong class="text-uppercase">Check payments</strong>
-                      <small class="d-block text-body-secondary">Please send a check to Store Name, Store Street, Store
-                        Town, Store State / County, Store Postcode.</small>
-                    </span>
-                  </label>
-                  <label class="list-group-item d-flex gap-2 border-0">
-                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
                       id="listGroupRadios3" value="">
                     <span>
                       <strong class="text-uppercase">Cash on delivery</strong>
                       <small class="d-block text-body-secondary">Pay with cash upon delivery.</small>
                     </span>
                   </label>
-                  <label class="list-group-item d-flex gap-2 border-0">
-                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
-                      id="listGroupRadios3" value="">
-                    <span>
-                      <strong class="text-uppercase">Paypal</strong>
-                      <small class="d-block text-body-secondary">Pay via PayPal; you can pay with your credit card if
-                        you don’t have a PayPal account.</small>
-                    </span>
-                  </label>
                 </div>
-                <button type="submit" name="submit" class="btn btn-dark btn-lg rounded-1 w-100">Place an order</button>
+                <button type="submit" name="submit" class="btn btn-dark btn-lg rounded-1 w-100">Place order</button>
               </div>
             </div>
           </div>

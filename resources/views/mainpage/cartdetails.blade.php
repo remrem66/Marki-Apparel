@@ -130,7 +130,7 @@
               </table>
             </div>
             <div class="button-wrap row g-2">
-              <div class="col-md-12 mt-3"><a href="checkout.html" class="btn btn-dark p-3 w-100">Proceed to checkout</a>
+              <div class="col-md-12 mt-3"><a href="/checkoutdetails" class="btn btn-dark p-3 w-100">Proceed to checkout</a>
               </div>
             </div>
           </div>

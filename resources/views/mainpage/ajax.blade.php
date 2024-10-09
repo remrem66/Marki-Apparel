@@ -212,5 +212,62 @@ $('.deleteproductcart').click(function(e){
         
         }
     }); 
+});
+
+$('#province').on('change', function(){
+
+    let province_code = this.value;
+
+    $.ajax({
+        url: '/getmunicipality',
+        type: 'POST',
+        data: {
+            province_code : province_code
+        },
+        dataType: 'HTML',
+        success: function(response){
+            
+            let data = $.parseJSON(response);
+
+            $('#municipality').empty();
+            $('#municipality').append("<option disabled selected>Municipality</option>");
+            $('#municipality').removeAttr('disabled');
+            $.each(data, function(index, municipality) {
+            // Access each municipality's properties
+                $('#municipality').append("<option value='" + municipality.municipality_code + "'>" + municipality.municipality_name +"</option>");
+            });
+        }
+    });
+    
+});
+
+$('#municipality').on('change',function(){
+
+    let province_code = $('#province').val();
+    let municipality_code = $('#municipality').val();
+
+    $.ajax({
+        url: '/getbarangay',
+        type: 'POST',
+        data: {
+            province_code : province_code,
+            municipality_code : municipality_code
+        },
+        dataType: 'HTML',
+        success: function(response){
+            
+            let data = $.parseJSON(response);
+
+            $('#barangay').empty();
+            $('#barangay').append("<option disabled selected>Barangay</option>");
+            $('#barangay').removeAttr('disabled');
+            $.each(data, function(index, barangay) {
+            // Access each municipality's properties
+                $('#barangay').append("<option value='" + barangay.barangay_id + "'>" + barangay.barangay_name +"</option>");
+            });
+        }
+    });
+
+
 })
 </script>

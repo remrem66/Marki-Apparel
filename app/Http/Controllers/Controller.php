@@ -424,8 +424,85 @@ class Controller extends BaseController
         session()->put('cartItems', $cartProducts);
     }
 
+    public function loginregister(){
+
+        $provinces = DB::table('provinces')
+                        ->select('*')
+                        ->orderBy('province_name')
+                        ->get();
+
+        return view('mainpage.LoginRegister',compact('provinces'));
+
+    }
+
+    public function getmunicipality(Request $data){
+
+        $municipalities = DB::table('municipalities')
+                            ->select('*')
+                            ->where('province_code',$data['province_code'])
+                            ->get();
+
+        return response()->json($municipalities);
+    }
+
+    public function getbarangay(Request $data){
+
+        $barangays = DB::table('barangays')
+                            ->select('*')
+                            ->where([
+                                'province_code' => $data['province_code'],
+                                'municipality_code' => $data['municipality_code'],
+                            ])->get();
+                            
+
+        return response()->json($barangays);
+    }
+
+    public function checkoutdetails(){
+
+        $grandTotal = 0;
+
+        $userinfo = DB::table('users')
+                            ->join('provinces','provinces.province_code','=','users.province')
+                            ->join('municipalities','municipalities.municipality_code','=','users.municipality')
+                            ->join('barangays','barangays.barangay_id','=','users.barangay')
+                            ->select('provinces.province_name','municipalities.municipality_name','barangays.barangay_name','users.*')
+                            ->where('users.user_id',session('user_id'))
+                            ->first();
+        
+        $barangays = DB::table('barangays')
+                        ->select('*')
+                        ->get();
+
+        $municipalities = DB::table('municipalities')
+                        ->select('*')
+                        ->get();
+
+        $provinces = DB::table('provinces')
+                        ->select('*')
+                        ->get();
+
+        
+        $cartProducts = DB::table('carts')
+                        ->join('products','products.product_id','=','carts.product_id')
+                        ->select('products.*','carts.*')
+                        ->where('carts.user_id',session('user_id'))
+                        ->get();
+
+        foreach($cartProducts as $product){
+            $grandTotal = $grandTotal + ($product->price * $product->cart_quantity);
+        }
+       
+        return view('mainpage.checkoutdetails',compact('userinfo','barangays','municipalities','provinces','grandTotal'));
+    }
+
     public function test(){
         
-        return view('mainpage.cartdetails');
+        $provinces = DB::table('province')
+                        ->select('*')
+                        ->orderBy('province_name')
+                        ->get();
+
+        dd($provinces);
     }
 }

@@ -86,8 +86,19 @@
                         <option>Other</option>
                       </select>
                     <input type="text" id="exampleInputEmail1" name="email_address" placeholder="Email address" class="form-control mb-3 p-4">
-                    <input type="text" id="exampleInputEmail1" name="address" placeholder="Address" class="form-control mb-3 p-4">
-
+                    <select class="form-control mb-3 p-4" name="province" id="province">
+                      <option disabled selected>Province</option>
+                      @foreach($provinces as $province)
+                      <option value="{{$province->province_code}}">{{$province->province_name}}</option>
+                      @endforeach
+                    </select>
+                    <select class="form-control mb-3 p-4" disabled name="municipality" id="municipality">
+                      <option disabled selected>Municipality</option>
+                    </select>
+                    <select class="form-control mb-3 p-4" disabled name="barangay" id="barangay">
+                      <option disabled selected>Barangay</option>
+                    </select>
+                    <input type="text" id="address_information" name="address_information" placeholder="Other Address Information" class="form-control mb-3 p-4">
                     <input type="text" id="exampleInputName" name="contact_number" placeholder="Contact Number" class="form-control mb-3 p-4">
                     <input placeholder="Birthday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mb-3 p-4" name="birthday">
                     <input type="password" id="inputPassword1" placeholder="Set your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password">
