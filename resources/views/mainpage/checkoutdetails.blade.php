@@ -16,37 +16,39 @@
 
   <section id="checkout">
     <div class="container py-5 my-5">
-      <form class="form-group">
+      <form class="form-group" action="/placeorder" method="POST">
+        @CSRF
         <div class="row d-flex flex-wrap">
           <div class="col-lg-6">
             <h2 class="text-dark pb-3">Billing Details</h2>
             <div class="billing-details">
               <label for="fname">First Name</label>
-              <input type="text" id="fname" name="firstname" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->first_name}}">
+              <input type="text" id="fname" name="first_name" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->first_name}}">
               <label for="lname">Last Name</label>
-              <input type="text" id="lname" name="lastname" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->last_name}}">
+              <input type="text" id="lname" name="last_name" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->last_name}}">
+              <input type="hidden" name="total" value="{{$grandTotal}}">
               <label for="province">Province </label>
-              <select class="form-select form-control mt-2 mb-4" aria-label="Default select example">
+              <select class="form-select form-control mt-2 mb-4" name="province" aria-label="Default select example" id="province">
                 @foreach($provinces as $province)
-                  <option @if($province->province_code == $userinfo->province) selected @endif>{{$province->province_name}}</option>
+                  <option value="{{$province->province_code}}" @if($province->province_code == $userinfo->province) selected @endif>{{$province->province_name}}</option>
                 @endforeach
               </select>
               <label for="state">Municipality</label>
-              <select class="form-select form-control mt-2 mb-4" aria-label="Default select example">
+              <select class="form-select form-control mt-2 mb-4" name="municipality" aria-label="Default select example" id="municipality">
                 @foreach($municipalities as $municipality)
-                  <option @if($municipality->municipality_code == $userinfo->municipality) selected @endif>{{$municipality->municipality_name}}</option>
+                  <option value="{{$municipality->municipality_code}}" @if($municipality->municipality_code == $userinfo->municipality) selected @endif>{{$municipality->municipality_name}}</option>
                 @endforeach
               </select>
               <label for="state">Barangay</label>
-              <select class="form-select form-control mt-2 mb-4" aria-label="Default select example">
+              <select class="form-select form-control mt-2 mb-4" name="barangay" aria-label="Default select example" id="barangay">
                 @foreach($barangays as $barangay)
-                  <option @if($barangay->barangay_id == $userinfo->barangay) selected @endif>{{$barangay->barangay_name}}</option>
+                  <option value="{{$barangay->barangay_id}}" @if($barangay->barangay_id == $userinfo->barangay) selected @endif>{{$barangay->barangay_name}}</option>
                 @endforeach
               </select>
-              <label for="address_information">Address additional information </label>
+              <label for="address_information">Address additional information (Street / Blk / Unit # ) </label>
               <input type="text" id="address_information" name="address_information" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->address_information}}">
               <label for="phone">Phone number </label>
-              <input type="text" id="phone" name="phone" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->contact_number}}">
+              <input type="text" id="phone" name="contact_number" class="form-control mt-2 mb-4 ps-3" value="{{$userinfo->contact_number}}">
             </div>
           </div>
           <div class="col-lg-6">
@@ -86,25 +88,23 @@
                 </table>
                 <div class="list-group mt-5 mb-3">
                   <label class="list-group-item d-flex gap-2 border-0">
-                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
-                      id="listGroupRadios1" value="" checked="">
+                    <input class="form-check-input flex-shrink-0" type="radio" name="payment_type"
+                      id="listGroupRadios1" value="Online Payment" checked="">
                     <span>
-                      <strong class="text-uppercase">Direct bank transfer</strong>
-                      <small class="d-block text-body-secondary">Make your payment directly into our bank account.
-                        Please use your Order ID. Your order will shipped after funds have cleared in our
-                        account.</small>
+                      <strong class="text-uppercase">Online Payment</strong>
+                      <small class="d-block text-body-secondary">Make your payment directly into our bank account.</small>
                     </span>
                   </label>
                   <label class="list-group-item d-flex gap-2 border-0">
-                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
-                      id="listGroupRadios3" value="">
+                    <input class="form-check-input flex-shrink-0" type="radio" name="payment_type"
+                      id="listGroupRadios3" value="COD">
                     <span>
                       <strong class="text-uppercase">Cash on delivery</strong>
                       <small class="d-block text-body-secondary">Pay with cash upon delivery.</small>
                     </span>
                   </label>
                 </div>
-                <button type="submit" name="submit" class="btn btn-dark btn-lg rounded-1 w-100">Place order</button>
+                <button type="submit" class="btn btn-dark btn-lg rounded-1 w-100">Place order</button>
               </div>
             </div>
           </div>
