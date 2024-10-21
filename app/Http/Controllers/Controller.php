@@ -11,11 +11,14 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Products;
 use App\Models\Cart;
+use App\Models\Orders;
 use Mail;
 use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Curl;
+use Illuminate\Support\Facades\Redirect;
 
 class Controller extends BaseController
 {
@@ -206,6 +209,7 @@ class Controller extends BaseController
                         ->join('products','products.product_id','=','carts.product_id')
                         ->select('products.*','carts.*')
                         ->where('carts.user_id',session('user_id'))
+                        ->where('carts.cart_status',0)
                         ->get();
 
                     $info->session()->put('cartCount', count($cartProducts));
@@ -382,6 +386,7 @@ class Controller extends BaseController
                         ->join('products','products.product_id','=','carts.product_id')
                         ->select('products.*','carts.*')
                         ->where('carts.user_id',session('user_id'))
+                        ->where('carts.cart_status',0)
                         ->get();
         
         session()->put('cartCount', count($cartProducts));
@@ -397,6 +402,7 @@ class Controller extends BaseController
                         ->join('products','products.product_id','=','carts.product_id')
                         ->select('products.*','carts.*')
                         ->where('carts.user_id',session('user_id'))
+                        ->where('carts.cart_status',0)
                         ->get();
 
         foreach($cartProducts as $product){
@@ -418,6 +424,7 @@ class Controller extends BaseController
                         ->join('products','products.product_id','=','carts.product_id')
                         ->select('products.*','carts.*')
                         ->where('carts.user_id',session('user_id'))
+                        ->where('carts.cart_status',0)
                         ->get();
         
         session()->put('cartCount', count($cartProducts));
@@ -472,14 +479,17 @@ class Controller extends BaseController
         
         $barangays = DB::table('barangays')
                         ->select('*')
+                        ->orderBy('barangay_name')
                         ->get();
 
         $municipalities = DB::table('municipalities')
                         ->select('*')
+                        ->orderBy('municipality_name')
                         ->get();
 
         $provinces = DB::table('provinces')
                         ->select('*')
+                        ->orderBy('province_name')
                         ->get();
 
         
@@ -487,6 +497,7 @@ class Controller extends BaseController
                         ->join('products','products.product_id','=','carts.product_id')
                         ->select('products.*','carts.*')
                         ->where('carts.user_id',session('user_id'))
+                        ->where('carts.cart_status',0)
                         ->get();
 
         foreach($cartProducts as $product){
@@ -498,11 +509,128 @@ class Controller extends BaseController
 
     public function test(){
         
-        $provinces = DB::table('province')
-                        ->select('*')
-                        ->orderBy('province_name')
-                        ->get();
+        
+        
+    }
 
-        dd($provinces);
+    public function placeorder(Request $data){
+
+        $paymentStatus;
+        $orderStatus;
+        $paymentURL = null;
+
+        if($data['payment_type'] == "Online Payment"){
+
+            $info = $data->toArray();
+
+            session()->put('checkoutInfo',$info);
+
+            $paymentURL = $this->onlinePayment($data);
+
+            return Redirect::to($paymentURL);
+        }
+        else{
+            
+            $itemsOrdered = "";
+
+            foreach(session('cartItems') as $product){
+
+                if($itemsOrdered == ""){
+                    $itemsOrdered = $itemsOrdered.$product->product_id."-".$product->cart_quantity;
+                }
+                else{
+                    $itemsOrdered = $itemsOrdered.",".$product->product_id."-".$product->cart_quantity;
+                }
+
+                Cart::changeCartStatus($product->cart_id);
+            }
+       
+            Orders::insertOrder($data,"Pending",$itemsOrdered);
+
+            $cartProducts = DB::table('carts')
+                        ->join('products','products.product_id','=','carts.product_id')
+                        ->select('products.*','carts.*')
+                        ->where('carts.user_id',session('user_id'))
+                        ->where('carts.cart_status',0)
+                        ->get();
+        
+            session()->put('cartCount', count($cartProducts));
+            session()->put('cartItems', $cartProducts);
+
+            return view('mainpage.successPayment');
+        }
+
+    
+    }
+
+    public function onlinePayment($data){
+
+        $data['total'] = $data['total']."00";
+
+        $total = (int)$data['total'];
+
+        $info = [
+            'data' => [
+                'attributes' => [
+                    'line_items' => [
+                        [
+                            'currency' => 'PHP',
+                            'amount' => $total,
+                            'description' => 'Marki Apparel item checkout',
+                            'name' => 'Marki Apparel',
+                            'quantity' => 1
+                        ]
+                    ],
+                    'payment_method_types' => [
+                        'card',
+                        'gcash'
+                    ],
+                    'success_url' =>'http://127.0.0.1:8000/successpayment',
+                    'cancel_url' => 'http://127.0.0.1:8000/checkoutdetails',
+                    'description' => 'Marki Apparel'
+                ],
+            ]
+        ];
+
+        $response = Curl::to("https://api.paymongo.com/v1/checkout_sessions")
+                    ->withHeader('Content-Type: application/json')
+                    ->withHeader('accept: application/json')
+                    ->withHeader('Authorization: Basic '.env('AUTH_PAY'))
+                    ->withData($info)
+                    ->asJson()
+                    ->post();
+        
+        return $response->data->attributes->checkout_url;
+    }
+
+    public function successpayment(){
+        
+        $itemsOrdered = "";
+
+        foreach(session('cartItems') as $product){
+
+            if($itemsOrdered == ""){
+                $itemsOrdered = $itemsOrdered.$product->product_id."-".$product->cart_quantity;
+            }
+            else{
+                $itemsOrdered = $itemsOrdered.",".$product->product_id."-".$product->cart_quantity;
+            }
+
+            Cart::changeCartStatus($product->cart_id);
+        }
+       
+        $cartProducts = DB::table('carts')
+                        ->join('products','products.product_id','=','carts.product_id')
+                        ->select('products.*','carts.*')
+                        ->where('carts.user_id',session('user_id'))
+                        ->where('carts.cart_status',0)
+                        ->get();
+        
+        session()->put('cartCount', count($cartProducts));
+        session()->put('cartItems', $cartProducts);
+
+        Orders::insertOrder(session('checkoutInfo'),"Success",$itemsOrdered);
+
+        return view('mainpage.successPayment');
     }
 }

@@ -47,4 +47,13 @@ class Cart extends Model
                 'cart_quantity' => $data['cartProductQuantity']
             ]);
     }
+
+    public static function changeCartStatus($cart_id){
+
+        DB::table('carts')
+            ->where('cart_id',$cart_id)
+            ->update([
+                'cart_status' => 1
+            ]);
+    }
 }

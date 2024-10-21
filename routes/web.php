@@ -86,7 +86,8 @@ Route::get('/logout', [Controller::class, 'logout']);
 Route::get('/emailverification', [Controller::class, 'emailverification'])->name('emailVerification');
 Route::get('/fullcartdetails', [Controller::class, 'fullcartdetails'])->name('fullcartdetails');
 Route::get('/loginregister', [Controller::class, 'loginregister'])->name('loginregister');
-Route::get('/checkoutdetails', [Controller::class, 'checkoutdetails']);
+Route::get('/checkoutdetails', [Controller::class, 'checkoutdetails'])->name('checkoutdetails');
+Route::get('/successpayment', [Controller::class, 'successpayment'])->name('successpayment');
 Route::get('/test', [Controller::class, 'test']);
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
@@ -102,6 +103,7 @@ Route::post('/editproductcart', [Controller::class, 'editproductcart']);
 Route::post('/deletecartproduct', [Controller::class, 'deletecartproduct']);
 Route::post('/getmunicipality', [Controller::class, 'getmunicipality']);
 Route::post('/getbarangay', [Controller::class, 'getbarangay']);
+Route::post('/placeorder', [Controller::class, 'placeorder']);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -76,13 +76,15 @@
       </div>
       <div class="offcanvas-body">
         <div class="order-md-last">
+          @if(session('cartCount') > 0)
           <h4 class="d-flex justify-content-between align-items-center mb-4">
             <span class="text-primary">Your cart</span>
             <span class="badge bg-primary rounded-circle pt-2">{{session('cartCount')}}</span>
           </h4>
+          @endif
   
           <ul class="list-group mb-4">
-            @if(!empty(session('cartItems')))
+            @if(session('cartCount') > 0)
             @foreach(session('cartItems') as $items)
             <li class="list-group-item d-flex justify-content-between lh-sm">
               <div>
@@ -92,28 +94,14 @@
               <span class="text-body-secondary">₱{{$items->price}}</span>
             </li>
             @endforeach
+            @else
+            <center><h2>Cart Empty</h2></center>
             @endif
-            {{-- <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Graphic T-Shirt</h6>
-                <small class="text-body-secondary">Brief description</small>
-              </div>
-              <span class="text-body-secondary">80</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Black T-Shirt</h6>
-                <small class="text-body-secondary">Brief description</small>
-              </div>
-              <span class="text-body-secondary">50</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span class="fw-bold">Total</span>
-              <strong>250</strong>
-            </li> --}}
+            
           </ul>
-  
-          <a href="/fullcartdetails" class="w-100 btn btn-dark" type="submit">Full Cart Details</a>
+          @if(session('cartCount') > 0)
+            <a href="/fullcartdetails" class="w-100 btn btn-dark" type="submit">Full Cart Details</a>
+          @endif
         </div>
       </div>
     </div>
