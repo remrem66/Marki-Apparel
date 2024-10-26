@@ -9,8 +9,8 @@
     });
 
     $('.addproductvariation').click(function(e) {
+        
         let id = $(this).attr("id");
-
         $('#product_id').val(id);
     });
 </script>
