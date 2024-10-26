@@ -26,7 +26,7 @@ class Controller extends BaseController
 
         User::registerUser($info);
 
-        return view('mainpage.LoginRegister');
+        return redirect('/')->with('message', 'Successfully Created Account!');
     }
 
     public function insertnewproduct(Request $info){
@@ -178,7 +178,10 @@ class Controller extends BaseController
 
         if (Auth::attempt(['email_address' => $info['email_address'], 'password' => $info['password']])) {
 
-            $userData = User::all()->where('email',$info['email'])->first();
+            $userData = DB::table('users')
+                        ->select('*')
+                        ->where('email_address',$info['email_address'])
+                        ->first();
 
             if($userData->user_status == 0){
                 return back()->withErrors([
@@ -309,6 +312,11 @@ class Controller extends BaseController
 
     public function verifyemail(Request $info){
 
+        $userData = DB::table('users')
+                        ->select('*')
+                        ->where('user_id',$info['user_id'])
+                        ->first();
+
         $userData = User::all()->where('user_id',$info['user_id'])->first();
         $userID = $info['user_id'];
 
@@ -327,13 +335,19 @@ class Controller extends BaseController
             }
             else{
 
-                $info->session()->regenerate();
+                if($userData->user_type == 0){
+                    return redirect()->route('dashboard');
+                }
+                else{
+                    $info->session()->regenerate();
 
-                $info->session()->put('logged', true);
-                $info->session()->put('user_id', $userData->user_id);
-                $info->session()->put('user_type', $userData->user_type);
+                    $info->session()->put('logged', true);
+                    $info->session()->put('user_id', $userData->user_id);
+                    $info->session()->put('user_type', $userData->user_type);
         
-                return redirect('/')->with('message', 'Successful Login!');
+                    return redirect('/')->with('message', 'Successful Login!');
+                }
+
             }
 
         }

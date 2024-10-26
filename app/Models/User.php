@@ -47,14 +47,14 @@ class User extends Authenticatable
                     'province' => $info['province'],
                     'municipality' => $info['municipality'],
                     'barangay' => $info['barangay'],
-                    'address' => $info['address_information'],
+                    'address_information' => $info['address_information'],
                     'email_address' => $info['email_address'],
                     'contact_number' => $info['contact_number'],
                     'password' => Hash::make($info['password']),
                     'profile_picture' => $info->file('profile_picture')->getClientOriginalName()
                 ]);
 
-            $data->file('profile_picture')->move(public_path('/profile pictures'),$data->file('profile_picture')->getClientOriginalName());
+            $info->file('profile_picture')->move(public_path('/profile pictures'),$info->file('profile_picture')->getClientOriginalName());
         }
         else{
             DB::table('users')
@@ -66,7 +66,7 @@ class User extends Authenticatable
                     'province' => $info['province'],
                     'municipality' => $info['municipality'],
                     'barangay' => $info['barangay'],
-                    'address' => $info['address_information'],
+                    'address_information' => $info['address_information'],
                     'email_address' => $info['email_address'],
                     'contact_number' => $info['contact_number'],
                     'password' => Hash::make($info['password'])
