@@ -121,84 +121,22 @@
         <div class="rightbar-overlay"></div>
         <!-- /End-bar -->
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<!-- jQuery UI 1.11.4 -->
-{{-- <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}"></script> --}}
+        <!-- jQuery UI 1.11.4 -->
+        {{-- <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}"></script> --}}
         <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js" integrity="sha256-u0L8aA6Ev3bY2HI4y0CAyr9H8FRWgX4hZ9+K7C2nzdc=" crossorigin="anonymous"></script>
         <!-- bundle -->
         <script src="{{asset('admin/assets/js/vendor.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/app.min.js')}}"></script>
 
-        <!-- Data Tables js -->
-        <script src="{{asset('admin/assets/js/vendor/jquery.dataTables.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/dataTables.bootstrap5.j')}}s"></script>
-        <script src="{{asset('admin/assets/js/vendor/dataTables.responsive.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/responsive.bootstrap5.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/dataTables.buttons.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/buttons.bootstrap5.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/buttons.html5.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/buttons.flash.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/buttons.print.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/dataTables.keyTable.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/dataTables.select.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/fixedColumns.bootstrap5.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/fixedHeader.bootstrap5.min.js')}}"></script>
-        <!-- third party js ends -->
-        <script src="{{asset('admin/assets/js/pages/demo.datatable-init.js')}}"></script>
-        <!-- third party js --> 
+        <!-- third party js -->
+        <!-- <script src="assets/js/vendor/chart.min.js"></script> -->
         <script src="{{asset('admin/assets/js/vendor/apexcharts.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/vendor/jquery-jvectormap-1.2.2.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/vendor/jquery-jvectormap-world-mill-en.js')}}"></script>
         <!-- third party js ends -->
 
         <!-- demo app -->
-        <script src="{{asset('admin/assets/js/pages/demo.dashboard.js')}}"></script>
-        <!-- end demo js-->
-
-        
-        <!-- third party:js -->
-        <script src="{{asset('admin/assets/js/vendor/d3.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/britecharts.min.js')}}"></script>
-        <!-- third party end -->
-                <!-- demo:js -->
-                <script src="{{asset('admin/assets/js/pages/demo.britechart.js')}}"></script>
-                <!-- demo end -->
-        <!-- demo app -->
-        <script src="{{asset('admin/assets/js/pages/demo.chartjs.js')}}"></script>
-        <!-- end demo js-->
-
-                <!-- third party js -->
-    <script src="{{asset('admin/assets/js/vendor/chart.min.js')}}"></script>
-    <!-- third party js ends -->
-    <script src="{{asset('admin/assets/js/vendor/jquery.sparkline.min.js')}}"></script>
-
-    <script src="{{asset('admin/assets/js/vendor/handlebars.min.js')}}"></script>
-    <script src="{{asset('admin/assets/js/vendor/typeahead.bundle.min.js')}}"></script>
-    <script src="{{asset('admin/assets/js/pages/demo.timepicker.js')}}"></script>
-    
-    <script src="{{asset('admin/assets/js/vendor/quill.min.js')}}"></script>
-
-    <script src="{{asset('admin/assets/js/pages/demo.quilljs.js')}}"></script>
-
-    <script src="{{asset('admin/assets/js/vendor/simplemde.min.js')}}"></script>
-
-    <script src="{{asset('admin/assets/js/pages/demo.simplemde.js')}}"></script>
-
-    <script src="{{asset('admin/assets/js/vendor/dropzone.min.js')}}"></script>
-
-    <script src="{{asset('admin/assets/js/ui/component.fileupload.js')}}"></script>
-
-    <script src="{{asset('admin/assets/js/vendor.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/app.min.js')}}"></script>
-
-        <script src="{{asset('admin/assets/js/pages/demo.form-wizard.js')}}"></script>
-
-        <script src="{{asset('admin/assets/js/vendor/dataTables.checkboxes.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/responsive.bootstrap5.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/dataTables.responsive.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/jquery.dataTables.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/vendor/dataTables.bootstrap5.js')}}"></script>
-        <script src="{{asset('admin/assets/js/pages/demo.products.js')}}"></script>
-
+        <script src="{{asset('admin/assets/js/pages/demo.dashboard-analytics.js')}}"></script>
 @include('admin.ajax')
 </body>
 
