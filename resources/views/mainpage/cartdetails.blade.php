@@ -1,6 +1,6 @@
 @include('mainpage.header')
 @include('mainpage.navbar')
-  <section id="banner" style="background-image:url(mainpage/images/banner-img2.jpg);">
+  <section id="banner" style="background-image:url({{asset('mainpage/images/banner-img2.jpg')}});">
     <div class="container padding-medium-2">
       <div class="hero-content ">
         <h2 class="display-1 fw-bold mt-5 mb-0">Cart</h2>

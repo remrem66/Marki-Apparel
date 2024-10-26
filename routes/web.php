@@ -89,6 +89,8 @@ Route::get('/loginregister', [Controller::class, 'loginregister'])->name('loginr
 Route::get('/checkoutdetails', [Controller::class, 'checkoutdetails'])->name('checkoutdetails');
 Route::get('/successpayment', [Controller::class, 'successpayment'])->name('successpayment');
 Route::get('/test', [Controller::class, 'test']);
+Route::get('/orderstatus/{id}', [Controller::class, 'orderstatus']);
+
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);

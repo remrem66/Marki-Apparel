@@ -633,4 +633,36 @@ class Controller extends BaseController
 
         return view('mainpage.successPayment');
     }
+
+    public function orderstatus($status){
+
+        $orderIDs = [];
+        $quantities = [];
+
+        $data = DB::table('orders')
+                ->select('*')
+                ->where('order_status',$status)
+                ->where('user_id',session('user_id'))
+                ->get('*');
+
+        foreach($data as $info){
+            $item = explode(',',$info->items_ordered);
+
+            
+            for($x = 0; $x < count($item); $x++){
+                
+                $products = explode('-',$item[$x]);
+                
+                array_push($orderIDs,$products[0]);
+                array_push($quantities,$products[1]);
+            }
+        }
+
+        $productDetails = DB::table('products')
+                        ->select('*')
+                        ->whereIn('product_id',$orderIDs)
+                        ->get();
+
+        return view('mainpage.orderStatus',compact('productDetails','quantities','status'));
+    }
 }

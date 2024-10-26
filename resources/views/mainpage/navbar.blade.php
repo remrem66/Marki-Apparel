@@ -167,18 +167,20 @@
                   <li><a href="/shop/Pants" class="dropdown-item">Pants</a></li>
                 </ul>
               </li>
+              @if(session('logged') == true)
               <li class="nav-item dropdown">
                 <a class="nav-link mx-2 dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
                   aria-expanded="false">Orders</a>
                 <ul class="dropdown-menu" aria-labelledby="pages">
-                  <li><a href="/shop/T-shirt" class="dropdown-item">Order Placed</a></li>
-                  <li><a href="/shop/Polo Shirt" class="dropdown-item">Dispatched</a></li>
-                  <li><a href="/shop/Polo" class="dropdown-item">Collected</a></li>
-                  <li><a href="/shop/Long Sleeve" class="dropdown-item">In Transit</a></li>
-                  <li><a href="/shop/Hoodie" class="dropdown-item">Out For Delivery</a></li>
-                  <li><a href="/shop/Jacket" class="dropdown-item">Delivered</a></li>
+                  <li><a href="/orderstatus/Order Placed" class="dropdown-item">Order Placed</a></li>
+                  <li><a href="/orderstatus/Dispatched" class="dropdown-item">Dispatched</a></li>
+                  <li><a href="/orderstatus/Collected" class="dropdown-item">Collected</a></li>
+                  <li><a href="/orderstatus/In Transit" class="dropdown-item">In Transit</a></li>
+                  <li><a href="/orderstatus/Out For Delivery" class="dropdown-item">Out For Delivery</a></li>
+                  <li><a href="/orderstatus/Delivered" class="dropdown-item">Delivered</a></li>
                 </ul>
               </li>
+              @endif
               <li class="nav-item">
                 <a href="#" class="nav-link mx-2">About Us</a>
               </li>
