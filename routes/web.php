@@ -90,6 +90,7 @@ Route::get('/checkoutdetails', [Controller::class, 'checkoutdetails'])->name('ch
 Route::get('/successpayment', [Controller::class, 'successpayment'])->name('successpayment');
 Route::get('/test', [Controller::class, 'test']);
 Route::get('/orderstatus/{id}', [Controller::class, 'orderstatus']);
+Route::get('/productdetails/{id}', [Controller::class, 'productdetails']);
 
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);

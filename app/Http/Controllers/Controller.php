@@ -523,7 +523,7 @@ class Controller extends BaseController
 
     public function test(){
         
-        return view('admin.test');
+        return view('admin.productDetails');
         
     }
 
@@ -678,5 +678,15 @@ class Controller extends BaseController
                         ->get();
 
         return view('mainpage.orderStatus',compact('productDetails','quantities','status'));
+    }
+
+    public function productdetails($id){
+
+        $data = DB::table('products')
+                ->select('*')
+                ->where('product_id',$id)
+                ->first();
+
+        return view('admin.productDetails',compact('data'));
     }
 }

@@ -73,7 +73,7 @@
                                                         </td>
                     
                                                         <td class="table-action">
-                                                            <a href="#" class="action-icon"  onclick="return false;"> <i class="mdi mdi-eye"></i></a>
+                                                            <a href="/productdetails/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-archive-plus-outline addproductvariation" data-bs-toggle="modal" data-bs-target="#standard-modal" id="{{$item->product_id}}"></i></a>
                                                             <a href="/editproduct/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
