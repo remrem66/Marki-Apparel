@@ -523,7 +523,7 @@ class Controller extends BaseController
 
     public function test(){
         
-        return view('admin.productDetails');
+        return view('mainpage.orderStatus');
         
     }
 
@@ -688,5 +688,91 @@ class Controller extends BaseController
                 ->first();
 
         return view('admin.productDetails',compact('data'));
+    }
+    
+    public function orders(){
+
+        $info = [];
+
+        $data = DB::table('orders')
+                ->select('*')
+                ->get();
+
+        $counter = 0;
+        foreach($data as $product){
+
+            $itemsOrdered = "";
+
+            $province = DB::table('provinces')
+                        ->select('*')
+                        ->where('province_code',$product->province)
+                        ->first();
+            
+            $municipality = DB::table('municipalities')
+                        ->select('*')
+                        ->where('municipality_code',$product->municipality)
+                        ->first();
+
+            $barangay = DB::table('barangays')
+                        ->select('*')
+                        ->where('barangay_id',$product->barangay)
+                        ->first();  
+                        
+            
+
+            $item = explode(',',$product->items_ordered);
+
+            
+            for($x = 0; $x < count($item); $x++){
+                
+                $productQuantity = explode('-',$item[$x]);
+
+                $productInfo = DB::table('products')
+                                ->select('*')
+                                ->where('product_id',$productQuantity[0])
+                                ->first();
+
+                if($itemsOrdered != ""){
+                    $itemsOrdered = $itemsOrdered.'<br>'.$productInfo->product_name." - ".$productQuantity[1];
+                }
+                else{
+                    $itemsOrdered = $itemsOrdered.$productInfo->product_name." - ".$productQuantity[1];
+                }
+
+                
+            }
+
+            
+
+            $info[$counter] = [
+                'Item Receiver' => $product->first_name." ".$product->last_name,
+                'Shipping Address' => $product->address_information." Barangay ".$barangay->barangay_name.", ".$province->province_name." ".$municipality->municipality_name,
+                'Contact Number' => $product->contact_number,
+                'Item Orders' => $itemsOrdered,
+                'Total' => $product->total,
+                'Payment Type' => $product->payment_type,
+                'Payment Status' => $product->payment_status,
+                'Courier' => $product->courier,
+                'Order Status' => $product->order_status,
+                'Order Date' => date("F j, Y",strtotime($product->order_date)),
+                'Order ID' => $product->order_id
+            ];
+            
+            $counter++;
+        }
+
+
+        return view ('admin.orderStatus', compact('info'));    
+    }
+
+    public function selectcourier(Request $data){
+
+        Orders::selectcourier($data);
+
+    }
+
+    public function changeorderstatus(Request $data){
+
+        Orders::changeorderstatus($data);
     }
 }

@@ -144,27 +144,4 @@
       </div>
     </div>
   </section>
-
-  <section id="register" style="background-image:url(mainpage/images/background-img.jpg);">
-    <div class="container padding-medium">
-      <div class="row banner-content align-items-center">
-        <div class="col-md-4 offset-md-1">
-          <h2 class="register-text text-white mt-3">Get <span> <em>20% OFF</em> </span> on your first purchase</h2>
-          <p class="mb-4">Sign Up for our newsletter and never miss any offers</p>
-        </div>
-        <div class="col-md-4 offset-md-1">
-          <form>
-            <div class="mb-3">
-              <input type="email" class="form-control form-control-lg rounded-3" name="email" id="email"
-                placeholder="Enter Your Email Address">
-            </div>
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-dark btn-lg rounded-3">Register it now</button>
-            </div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </section>
 @include('mainpage.footer')
