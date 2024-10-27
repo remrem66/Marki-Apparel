@@ -204,6 +204,11 @@
                 </li>
                 @endif
                 @if(session('logged') == true)
+                <li>
+                  <a href="/userProfile" class="mx-3">
+                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                  </a>
+                </li>
                 <li class="">
                   <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
                     aria-controls="offcanvasCart">

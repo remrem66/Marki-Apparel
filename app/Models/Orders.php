@@ -31,4 +31,23 @@ class Orders extends Model
                 'payment_status' => $paymentStatus
             ]);
     }
+
+    public static function selectcourier($data){
+
+        DB::table('orders')
+            ->where('order_id', $data['orderID'])
+            ->update([
+                'courier' => $data['courier'],
+                'order_status' => "Dispatched"
+            ]);
+    }
+
+    public static function changeorderstatus($data){
+
+        DB::table('orders')
+            ->where('order_id', $data['orderID'])
+            ->update([
+                'order_status' => $data['status']
+            ]);
+    }
 }

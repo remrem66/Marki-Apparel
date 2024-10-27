@@ -4,7 +4,7 @@
       <div class="row mt-5">
         <div class="col-md-4 offset-md-1">
           <div class="footer-menu">
-            <img src="mainpage/images/marki-dark.png" width="250" height="auto" alt="logo">
+            <img src="{{asset('mainpage/images/marki-dark.png')}}" width="250" height="auto" alt="logo">
             <div class="social-links mt-4">
               <ul class="d-flex list-unstyled gap-3">
                 <li class="social">
