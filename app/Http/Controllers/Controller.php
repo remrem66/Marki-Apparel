@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Hash;
 use Curl;
 use Illuminate\Support\Facades\Redirect;
 
+
 class Controller extends BaseController
 {
     public function registerUser(Request $info){ 
@@ -533,7 +534,7 @@ class Controller extends BaseController
 
     public function test(){
         
-        return view('mainpage.orderStatus');
+        return view('mainpage.test');
         
     }
 
@@ -824,5 +825,32 @@ class Controller extends BaseController
     public function changeuserstatus(Request $data){
 
         User::changeuserstatus($data);
+    }
+
+    public function userprofile(){
+
+        $info = DB::table('users')
+                    ->select('*')
+                    ->where('user_id', session('user_id'))
+                    ->first();
+
+        $province = DB::table('provinces')
+                    ->select('*')
+                    ->where('province_code',$info->province)
+                    ->first();
+        
+        $municipality = DB::table('municipalities')
+                    ->select('*')
+                    ->where('municipality_code',$info->municipality)
+                    ->first();
+
+        $barangay = DB::table('barangays')
+                    ->select('*')
+                    ->where('barangay_id',$info->barangay)
+                    ->first(); 
+
+        $fullAddress = $info->address_information.", Barangay ".$barangay->barangay_name.", ".$municipality->municipality_name.", ".$province->province_name;
+
+        return view('mainpage.userprofile',compact('info','fullAddress'));
     }
 }
