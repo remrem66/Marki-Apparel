@@ -8,7 +8,7 @@
                             <div class="col-12">
                                 <div class="page-title-box">
 
-                                    <h4 class="page-title">Products</h4>
+                                    <h4 class="page-title">Admin Users</h4>
                                 </div>
                             </div>
                         </div>
@@ -20,7 +20,7 @@
                                     <div class="card-body">
                                         <div class="row mb-2">
                                             <div class="col-sm-5">
-                                                <a href="/addnewproduct" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Products</a>
+                                                <a href="/addnewadminuser" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add New Admin User</a>
                                             </div>
           
                                         </div>
@@ -29,13 +29,12 @@
                                             <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                                                 <thead class="table-light">
                                                     <tr>
-                                                        <th>Product</th>
-                                                        <th>Category</th>
-                                                        <th>Color</th>
-                                                        <th>Size</th>
-                                                        <th>Price</th>
-                                                        <th>Quantity</th>
-                                                        <th>Status</th>
+                                                        <th>Full Name</th>
+                                                        <th>User Type</th>
+                                                        <th>Email Address</th>
+                                                        <th>Contact Number</th>
+                                                        <th>Account Status</th>
+                                                        <th>Date Added</th>
                                                         <th style="width: 85px;">Action</th>
                                                     </tr>
                                                 </thead>
@@ -43,40 +42,39 @@
                                                     @foreach ($data as $item)
                                                     <tr>
                                                         <td>
-                                                            <img src="mainpage/images/{{$item->picture1}}" alt="contact-img" title="contact-img" class="rounded me-3" height="48" />
-                                                            <p class="m-0 d-inline-block align-middle font-16">
-                                                                <a href="apps-ecommerce-products-details.html" class="text-body">{{$item->product_name}}</a>
-                                                            </p>
+                                                        {{$item->first_name}} {{$item->last_name}}
                                                         </td>
                                                         <td>
-                                                        {{$item->category}}
-                                                        </td>
-                                                        <td>
-                                                            {{$item->color}}
-                                                        </td>
-                                                        <td>
-                                                            {{$item->size}}
-                                                        </td>
-                    
-                                                        <td>
-                                                            ₱{{$item->price}}
-                                                        </td>
-                                                        <td>
-                                                            {{$item->quantity}}
-                                                        </td>
-                                                        <td>
-                                                            @if($item->status == 1)
-                                                            <span class="badge bg-success">Active</span>
+                                                            @if($item->user_type == 2)
+                                                                Inventory Admin
                                                             @else
-                                                            <span class="badge bg-danger">Inactive</span>
+                                                                Sales Admin
                                                             @endif
                                                         </td>
-                    
+                                                        <td>
+                                                            {{$item->email_address}}
+                                                        </td>
+                                                        <td>
+                                                            {{$item->contact_number}}
+                                                        </td>
+                                                        <td>
+                                                            @if($item->user_status == 1)
+                                                                Active
+                                                            @else
+                                                                Inactive
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            {{date("F j, Y",strtotime($item->date_created))}}
+                                                        </td>
                                                         <td class="table-action">
-                                                            <a href="/productdetails/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                                            <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-archive-plus-outline addproductvariation" data-bs-toggle="modal" data-bs-target="#standard-modal" id="{{$item->product_id}}"></i></a>
-                                                            <a href="/editproduct/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                            <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                            <a href="/editadminuser/{{$item->user_id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                            @if($item->user_status == 1)
+                                                                <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-close-circle deactivateuser" id="{{$item->user_id}}"></i></a>
+                                                            @else
+                                                                <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-check-circle activateuser" id="{{$item->user_id}}"></i></a>
+                                                            @endif
+                                                            
                                                         </td>
                                                     </tr>
                                                     @endforeach

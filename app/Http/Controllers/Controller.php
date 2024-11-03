@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Products;
 use App\Models\Cart;
 use App\Models\Orders;
+use App\Models\Audittrail;
 use Mail;
 use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Auth;
@@ -195,13 +196,16 @@ class Controller extends BaseController
                 return redirect()->route('emailVerification');
             }
             else{
+
+                $fullName = $userData->first_name." ".$userData->last_name;
                 $info->session()->regenerate();
 
                 $info->session()->put('logged', true);
                 $info->session()->put('user_id', $userData->user_id);
+                $info->session()->put('user_name', $fullName);
                 $info->session()->put('user_type', $userData->user_type);
 
-                if($userData->user_type == 0){
+                if($userData->user_type == 0 || $userData->user_type == 2 || $userData->user_type == 3){
                 
                     return redirect()->route('dashboard');
     
@@ -335,16 +339,20 @@ class Controller extends BaseController
             }
             else{
 
-                if($userData->user_type == 0){
+                $fullName = $userData->first_name." ".$userData->last_name;
+
+                $info->session()->regenerate();
+
+                $info->session()->put('logged', true);
+                $info->session()->put('user_id', $userData->user_id);
+                $info->session()->put('user_name', $fullName);
+                $info->session()->put('user_type', $userData->user_type);
+
+                if($userData->user_type == 0 || $userData->user_type == 2 || $userData->user_type == 3){
                     return redirect()->route('dashboard');
                 }
                 else{
-                    $info->session()->regenerate();
-
-                    $info->session()->put('logged', true);
-                    $info->session()->put('user_id', $userData->user_id);
-                    $info->session()->put('user_type', $userData->user_type);
-        
+                    
                     return redirect('/')->with('message', 'Successful Login!');
                 }
 
@@ -776,5 +784,45 @@ class Controller extends BaseController
     public function changeorderstatus(Request $data){
 
         Orders::changeorderstatus($data);
+    }
+
+    public function insertnewadminuser(Request $info){
+
+        User::addnewadminuser($info);
+
+        return redirect('/addnewadminuser');
+    }
+
+    public function viewadminusers(){
+
+        $data = DB::table('users')
+                    ->select('*')
+                    ->where('user_type',2)
+                    ->orWhere('user_type',3)
+                    ->get();
+        
+        return view('admin.viewAdminUsers',compact('data'));
+        
+    }
+
+    public function editadminuser($id){
+        $info = DB::table('users')
+                    ->select('*')
+                    ->where('user_id',$id)
+                    ->first();
+
+        return view('admin.editadminuser',compact('info'));
+    }
+
+    public function adminuseredit(Request $info){
+
+        User::adminuseredit($info);
+
+        return redirect('/dashboard');
+    }
+
+    public function changeuserstatus(Request $data){
+
+        User::changeuserstatus($data);
     }
 }

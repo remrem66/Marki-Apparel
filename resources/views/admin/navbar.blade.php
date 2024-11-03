@@ -42,7 +42,21 @@
         
                     <li class="side-nav-title side-nav-item mt-1">Components</li>
 
-
+                    <li class="side-nav-item">
+                        <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
+                            <i class="uil-users-alt"></i>
+                            <span> Users Management </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarForms">
+                            <ul class="side-nav-second-level">
+                                <li>
+                                    <a href="/addnewadminuser">Add New Admin User</a>
+                                    <a href="/viewadminusers">View Admin Users</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-shopping-basket"></i>

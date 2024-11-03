@@ -59,6 +59,10 @@ Route::get('/addnewproduct', function () {
     return view('admin.addNewProduct');
 });
 
+Route::get('/addnewadminuser', function () {
+    return view('admin.addNewAdminUser');
+});
+
 Route::get('/chartjs', function () {
     return view('admin/chartjs');
 });
@@ -79,7 +83,9 @@ Route::get('/checkout', function () {
 
 
 Route::get('/viewproducts', [Controller::class, 'viewproducts']);
+Route::get('/viewadminusers', [Controller::class, 'viewadminusers']);
 Route::get('/editproduct/{id}', [Controller::class, 'editproduct']);
+Route::get('/editadminuser/{id}', [Controller::class, 'editadminuser']);
 Route::get('/shop/{category}', [Controller::class, 'shopcategory']);
 Route::get('/single-product/{name}', [Controller::class, 'singleproduct']);
 Route::get('/logout', [Controller::class, 'logout']);
@@ -97,8 +103,10 @@ Route::get('/orders', [Controller::class, 'orders'])->name('orders');
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);
+Route::post('/insertnewadminuser', [Controller::class, 'insertnewadminuser']);
 Route::post('/addproductvariation', [Controller::class, 'addproductvariation']);
 Route::post('/productedit', [Controller::class, 'productedit']);
+Route::post('/adminuseredit', [Controller::class, 'adminuseredit']);
 Route::post('/singleproductdetails', [Controller::class, 'singleproductdetails']);
 Route::post('/userlogin', [Controller::class, 'userlogin']);
 Route::post('/resendcode', [Controller::class, 'resendcode']);
@@ -111,6 +119,7 @@ Route::post('/getbarangay', [Controller::class, 'getbarangay']);
 Route::post('/placeorder', [Controller::class, 'placeorder']);
 Route::post('/selectcourier', [Controller::class, 'selectcourier']);
 Route::post('/changeorderstatus', [Controller::class, 'changeorderstatus']);
+Route::post('/changeuserstatus', [Controller::class, 'changeuserstatus']);
 
 
 // Route::middleware('auth')->group(function () {

@@ -26,6 +26,9 @@
         <link href="{{asset('admin/assets/css/vendor/fixedColumns.bootstrap5.css')}}" rel="stylesheet" type="text/css" />
         <!-- DataTables end -->
 
+        <!-- Toastr -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" async>
+
         <!-- App css -->
         <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style"/>
