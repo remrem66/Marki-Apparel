@@ -230,7 +230,9 @@ $('#province').on('change', function(){
             let data = $.parseJSON(response);
 
             $('#municipality').empty();
+            $('#barangay').empty();
             $('#municipality').append("<option disabled selected>Municipality</option>");
+            $('#barangay').append("<option disabled selected>Barangay</option>");
             $('#municipality').removeAttr('disabled');
             $.each(data, function(index, municipality) {
             // Access each municipality's properties
