@@ -90,6 +90,44 @@ class User extends Authenticatable
                 'is_verified' => 1
             ]);
     }
+
+    public static function addnewadminuser($info){
+
+        DB::table('users')
+                ->insert([
+                    'first_name' => $info['first_name'],
+                    'last_name' => $info['last_name'],
+                    'user_type' => $info['user_type'],
+                    'contact_number' => $info['contact_number'],
+                    'is_verified' => 1,
+                    'email_address' => $info['email_address'],
+                    'password' => Hash::make("admin123")
+                ]);
+
+    }
+
+    public static function adminuseredit($info){
+
+        DB::table('users')
+                ->where('user_id', $info['user_id'])
+                ->update([
+                    'first_name' => $info['first_name'],
+                    'last_name' => $info['last_name'],
+                    'user_type' => $info['user_type'],
+                    'contact_number' => $info['contact_number'],
+                    'email_address' => $info['email_address'],
+                ]);
+
+    }
+
+    public static function changeuserstatus($info){
+
+        DB::table('users')
+                ->where('user_id', $info['user_id'])
+                ->update([
+                    'user_status' => $info['user_status']
+                ]);
+    }
 }
 
 

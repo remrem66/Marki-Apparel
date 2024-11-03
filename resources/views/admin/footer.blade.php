@@ -149,14 +149,20 @@
         <script src="{{asset('admin/assets/js/vendor/dataTables.select.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/vendor/fixedColumns.bootstrap5.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/vendor/fixedHeader.bootstrap5.min.js')}}"></script>
+        <script src="{{asset('admin/assets/js/vendor/dataTables.checkboxes.min.js')}}"></script>
         <!-- third party js ends -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- demo app -->
         <script src="{{asset('admin/assets/js/pages/demo.datatable-init.js')}}"></script>
         <!-- end demo js-->
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
         <!-- demo app -->
         <script src="{{asset('admin/assets/js/pages/demo.dashboard-analytics.js')}}"></script>
+
+        <!-- demo app -->
+        <script src="{{asset('admin/assets/js/pages/demo.products.js')}}"></script>
 
 @include('admin.ajax')
 </body>
