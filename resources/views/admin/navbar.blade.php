@@ -79,6 +79,12 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
+                        <a href="/orders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                            <i class="dripicons-user-group"></i>
+                            <span>Audit Trail</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-document-layout-center"></i>
                             <span> Forms </span>
