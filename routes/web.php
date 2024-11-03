@@ -97,6 +97,7 @@ Route::get('/successpayment', [Controller::class, 'successpayment'])->name('succ
 Route::get('/test', [Controller::class, 'test']);
 Route::get('/orderstatus/{id}', [Controller::class, 'orderstatus']);
 Route::get('/productdetails/{id}', [Controller::class, 'productdetails']);
+Route::get('/customerprofileedit/{id}', [Controller::class, 'customerprofileedit']);
 Route::get('/orders', [Controller::class, 'orders'])->name('orders');
 Route::get('/userprofile', [Controller::class, 'userprofile']);
 
@@ -121,6 +122,7 @@ Route::post('/placeorder', [Controller::class, 'placeorder']);
 Route::post('/selectcourier', [Controller::class, 'selectcourier']);
 Route::post('/changeorderstatus', [Controller::class, 'changeorderstatus']);
 Route::post('/changeuserstatus', [Controller::class, 'changeuserstatus']);
+Route::post('/editcustomerprofile', [Controller::class, 'editcustomerprofile']);
 
 
 // Route::middleware('auth')->group(function () {

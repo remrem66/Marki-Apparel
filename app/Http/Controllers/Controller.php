@@ -534,7 +534,12 @@ class Controller extends BaseController
 
     public function test(){
         
-        return view('mainpage.test');
+        $provinces = DB::table('provinces')
+                        ->select('*')
+                        ->orderBy('province_name')
+                        ->get();
+
+        return view('mainpage.test',compact('provinces'));
         
     }
 
@@ -852,5 +857,36 @@ class Controller extends BaseController
         $fullAddress = $info->address_information.", Barangay ".$barangay->barangay_name.", ".$municipality->municipality_name.", ".$province->province_name;
 
         return view('mainpage.userprofile',compact('info','fullAddress'));
+    }
+
+    public function customerprofileedit($id){
+
+        $info = DB::table('users')
+                    ->select('*')
+                    ->where('user_id', $id)
+                    ->first();
+
+        $provinces = DB::table('provinces')
+                    ->select('*')
+                    ->get(); 
+        
+        $municipalities = DB::table('municipalities')
+                    ->select('*')
+                    ->get();
+
+        $barangays = DB::table('barangays')
+                    ->select('*')
+                    ->get(); 
+        
+        return view('mainpage.customerprofileedit',compact('info','provinces','municipalities','barangays'));
+    }
+
+    public function editcustomerprofile(Request $data){
+
+        User::editcustomerprofile($data);
+
+        return redirect('/')->with('message', 'Successfully Edited Profile!');
+
+        
     }
 }
