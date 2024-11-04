@@ -49,6 +49,10 @@ class Controller extends BaseController
         
         Products::insertnewproduct($info);
 
+        $audittrail = "Admin ".session('user_name')." added a new product (".$info['product_name'].")";
+
+        Audittrail::addNewAction($audittrail);
+
         return redirect('/addnewproduct');
     }
 
@@ -68,6 +72,10 @@ class Controller extends BaseController
 
         Products::addproductvariation($info,$product);
 
+        $audittrail = "Admin ".session('user_name')." added a new product variation (".$info['product_name'].")";
+
+        Audittrail::addNewAction($audittrail);
+
         return redirect('/viewproducts');
     }
 
@@ -76,6 +84,10 @@ class Controller extends BaseController
                     ->select('*')
                     ->where('product_id',$id)
                     ->first();
+
+        $audittrail = "Admin ".session('user_name')." edit the product (".$id.")";
+
+        Audittrail::addNewAction($audittrail);
 
         return view('admin.editproduct',compact('info'));
     }
@@ -534,7 +546,7 @@ class Controller extends BaseController
 
     public function test(){
         
-        return view('mainpage.test');
+        return view('admin.auditTrail');
         
     }
 
@@ -772,6 +784,10 @@ class Controller extends BaseController
             $counter++;
         }
 
+        $audittrail = "Admin ".session('user_name')." change order status of order (".$info['order_id'].") to (".$info['order_status'].")";
+
+
+        Audittrail::addNewAction($audittrail);
 
         return view ('admin.orderStatus', compact('info'));    
     }
@@ -790,6 +806,10 @@ class Controller extends BaseController
     public function insertnewadminuser(Request $info){
 
         User::addnewadminuser($info);
+
+        $audittrail = "Admin ".session('user_name')." added a new admin user (".$info['email_address'].")";
+
+        Audittrail::addNewAction($audittrail);
 
         return redirect('/addnewadminuser');
     }
@@ -852,5 +872,14 @@ class Controller extends BaseController
         $fullAddress = $info->address_information.", Barangay ".$barangay->barangay_name.", ".$municipality->municipality_name.", ".$province->province_name;
 
         return view('mainpage.userprofile',compact('info','fullAddress'));
+    }
+
+    public function audittrail(){
+
+    $info = DB::table('audittrail')
+            ->select('*')
+            ->get();
+
+        return view('admin.auditTrail' ,compact('info'));
     }
 }

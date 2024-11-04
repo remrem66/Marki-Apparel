@@ -3,12 +3,7 @@
   <section id="banner" style="background-image:url({{asset('mainpage/images/banner-img2.jpg')}});">
     <div class="container padding-medium-2">
       <div class="hero-content ">
-        <h2 class="display-1 fw-bold mt-5 mb-0">Cart</h2>
-        <nav class="breadcrumb">
-          <a class="breadcrumb-item nav-link" href="#">Home</a>
-          <a class="breadcrumb-item nav-link" href="#">Pages</a>
-          <span class="breadcrumb-item active" aria-current="page">User Profile</span>
-        </nav>
+        <h2 class="display-1 fw-bold mt-5 mb-0">user Profile</h2>
       </div>
     </div>
   </section>

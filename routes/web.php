@@ -99,6 +99,8 @@ Route::get('/orderstatus/{id}', [Controller::class, 'orderstatus']);
 Route::get('/productdetails/{id}', [Controller::class, 'productdetails']);
 Route::get('/orders', [Controller::class, 'orders'])->name('orders');
 Route::get('/userprofile', [Controller::class, 'userprofile']);
+Route::get('/audittrail', [Controller::class, 'audittrail']);
+
 
 
 
