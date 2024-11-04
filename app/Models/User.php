@@ -128,6 +128,23 @@ class User extends Authenticatable
                     'user_status' => $info['user_status']
                 ]);
     }
+
+    public static function editcustomerprofile($info){
+
+        DB::table('users')
+                ->where('user_id', $info['user_id'])
+                ->update([
+                    'first_name' => $info['first_name'],
+                    'last_name' => $info['last_name'],
+                    'gender' => $info['gender'],
+                    'birthday' => $info['birthday'],
+                    'province' => $info['province'],
+                    'municipality' => $info['municipality'],
+                    'barangay' => $info['barangay'],
+                    'address_information' => $info['address_information'],
+                    'contact_number' => $info['contact_number']
+                ]);
+    }
 }
 
 

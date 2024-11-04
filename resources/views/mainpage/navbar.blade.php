@@ -181,9 +181,11 @@
                 </ul>
               </li>
               @endif
+              @if(session('logged') == true)
               <li class="nav-item">
                 <a href="/userprofile" class="nav-link mx-2">User Profile</a>
               </li>
+              @endif
               <li class="nav-item">
                 <a href="#" class="nav-link mx-2">About Us</a>
               </li>
