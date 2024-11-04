@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="/orders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                        <a href="/audittrail" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                             <i class="dripicons-user-group"></i>
                             <span>Audit Trail</span>
                         </a>
