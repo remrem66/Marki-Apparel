@@ -13,6 +13,7 @@ use App\Models\Products;
 use App\Models\Cart;
 use App\Models\Orders;
 use App\Models\Audittrail;
+use App\Models\Comments;
 use Mail;
 use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Auth;
@@ -184,8 +185,15 @@ class Controller extends BaseController
             
         }
 
+        $reviews = DB::table('comments')
+                    ->join('products','products.product_id','=','comments.product_id')
+                    ->join('users','users.user_id','=','comments.user_id')
+                    ->select('comments.*','users.*')
+                    ->where('comments.product_id',$productsFirst->product_id)
+                    ->get();
+
         
-        return view('mainpage.single-product',compact('productsFirst','sizes','colors','sizesStock','colorsStock'));
+        return view('mainpage.single-product',compact('productsFirst','sizes','colors','sizesStock','colorsStock','reviews'));
     }
 
     public function userlogin(Request $info){
@@ -921,6 +929,18 @@ class Controller extends BaseController
     $users = User::all();
 
         return view('admin.allUsers', compact('users'));
+  }
+
+  public function postareview(Request $data){
+
+    $product = DB::table('products')
+                ->select('*')
+                ->where('product_id',$data['product_id'])
+                ->first();
+    
+    Comments::writeReview($data,session('user_id'));
+
+    return redirect('/single-product/'.$product->product_name.":".$product->category.":".$product->color.":".$product->size)->with('message', 'Successfully Posted Review!');
   }
 
 }

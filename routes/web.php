@@ -127,6 +127,7 @@ Route::post('/selectcourier', [Controller::class, 'selectcourier']);
 Route::post('/changeorderstatus', [Controller::class, 'changeorderstatus']);
 Route::post('/changeuserstatus', [Controller::class, 'changeuserstatus']);
 Route::post('/editcustomerprofile', [Controller::class, 'editcustomerprofile']);
+Route::post('/postareview', [Controller::class, 'postareview']);
 
 
 // Route::middleware('auth')->group(function () {
