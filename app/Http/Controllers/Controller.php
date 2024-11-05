@@ -785,14 +785,14 @@ class Controller extends BaseController
                 'Order Date' => date("F j, Y",strtotime($product->order_date)),
                 'Order ID' => $product->order_id
             ];
-            
+            $lastProduct = $product;
             $counter++;
         }
 
-        $audittrail = "Admin ".session('user_name')." change order status of order (".$info['order_id'].") to (".$info['order_status'].")";
-
-
-        Audittrail::addNewAction($audittrail);
+        if ($lastProduct) { 
+            $audittrail = "Admin " . session('user_name') . " changed order status of order (" . $lastProduct->order_id . ") to (" . $lastProduct->order_status . ")";
+            Audittrail::addNewAction($audittrail);
+        }
 
         return view ('admin.orderStatus', compact('info'));    
     }
@@ -916,4 +916,11 @@ class Controller extends BaseController
 
         return view('admin.auditTrail' ,compact('info'));
   }
+  public function showusers(){
+      
+    $users = User::all();
+
+        return view('admin.allUsers', compact('users'));
+  }
+
 }
