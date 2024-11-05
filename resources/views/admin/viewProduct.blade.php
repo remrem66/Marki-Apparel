@@ -18,11 +18,14 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
+                                    
                                         <div class="row mb-2">
+                                    @if(session('user_type') == 2)
                                             <div class="col-sm-5">
                                                 <a href="/addnewproduct" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Products</a>
                                             </div>
-          
+                                    @else
+                                    @endif
                                         </div>
                 
                                         <div class="table-responsive">
@@ -73,10 +76,14 @@
                                                         </td>
                     
                                                         <td class="table-action">
+                                                        @if(session('user_type') == 3)
                                                             <a href="/productdetails/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                                            <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-archive-plus-outline addproductvariation" data-bs-toggle="modal" data-bs-target="#standard-modal" id="{{$item->product_id}}"></i></a>
                                                             <a href="/editproduct/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                            <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                        @elseif(session('user_type') == 2)
+                                                            <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-archive-plus-outline addproductvariation" data-bs-toggle="modal" data-bs-target="#standard-modal" id="{{$item->product_id}}"></i></a>
+                                                            
+                                                        @endif
+                                                        <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach

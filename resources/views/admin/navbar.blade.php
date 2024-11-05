@@ -42,6 +42,8 @@
         
                     <li class="side-nav-title side-nav-item mt-1">Components</li>
 
+                    @if(session('user_type') == 0)
+
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-users-alt"></i>
@@ -57,6 +59,8 @@
                             </ul>
                         </div>
                     </li>
+
+                    @elseif(in_array(session('user_type'), [2, 3]))
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-shopping-basket"></i>
@@ -66,16 +70,23 @@
                         <div class="collapse" id="sidebarForms">
                             <ul class="side-nav-second-level">
                                 <li>
+                    
                                     <a href="/addnewproduct">Add New Product</a>
                                     <a href="/viewproducts">View Products</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
+                    @endif
+                    @if(session('user_type') == 3)
+                    @elseif(session('user_type') == 0)
+
+
+                    
                     <li class="side-nav-item">
-                        <a href="/orders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                            <i class="uil-receipt"></i>
-                            <span> Orders </span>
+                        <a href="/showusers" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                            <i class="dripicons-user-group"></i>
+                            <span>Users</span>
                         </a>
                     </li>
                     <li class="side-nav-item">
@@ -84,7 +95,19 @@
                             <span>Audit Trail</span>
                         </a>
                     </li>
+
+                    @endif
+
+                    @if(session('user_type') == 2)
+                    @else(session('user_type') == 0)
                     <li class="side-nav-item">
+                        <a href="/orders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                            <i class="uil-receipt"></i>
+                            <span> Orders </span>
+                        </a>
+                    </li>
+                    @endif
+                    <!-- <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-document-layout-center"></i>
                             <span> Forms </span>
@@ -152,7 +175,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
 {{-- 
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarMaps" aria-expanded="false" aria-controls="sidebarMaps" class="side-nav-link">

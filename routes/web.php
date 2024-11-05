@@ -101,6 +101,8 @@ Route::get('/customerprofileedit/{id}', [Controller::class, 'customerprofileedit
 Route::get('/orders', [Controller::class, 'orders'])->name('orders');
 Route::get('/userprofile', [Controller::class, 'userprofile']);
 Route::get('/audittrail', [Controller::class, 'audittrail']);
+Route::get('/showusers', [Controller::class, 'showusers']);
+
 
 
 

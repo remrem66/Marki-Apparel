@@ -11,7 +11,7 @@
                                                 <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
                                                     <thead>
                                                         <tr>
-                                                            <th>User ID</th>
+                                                            <th>Audit Trail ID</th>
                                                             <th>Action</th>
                                                             <th>Date Added</th>
                                                 
