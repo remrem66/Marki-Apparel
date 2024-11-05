@@ -177,143 +177,45 @@
             <div class="tab-pane fade active show" id="v-pills-reviews" role="tabpanel" aria-labelledby="v-pills-reviews-tab"
               tabindex="0">
               <div class="review-box d-flex flex-wrap">
+                @if(count($reviews) > 0)
+                @foreach($reviews as $comment)
                 <div class="col-lg-6 d-flex flex-wrap gap-3">
-                  <div class="col-md-2">
-                    <div class="image-holder">
-                      <img src="{{asset('mainpage/images/reviewer-1.jpg')}}" alt="review" class="img-fluid rounded-circle">
-                    </div>
-                  </div>
                   <div class="col-md-8">
                     <div class="review-content">
-                      <div class="rating-container d-flex align-items-center">
-                        <div class="rating" data-rating="1">
-                          <svg width="24" height="24" class="text-primary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <div class="rating" data-rating="2">
-                          <svg width="24" height="24" class="text-primary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <div class="rating" data-rating="3">
-                          <svg width="24" height="24" class="text-primary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <div class="rating" data-rating="4">
-                          <svg width="24" height="24" class="text-secondary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <div class="rating" data-rating="5">
-                          <svg width="24" height="24" class="text-secondary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <span class="rating-count">(3.5)</span>
-                      </div>
                       <div class="review-header">
-                        <span class="author-name text-black fw-bold">Mark Johnson</span>
-                        <span class="review-date">– 03/07/2023</span>
+                        <span class="author-name text-black fw-bold">{{$comment->first_name}} {{$comment->last_name}}</span>
+                        <span class="review-date">– {{date("M/j/Y",strtotime($comment->date_added))}}</span>
                       </div>
-                      <p>Vitae tortor condimentum lacinia quis vel eros donec ac. Nam at lectus urna duis convallis
-                        convallis</p>
+                      <p>{{$comment->comment}}</p>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 d-flex flex-wrap gap-3">
-                  <div class="col-md-2">
-                    <div class="image-holder">
-                      <img src="{{asset('mainpage/images/reviewer-2.jpg')}}" alt="review" class="img-fluid rounded-circle">
-                    </div>
-                  </div>
-                  <div class="col-md-8">
+                @endforeach
+                @else
+                <div class="col-lg-12 d-flex flex-wrap gap-3">
+                  <div class="col-md-12">
                     <div class="review-content">
-                      <div class="rating-container d-flex align-items-center">
-                        <div class="rating" data-rating="1">
-                          <svg width="24" height="24" class="text-primary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <div class="rating" data-rating="2">
-                          <svg width="24" height="24" class="text-primary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <div class="rating" data-rating="3">
-                          <svg width="24" height="24" class="text-primary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <div class="rating" data-rating="4">
-                          <svg width="24" height="24" class="text-secondary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <div class="rating" data-rating="5">
-                          <svg width="24" height="24" class="text-secondary">
-                            <use xlink:href="#star-solid"></use>
-                          </svg>
-                        </div>
-                        <span class="rating-count">(3.5)</span>
-                      </div>
-                      <div class="review-header">
-                        <span class="author-name text-black fw-bold">Jenny Willis</span>
-                        <span class="review-date">– 03/06/2022</span>
-                      </div>
-                      <p>Vitae tortor condimentum lacinia quis vel eros donec ac. Nam at lectus urna duis convallis
-                        convallis</p>
+                      <h4 style="margin-top: 20px;">No reviews yet for this product</h4>
                     </div>
                   </div>
                 </div>
+                {{-- <h4>No reviews yet for this product</h4> --}}
+                @endif
               </div>
 
-              {{-- <div class="add-review mt-5">
+              <div class="add-review mt-5">
                 <h3>Add a review</h3>
-                <p>Your email address will not be published. Required fields are marked *</p>
-                <form id="form" class="form-group">
-
-                  <div class="pb-3">
-                    <div class="review-rating">
-                      <span>Your rating *</span>
-                      <div class="rating-container d-flex align-items-center">
-                        <span class="rating secondary-font">
-                          <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                          <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                          <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                          <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                          <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                          (5.0)</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="pb-3">
-                    <input type="file" class="form-control" data-text="Choose your file">
-                  </div>
-                  <div class="pb-3">
-                    <label>Your Name</label>
-                    <input type="text" name="name" placeholder="Write your name here*" class="form-control">
-                  </div>
-                  <div class="pb-3">
-                    <label>Your Email</label>
-                    <input type="text" name="email" placeholder="Write your email here*" class="form-control">
-                  </div>
+                <form id="form" class="form-group" method="POST" action="/postareview">
+                  @CSRF
                   <div class="pb-3">
                     <label>Your Review</label>
-                    <textarea class="form-control" placeholder="Write your review here*"></textarea>
+                    <input type="hidden" name="product_id" value="{{$productsFirst->product_id}}">
+                    <textarea class="form-control" name="review" placeholder="Write your review here*" cols="100"></textarea>
                   </div>
-                  <div class="pb-3">
-                    <label>
-                      <input type="checkbox" required="">
-                      <span class="label-body">Save my name, email, and website in this browser for the next
-                        time.</span>
-                    </label>
-                  </div>
-                  <button type="submit" name="submit"
+                  <button type="submit"
                     class="btn btn-dark btn-large text-uppercase w-100">Submit</button>
                 </form>
-              </div> --}}
+              </div>
             </div>
           </div>
         </div>
