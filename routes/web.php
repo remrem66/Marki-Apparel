@@ -102,6 +102,7 @@ Route::get('/orders', [Controller::class, 'orders'])->name('orders');
 Route::get('/userprofile', [Controller::class, 'userprofile']);
 Route::get('/audittrail', [Controller::class, 'audittrail']);
 Route::get('/showusers', [Controller::class, 'showusers']);
+Route::get('/generatemonthlysalesreport', [Controller::class, 'generatemonthlysalesreport']);
 
 
 
@@ -128,6 +129,7 @@ Route::post('/changeorderstatus', [Controller::class, 'changeorderstatus']);
 Route::post('/changeuserstatus', [Controller::class, 'changeuserstatus']);
 Route::post('/editcustomerprofile', [Controller::class, 'editcustomerprofile']);
 Route::post('/postareview', [Controller::class, 'postareview']);
+Route::post('/monthsalesreport', [Controller::class, 'monthsalesreport']);
 
 
 // Route::middleware('auth')->group(function () {

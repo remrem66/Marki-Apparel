@@ -107,6 +107,21 @@
                         </a>
                     </li>
                     @endif
+
+                    <li class="side-nav-item">
+                        <a data-bs-toggle="collapse" href="#salesanalytics" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
+                            <i class="uil-graph-bar"></i>
+                            <span> Sales Analytics </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="salesanalytics">
+                            <ul class="side-nav-second-level">
+                                <li>
+                                    <a href="/generatemonthlysalesreport">Generate Monthly Sales Report</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <!-- <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-document-layout-center"></i>
@@ -274,16 +289,7 @@
 <!-- Topbar Start -->
 <div class="navbar-custom">
     <ul class="list-unstyled topbar-menu float-end mb-0">
-        <li class="dropdown notification-list d-lg-none">
-            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <i class="dripicons-search noti-icon"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
-                <form class="p-3">
-                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-                </form>
-            </div>
-        </li>
+        
 
 
 
@@ -343,13 +349,7 @@
         <i class="mdi mdi-menu"></i>
     </button>
     <div class="app-search dropdown d-none d-lg-block">
-        <form>
-            <div class="input-group">
-                <input type="text" class="form-control dropdown-toggle"  placeholder="Search..." id="top-search">
-                <span class="mdi mdi-magnify search-icon"></span>
-                <button class="input-group-text btn-primary" type="submit">Search</button>
-            </div>
-        </form>
+        
 
         <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
             <!-- item-->
