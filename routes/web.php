@@ -80,6 +80,9 @@ Route::get('/order', function () {
 Route::get('/checkout', function () {
     return view('mainpage/checkout');
 });
+Route::get('/about', function () {
+    return view('mainpage/about');
+});
 
 
 Route::get('/viewproducts', [Controller::class, 'viewproducts']);

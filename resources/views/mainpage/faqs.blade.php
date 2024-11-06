@@ -16,51 +16,25 @@
     <div class="container py-5 my-5">
       <div class="row my-4">
         <main class="col-md-8 pe-md-5">
-          <h2 class="mb-3">Frequently asked questions</h2>
-          <p>Malesuada nunc vel risus commodo viverra. Viverra accumsan in nisl nisi. Pretium nibh ipsum
-            consequat
-            nisl
-            vel pretium. Tortor dignissim convallis aenean et tortor at risus viverra adipiscing.</p>
+          <h2 class="mb-3">Welcome to Marki Apprel!</h2>
+          <p>Marki Apparel prides itself on producing high-quality garments that are meticulously 
+            crafted to ensure customer satisfaction. To minimize unnecessary waste and environmental impact,
+             we've opted for a no-return policy. We believe in the longevity and durability of our products. However, 
+            should you encounter any issues with your order, please reach out to our customer support in facebook page of <a href="https://www.facebook.com/profile.php?id=100088056825172" target="_blank">Marki Apparel</a> for assistance.</p>
           <div class="page-content my-5">
 
             <div class="accordion mb-5" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <h5> How to Get a Quote? </h5>
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
-                  <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
-                  </div>
-                </div>
-              </div>
+
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <h5> Do i need to open an account compulsory? </h5>
+                    <h5> Do i need to open an account </h5>
                   </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
                   <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
+                  Creating an account is the first step to starting your shopping cart.
                   </div>
                 </div>
               </div>
@@ -73,14 +47,7 @@
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
                   <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
+                  Be on the lookout for special event discounts and promotions.
                   </div>
                 </div>
               </div>
@@ -93,54 +60,7 @@
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour">
                   <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    <h5> Can i cancel my Delivery? </h5>
-                  </button>
-                </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive">
-                  <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingSix">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                    <h5> What’s your refund policy? </h5>
-                  </button>
-                </h2>
-                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix">
-                  <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
+                      No. Because our shop offers free delivery.
                   </div>
                 </div>
               </div>
@@ -153,14 +73,7 @@
                 </h2>
                 <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven">
                   <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
+                    You can view your order details in <a href="/orderstatus/Order Placed">Order Status</a>
                   </div>
                 </div>
               </div>
@@ -173,14 +86,7 @@
                 </h2>
                 <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight">
                   <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
+                  Our shop offers free delivery.
                   </div>
                 </div>
               </div>
@@ -193,14 +99,7 @@
                 </h2>
                 <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine">
                   <div class="accordion-body secondary-font">
-                    Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                    Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo
-                    eget felis
-                    facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim
-                    pellentesque
-                    felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                    ligula
-                    vulputate sem tristique cursus.
+                  Zone 5 Maliwalo Tarlac City in front of Phoenix Gasoline Station.
                   </div>
                 </div>
               </div>
@@ -208,30 +107,6 @@
 
           </div>
         </main>
-        <div class="inquiry-item col-md-4">
-          <h3 class="section-title mb-3">Ask us anything</h3>
-          <p>Call Us +123 987 456 or just drop us your message at <a
-              href="mailto:contact@yourcompany.com">contact@yourcompany.com</a>. You can directly message
-            us. </p>
-          <form id="form" class="form-group flex-wrap">
-            <div class="form-input col-lg-12 d-flex mb-3">
-              <input type="text" name="email" placeholder="Write Your Name Here" class="form-control ps-3 me-3">
-              <input type="text" name="email" placeholder="Write Your Email Here" class="form-control ps-3">
-            </div>
-            <div class="col-lg-12 mb-3">
-              <input type="text" name="email" placeholder="Phone Number" class="form-control ps-3">
-            </div>
-            <div class="col-lg-12 mb-3">
-              <input type="text" name="email" placeholder="Write Your Subject Here" class="form-control ps-3">
-            </div>
-            <div class="col-lg-12 mb-3">
-              <textarea placeholder="Write Your Message Here" class="form-control ps-3" rows="8"></textarea>
-            </div>
-            <div class="d-grid">
-              <button class="btn btn-arrow btn-primary btn-lg btn-pill btn-dark fs-6">Submit</button>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
   </section>
