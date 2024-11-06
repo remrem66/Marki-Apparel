@@ -5,8 +5,7 @@
       <div class="hero-content ">
         <h2 class="display-1 fw-bold mt-5 mb-0">Shop</h2>
         <nav class="breadcrumb">
-          <a class="breadcrumb-item nav-link" href="#">Home</a>
-          <a class="breadcrumb-item nav-link" href="#">Pages</a>
+          <a class="breadcrumb-item nav-link" href="/">Home</a>
           <span class="breadcrumb-item active" aria-current="page">Shop</span>
         </nav>
       </div>
@@ -20,7 +19,7 @@
         <main class="col-md-9">
           <div class="filter-shop d-md-flex justify-content-between align-items-center">
             <div class="showing-product">
-              <p class="m-0">Showing 1–9 of 55 results</p>
+              <!-- <p class="m-0">Showing 1–9 of 55 results</p> -->
             </div>
             <!-- <div class="sort-by">
               <select class="filter-categories border-0 m-0">
@@ -74,7 +73,7 @@
         </main>
         <aside class="col-md-3 mt-5">
           <div class="sidebar">
-            <div class="widget-menu">
+            <!-- <div class="widget-menu">
               <div class="widget-search-bar">
                 <div class="search-bar border rounded-2 border-dark-subtle pe-3">
                   <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
@@ -86,59 +85,37 @@
                   </form>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="widget-product-categories pt-5">
               <h4 class="widget-title">Categories</h4>
               <ul class="product-categories sidebar-list list-unstyled">
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">All</a>
+                  <a href="/shop/T-shirt" class="nav-link fw-semibold">T-Shirt</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">T-Shirt</a>
+                  <a href="/shop/Polo Shirt" class="nav-link fw-semibold">Polo Shirt</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Polo Shirt</a>
+                  <a href="/shop/Polo" class="nav-link fw-semibold">Polo</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Polo</a>
+                  <a href="/shop/Long Sleeve" class="nav-link fw-semibold">Long Sleeve</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Long Sleeve</a>
+                  <a href="/shop/Hoodie" class="nav-link fw-semibold">Hoodie</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Hoodies</a>
+                  <a href="/shop/Jacket" class="nav-link fw-semibold">Jacket</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Jacket</a>
+                  <a href="/shop/Shorts" class="nav-link fw-semibold">Shorts</a>
                 </li>
                 <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Short</a>
-                </li>
-                <li class="cat-item">
-                  <a href="#" class="nav-link fw-semibold">Pants</a>
+                  <a href="/shop/Pants" class="nav-link fw-semibold">Pants</a>
                 </li>
               </ul>
             </div>
-            <div class="widget-price-filter pt-3">
-              <h4 class="widget-titlewidget-title">Filter By Price</h4>
-              <ul class="product-tags sidebar-list list-unstyled">
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">Less than 100</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">100- 200</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">200- 300</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">300-400</a>
-                </li>
-                <li class="tags-item">
-                  <a href="#" class="nav-link fw-semibold">400- 500</a>
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </aside>
       </div>

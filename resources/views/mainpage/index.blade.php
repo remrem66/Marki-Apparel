@@ -6,8 +6,8 @@
         <div class="col-md-6 col-lg-5 offset-md-2 text-center bg-black p-5">
           <h2 class="display-1 banner-text text-uppercase text-white mt-3">Street Wears</h2>
           <p class="text-uppercase text-white mb-4">High quality cool tshirts for street fashion</p>
-          <a href="#" class="btn btn-outline-light btn-wrap">
-            Start Shopping <i class="icon icon-arrow-io fs-5 align-text-bottom"></i>
+          <a href="/shop/T-shirt" class="btn btn-outline-light btn-wrap">
+            Start Shopping
           </a>
         </div>
       </div>
@@ -24,7 +24,7 @@
             </div>
             <h4 class="py-2 m-0">Free Delivery</h3>
               <div class="card-text">
-                <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                
               </div>
           </div>
         </div>
@@ -33,9 +33,9 @@
             <div>
               <iconify-icon class="service-icon text-primary fs-2" icon="tdesign:secured"></iconify-icon>
             </div>
-            <h4 class="py-2 m-0">100% secure payment</h3>
+            <h4 class="py-2 m-0">100% secure payment Powered by PayMongo</h3>
               <div class="card-text">
-                <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                
               </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
             </div>
             <h4 class="py-2 m-0">Quality guarantee</h3>
               <div class="card-text">
-                <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                
               </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
             </div>
             <h4 class="py-2 m-0">Daily Offer</h3>
               <div class="card-text">
-                <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                
               </div>
           </div>
         </div>
