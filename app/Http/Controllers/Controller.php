@@ -553,13 +553,8 @@ class Controller extends BaseController
     }
 
     public function test(){
-      
-        $provinces = DB::table('provinces')
-                        ->select('*')
-                        ->orderBy('province_name')
-                        ->get();
 
-        return view('mainpage.test',compact('provinces'));
+        return view('admin.generateSalesReport');
         
     }
 
@@ -941,6 +936,60 @@ class Controller extends BaseController
     Comments::writeReview($data,session('user_id'));
 
     return redirect('/single-product/'.$product->product_name.":".$product->category.":".$product->color.":".$product->size)->with('message', 'Successfully Posted Review!');
+  }
+
+  public function generatemonthlysalesreport(){
+
+    $years = [];
+
+    $data = DB::table('orders')
+            ->select('*')
+            ->where('order_status','Delivered')
+            ->get();
+
+    foreach($data as $info){
+        
+        array_push($years,date("Y",strtotime($info->order_date)));
+        
+    }
+
+    $years = array_unique($years);
+
+    return view('admin.generateSalesReport',compact('years'));
+
+  }
+
+  public function monthsalesreport(Request $data){
+
+    $orderIDs = [];
+    $quantities = [];
+
+    $sales = DB::table('orders')
+                ->join('users','users.user_id','=','orders.user_id')
+                ->select('orders.*','users.first_name as userfname','users.last_name as userlname')
+                ->where('order_status','Delivered')
+                ->whereMonth('order_date',$data['month'])
+                ->whereYear('order_date',$data['year'])
+                ->get();
+    
+    foreach($sales as $info){
+        $item = explode(',',$info->items_ordered);
+        
+        for($x = 0; $x < count($item); $x++){
+            
+            $products = explode('-',$item[$x]);
+            
+            array_push($orderIDs,$products[0]);
+            array_push($quantities,$products[1]);
+        }
+    }
+        
+    $productDetails = DB::table('products')
+                        ->select('*')
+                        ->whereIn('product_id',$orderIDs)
+                        ->get();
+
+    return view('admin.monthsalesreport',compact('sales','productDetails'));
   }
 
 }
