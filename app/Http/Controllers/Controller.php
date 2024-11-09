@@ -997,7 +997,7 @@ class Controller extends BaseController
     return view('admin.monthsalesreport',compact('sales','productDetails'));
   }
 
-  public function cancelitemonorder(Request $info){
+  public function cancelitemorder(Request $info){
 
     $newItemsOrdered = "";
 

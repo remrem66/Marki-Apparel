@@ -130,7 +130,7 @@ Route::post('/changeuserstatus', [Controller::class, 'changeuserstatus']);
 Route::post('/editcustomerprofile', [Controller::class, 'editcustomerprofile']);
 Route::post('/postareview', [Controller::class, 'postareview']);
 Route::post('/monthsalesreport', [Controller::class, 'monthsalesreport']);
-Route::post('/cancelitemonorder', [Controller::class, 'cancelitemonorder']);
+Route::post('/cancelitemorder', [Controller::class, 'cancelitemorder']);
 
 
 // Route::middleware('auth')->group(function () {
