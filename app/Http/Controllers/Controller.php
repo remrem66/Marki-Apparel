@@ -14,6 +14,7 @@ use App\Models\Cart;
 use App\Models\Orders;
 use App\Models\Audittrail;
 use App\Models\Comments;
+use App\Models\CancelOrders;
 use Mail;
 use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Auth;
@@ -681,8 +682,9 @@ class Controller extends BaseController
 
     public function orderstatus($status){
 
-        $orderIDs = [];
+        $productIDs = [];
         $quantities = [];
+        $orderIDs = [];
 
         $data = DB::table('orders')
                 ->select('*')
@@ -698,17 +700,20 @@ class Controller extends BaseController
                 
                 $products = explode('-',$item[$x]);
                 
-                array_push($orderIDs,$products[0]);
+                array_push($productIDs,$products[0]);
                 array_push($quantities,$products[1]);
+                array_push($orderIDs,$info->order_id);
             }
         }
 
         $productDetails = DB::table('products')
                         ->select('*')
-                        ->whereIn('product_id',$orderIDs)
+                        ->whereIn('product_id',$productIDs)
                         ->get();
 
-        return view('mainpage.orderStatus',compact('productDetails','quantities','status'));
+        
+
+        return view('mainpage.orderStatus',compact('productDetails','quantities','status','orderIDs'));
     }
 
     public function productdetails($id){
@@ -990,6 +995,57 @@ class Controller extends BaseController
                         ->get();
 
     return view('admin.monthsalesreport',compact('sales','productDetails'));
+  }
+
+  public function cancelitemonorder(Request $info){
+
+    $newItemsOrdered = "";
+
+    $orderIDproductIDQuantity = explode("-",$info['productOrder']);
+
+    $itemOrdered = DB::table('orders')
+                    ->select('*')
+                    ->where('order_id',$orderIDproductIDQuantity[0])
+                    ->first();
+
+    $orderedItems = explode(",",$itemOrdered->items_ordered);
+
+    for($x = 0; $x < count($orderedItems); $x++){
+
+        $productOrdered = explode("-",$orderedItems[$x]);
+
+        if($orderIDproductIDQuantity[1] != $productOrdered[0]){
+            if($newItemsOrdered == ""){
+                $newItemsOrdered = $orderedItems[$x];
+            }
+            else{
+                $newItemsOrdered = $newItemsOrdered.",".$orderedItems[$x];
+            }
+        }
+    }
+
+    if($newItemsOrdered == ""){
+
+        $newItemsOrdered = "All items ordered are cancelled";
+        
+        Orders::cancelOrder($orderIDproductIDQuantity[0],$newItemsOrdered);
+    }
+    else{
+        
+        $product = DB::table('products')
+                    ->select('*')
+                    ->where('product_id',$orderIDproductIDQuantity[1])
+                    ->first();
+
+        $totalProductPrice = $product->price * $orderIDproductIDQuantity[2];
+
+        $newTotal = $itemOrdered->total - $totalProductPrice;
+
+        Orders::updateOrder($orderIDproductIDQuantity[0],$newItemsOrdered,$newTotal);
+    }
+
+    CancelOrders::insertCancelItem(session('user_id'),$orderIDproductIDQuantity[1],$orderIDproductIDQuantity[2],$info['cancelReason']);
+    
   }
 
 }

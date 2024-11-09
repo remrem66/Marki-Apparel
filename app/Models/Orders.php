@@ -50,4 +50,24 @@ class Orders extends Model
                 'order_status' => $data['status']
             ]);
     }
+
+    public static function cancelOrder($orderID,$itemsOrdered){
+
+        DB::table('orders')
+            ->where('order_id', $data['orderID'])
+            ->update([
+                'items_ordered' => $itemsOrdered,
+                'order_status' => "Cancelled"
+            ]);
+    }
+
+    public static function updateOrder($orderID,$itemsOrdered,$total){
+
+        DB::table('orders')
+            ->where('order_id', $orderID)
+            ->update([
+                'items_ordered' => $itemsOrdered,
+                'total' => $total
+            ]);
+    }
 }
