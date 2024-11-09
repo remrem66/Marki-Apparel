@@ -178,6 +178,7 @@
                   <li><a href="/orderstatus/In Transit" class="dropdown-item">In Transit</a></li>
                   <li><a href="/orderstatus/Out For Delivery" class="dropdown-item">Out For Delivery</a></li>
                   <li><a href="/orderstatus/Delivered" class="dropdown-item">Delivered</a></li>
+                  <li><a href="/orderscancelled" class="dropdown-item">Cancelled</a></li>
                 </ul>
               </li>
               @endif

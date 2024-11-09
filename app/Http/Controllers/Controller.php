@@ -1048,4 +1048,14 @@ class Controller extends BaseController
     
   }
 
+  public function orderscancelled(){
+
+    $productDetails = DB::table('cancel_orders')
+                        ->select('*')
+                        ->where('user_id',session('user_id'))
+                        ->get();
+
+    return view('mainpage.cancelledOrders',compact('productDetails'));
+  }
+
 }
