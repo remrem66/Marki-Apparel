@@ -317,7 +317,7 @@ $('.ordercancel').click(function(e){
             ).then((confirmCancel) => {
                 if(confirmCancel){
                     $.ajax({
-                        url: '/cancelitemonorder',
+                        url: '/cancelitemorder',
                         type: 'POST',
                         data: {
                             productOrder : productOrder,

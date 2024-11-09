@@ -60,7 +60,7 @@
                 </td>
                 @if($status == "Order Placed")
                 <td class="py-4 align-middle">
-                  <button type="button" class="btn btn-dark btn-sm rounded-1 cancelitem" id="{{$orderIDs[$counter]}}-{{$product->product_id}}" data-toggle="modal" data-target="#exampleModalCenter">Cancel Order</button>
+                  <button type="button" class="btn btn-dark btn-sm rounded-1 cancelitem" id="{{$orderIDs[$counter]}}-{{$product->product_id}}-{{$quantities[$counter]}}">Cancel Order</button>
                 </td>
                 @endif
               </tr>
