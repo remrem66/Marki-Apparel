@@ -34,7 +34,7 @@
                     <input type="text" id="exampleInputEmail1" name="code" placeholder="Enter the code sent in your email address" class="form-control mb-3 p-4">
                     <input type="hidden" id="user_id" name="user_id" value="{{$userID}}">
                     <div class="d-grid my-3">
-                      <button type="submit" class="btn btn-dark btn-lg rounded-1">Verify</a>
+                      <button type="submit" class="btn btn-dark btn-lg rounded-1">Verify</button>
                     </div>
                   </div>
                 </form>

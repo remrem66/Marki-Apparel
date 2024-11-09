@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->integer('product_id');
+        Schema::create('cancel_orders', function (Blueprint $table) {
+            $table->id('cancel_order_id');
             $table->integer('user_id');
-            $table->longText('comment');
-            $table->timestamp('date_added')->useCurrent();
+            $table->integer('product_id');
+            $table->integer('quantity');
+            $table->longText('cancel_reason');
+            $table->timestamp('date_cancelled')->useCurrent();
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('cancel_orders');
     }
 };

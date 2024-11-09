@@ -108,9 +108,6 @@ Route::get('/showusers', [Controller::class, 'showusers']);
 Route::get('/generatemonthlysalesreport', [Controller::class, 'generatemonthlysalesreport']);
 
 
-
-
-
 Route::post('/registeruser', [Controller::class, 'registerUser']);
 Route::post('/insertnewproduct', [Controller::class, 'insertnewproduct']);
 Route::post('/insertnewadminuser', [Controller::class, 'insertnewadminuser']);
@@ -133,6 +130,7 @@ Route::post('/changeuserstatus', [Controller::class, 'changeuserstatus']);
 Route::post('/editcustomerprofile', [Controller::class, 'editcustomerprofile']);
 Route::post('/postareview', [Controller::class, 'postareview']);
 Route::post('/monthsalesreport', [Controller::class, 'monthsalesreport']);
+Route::post('/cancelitemonorder', [Controller::class, 'cancelitemonorder']);
 
 
 // Route::middleware('auth')->group(function () {

@@ -22,7 +22,10 @@
               <tr>
                 <th width="50%" class="text-uppercase">Product Name</th>
                 <th class="text-uppercase" style="margin-right: 1000px;">Quantity</th>
-                <th scope="col" class="text-uppercase">Order Status</th>
+                <th scope="col" class="text-uppercase" style="margin-right: 2000px;">Order Status</th>
+                @if($status == "Order Placed")
+                <th scope="col" style="margin-left: 2000px;" class="text-uppercase">Action</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -55,8 +58,11 @@
                     <h5>{{$status}}</h5>
                   </div>
                 </td>
+                @if($status == "Order Placed")
                 <td class="py-4 align-middle">
+                  <button type="button" class="btn btn-dark btn-sm rounded-1 cancelitem" id="{{$orderIDs[$counter]}}-{{$product->product_id}}" data-toggle="modal" data-target="#exampleModalCenter">Cancel Order</button>
                 </td>
+                @endif
               </tr>
               <?php $counter++; ?>
               @endforeach
@@ -68,5 +74,26 @@
     <center><h1>No such orders yet</h1></center>
     @endif
     </div>
+
+    <div class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal Title</h5>
+            <button class="closemodal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <label for="cancelreason">Reason for cancellation</label>
+            <input type="hidden" name="product-order" id="product-order">
+            <textarea name="cancelreason" id="cancelreason" cols="60" ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary close-btn">Close</button>
+            <button class="btn btn-primary ordercancel">Cancel my order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </section>
   @include('mainpage.footer')

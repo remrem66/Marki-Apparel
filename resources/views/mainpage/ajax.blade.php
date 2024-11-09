@@ -1,5 +1,17 @@
 <script>
 
+    const modal = document.querySelector(".modal");
+    const closeModalBtn = document.querySelector(".close-btn");
+    const closeBtnModal = document.querySelector(".closemodal");
+
+    closeModalBtn.addEventListener("click", () => {
+        modal.classList.remove("show");
+    });
+
+    closeBtnModal.addEventListener("click", () => {
+        modal.classList.remove("show");
+    });
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -269,7 +281,59 @@ $('#municipality').on('change',function(){
             });
         }
     });
-
-
 })
+
+$('.cancelitem').click(function(e){
+
+    modal.classList.add("show");
+
+    let orderID = $(this).attr("id");
+
+    $('#product-order').val(orderID);
+
+});
+
+$('.ordercancel').click(function(e){
+
+    e.preventDefault();
+
+    let productOrder = $('#product-order').val();
+    let cancelReason = $('#cancelreason').val();
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "you want to cancel this item on your order?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes!'
+    }).then((willCancel) => {
+        if (willCancel.isConfirmed) {
+            Swal.fire(
+                'Success!',
+                'This item is now cancelled from your order!.',
+                'success'
+            ).then((confirmCancel) => {
+                if(confirmCancel){
+                    $.ajax({
+                        url: '/cancelitemonorder',
+                        type: 'POST',
+                        data: {
+                            productOrder : productOrder,
+                            cancelReason : cancelReason
+                        },
+                        dataType: 'HTML',
+                        success: function(response){
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+        
+        }
+    }); 
+})
+
+
 </script>
