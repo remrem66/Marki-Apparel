@@ -86,4 +86,16 @@ class Products extends Model
                     'description' => $info['description']
             ]);
     }
+
+    public static function updateStock($productID,$quantity){
+        DB::table('products')
+            ->where('product_id',$productID)
+            ->decrement('quantity',$quantity);
+    }
+
+    public static function addCancelledStock($productID,$quantity){
+        DB::table('products')
+            ->where('product_id',$productID)
+            ->increment('quantity',$quantity);
+    }
 }
