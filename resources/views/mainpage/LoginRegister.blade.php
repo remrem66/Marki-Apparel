@@ -77,7 +77,7 @@
                 <form id="form1" class="form-group flex-wrap " method="POST" action="/registeruser" enctype="multipart/form-data">
                     @CSRF
                   <div class="form-input col-lg-12 my-4">
-                    <input type="text" id="exampleInputName" name="first_name" placeholder="First Name" class="form-control mb-3 p-4">
+                    <input type="text" id="exampleInputName" name="first_name" placeholder="First Name" class="form-control mb-3 p-4" required>
                     <input type="text" id="exampleInputName" name="last_name" placeholder="Last Name" class="form-control mb-3 p-4">
                       <select type="text" id="exampleInputName" name="gender" class="form-control mb-3 p-4">
                         <option selected disabled>Gender</option>
@@ -103,7 +103,6 @@
                     <input placeholder="Birthday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mb-3 p-4" name="birthday">
                     <input type="password" id="inputPassword1" placeholder="Set your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password">
                     <input type="password" id="inputPassword2" placeholder="Retype your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password_confirmation">
-                    <input type="file" id="exampleInputEmail1" name="profile_picture" placeholder="Profile Picture" class="form-control mb-3 p-4" accept="image/png, image/jpeg">
 
                     {{-- <label class="py-3 d-flex flex-wrap justify-content-between">
                       <div>
@@ -120,6 +119,16 @@
                     </div>
 
                   </div>
+                  {{-- Lagay mo 'to sa form sa insert product --}}
+                  @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                  @endif
                 </form>
 
               </div>

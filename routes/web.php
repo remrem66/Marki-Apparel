@@ -55,9 +55,6 @@ Route::get('/editors', function () {
     return view('admin/formEditors');
 });
 
-Route::get('/addnewproduct', function () {
-    return view('admin.addNewProduct');
-});
 
 Route::get('/addnewadminuser', function () {
     return view('admin.addNewAdminUser');
@@ -86,6 +83,7 @@ Route::get('/about', function () {
 
 
 Route::get('/viewproducts', [Controller::class, 'viewproducts']);
+Route::get('/addnewproduct', [Controller::class, 'addnewproduct']);
 Route::get('/viewadminusers', [Controller::class, 'viewadminusers']);
 Route::get('/editproduct/{id}', [Controller::class, 'editproduct']);
 Route::get('/editadminuser/{id}', [Controller::class, 'editadminuser']);

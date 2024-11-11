@@ -28,6 +28,24 @@ class Controller extends BaseController
 {
     public function registerUser(Request $info){ 
 
+        //galing sa form sa view
+
+
+        $info->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'contact_number' => 'required',
+            'email_address' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:8',
+            'password_confirmation' => 'required|min:8',
+            'gender' => 'required',
+            'province' => 'required',
+            'municipality' => 'required',
+            'barangay' => 'required',
+            'address_information' => 'required',
+            'birthday' => 'required',
+        ]);
+
         User::registerUser($info);
 
         return redirect('/')->with('message', 'Successfully Created Account!');
@@ -35,7 +53,9 @@ class Controller extends BaseController
 
     public function insertnewproduct(Request $info){
 
-        $validateProduct = Products::query()
+
+        if((session('logged') == true) && session('user_type') == 0){
+            $validateProduct = Products::query()
                             ->where([
                                 'product_name' => $info['product_name'],
                                 'category' => $info['category'],
@@ -43,19 +63,26 @@ class Controller extends BaseController
                                 'size' => $info['size']
                             ])->exists();
         
-        if($validateProduct){
-            return back()->withErrors([
-                'message' => 'Product with this kind of details already exists in the database! Please input a unique one.'
-            ]);
+            if($validateProduct){
+                return back()->withErrors([
+                    'message' => 'Product with this kind of details already exists in the database! Please input a unique one.'
+                ]);
+            }
+        
+            // lagay mo validation dito
+
+            Products::insertnewproduct($info);
+
+            $audittrail = "Admin ".session('user_name')." added a new product (".$info['product_name'].")";
+
+            Audittrail::addNewAction($audittrail);
+
+            return redirect('/addnewproduct');
+        }
+        else{
+            return redirect('/');
         }
         
-        Products::insertnewproduct($info);
-
-        $audittrail = "Admin ".session('user_name')." added a new product (".$info['product_name'].")";
-
-        Audittrail::addNewAction($audittrail);
-
-        return redirect('/addnewproduct');
     }
 
     public function viewproducts(){
@@ -86,6 +113,8 @@ class Controller extends BaseController
                     ->select('*')
                     ->where('product_id',$id)
                     ->first();
+
+        // $info['product_name']
 
         $audittrail = "Admin ".session('user_name')." edit the product (".$id.")";
 
@@ -1059,6 +1088,17 @@ class Controller extends BaseController
                         ->get();
 
     return view('mainpage.cancelledOrders',compact('productDetails'));
+  }
+
+  public function addnewproduct(){
+
+    // session('user_type) == 0  ***EXAMPLE LANG TO***
+    if(session('logged') == true){
+        return view('admin.addNewProduct');
+    }
+    else{
+        return redirect('/');
+    }
   }
 
 }
