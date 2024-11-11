@@ -589,6 +589,7 @@ class Controller extends BaseController
                 }
 
                 Cart::changeCartStatus($product->cart_id);
+                Products::updateStock($product->product_id,$product->cart_quantity);
             }
        
             Orders::insertOrder($data,"Pending",$itemsOrdered);
@@ -663,6 +664,7 @@ class Controller extends BaseController
             }
 
             Cart::changeCartStatus($product->cart_id);
+            Products::updateStock($product->product_id,$product->cart_quantity);
         }
        
         $cartProducts = DB::table('carts')
@@ -1045,6 +1047,7 @@ class Controller extends BaseController
     }
 
     CancelOrders::insertCancelItem(session('user_id'),$orderIDproductIDQuantity[1],$orderIDproductIDQuantity[2],$info['cancelReason']);
+    Products::addCancelledStock($orderIDproductIDQuantity[1],$orderIDproductIDQuantity[2]);
     
   }
 
