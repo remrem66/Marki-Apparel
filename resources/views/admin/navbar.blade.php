@@ -42,8 +42,6 @@
         
                     <li class="side-nav-title side-nav-item mt-1">Components</li>
 
-                    @if(session('user_type') == 0)
-
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-users-alt"></i>
@@ -60,14 +58,13 @@
                         </div>
                     </li>
 
-                    @elseif(in_array(session('user_type'), [2, 3]))
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#productManagement" aria-expanded="false" aria-controls="productManagement" class="side-nav-link">
                             <i class="uil-shopping-basket"></i>
                             <span> Product Management </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForms">
+                        <div class="collapse" id="productManagement">
                             <ul class="side-nav-second-level">
                                 <li>
                     
@@ -77,12 +74,7 @@
                             </ul>
                         </div>
                     </li>
-                    @endif
-                    @if(session('user_type') == 3)
-                    @elseif(session('user_type') == 0)
-
-
-                    
+                 
                     <li class="side-nav-item">
                         <a href="/showusers" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                             <i class="dripicons-user-group"></i>
@@ -96,17 +88,13 @@
                         </a>
                     </li>
 
-                    @endif
-
-                    @if(session('user_type') == 2)
-                    @else(session('user_type') == 0)
                     <li class="side-nav-item">
                         <a href="/orders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                             <i class="uil-receipt"></i>
                             <span> Orders </span>
                         </a>
                     </li>
-                    @endif
+
                     <li class="side-nav-item">
                         <a href="/cancelledorders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                             <i class="dripicons-archive"></i>
@@ -307,8 +295,8 @@
                     <img src="{{asset('admin/assets/images/users/avatar-1.jpg')}}" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
-                    <span class="account-user-name">Dominic Keller</span>
-                    <span class="account-position">Founder</span>
+                    <span class="account-user-name">{{session('user_name')}}</span>
+                    <span class="account-position">Admin</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -318,9 +306,9 @@
                 </div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="/editadminuser/{{session('user_id')}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle me-1"></i>
-                    <span>My Account</span>
+                    <span>Edit Account</span>
                 </a>
 {{-- 
                 <!-- item-->

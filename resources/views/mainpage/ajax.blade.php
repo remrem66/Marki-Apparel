@@ -1,17 +1,5 @@
 <script>
 
-    const modal = document.querySelector(".modal");
-    const closeModalBtn = document.querySelector(".close-btn");
-    const closeBtnModal = document.querySelector(".closemodal");
-
-    closeModalBtn.addEventListener("click", () => {
-        modal.classList.remove("show");
-    });
-
-    closeBtnModal.addEventListener("click", () => {
-        modal.classList.remove("show");
-    });
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -335,5 +323,15 @@ $('.ordercancel').click(function(e){
     }); 
 })
 
+    const modal = document.querySelector(".modal");
+    const closeModalBtn = document.querySelector(".close-btn");
+    const closeBtnModal = document.querySelector(".closemodal");
 
+    closeModalBtn.addEventListener("click", () => {
+        modal.classList.remove("show");
+    });
+
+    closeBtnModal.addEventListener("click", () => {
+        modal.classList.remove("show");
+    });
 </script>

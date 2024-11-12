@@ -76,14 +76,17 @@
                                                         </td>
                     
                                                         <td class="table-action">
-                                                        @if(session('user_type') == 3)
+                                                        
                                                             <a href="/productdetails/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                             <a href="/editproduct/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                        @elseif(session('user_type') == 2)
+                                                
                                                             <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-archive-plus-outline addproductvariation" data-bs-toggle="modal" data-bs-target="#standard-modal" id="{{$item->product_id}}"></i></a>
                                                             
-                                                        @endif
-                                                        <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                            @if($item->status == 1)
+                                                                <a href="#" onclick="return false;" class="action-icon disableproduct" id="{{$item->product_id}}"> <i class="mdi mdi-close"></i></a>
+                                                            @else
+                                                                <a href="#" onclick="return false;" class="action-icon enableproduct" id="{{$item->product_id}}"> <i class="mdi mdi-check"></i></a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     @endforeach

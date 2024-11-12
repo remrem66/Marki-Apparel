@@ -98,4 +98,12 @@ class Products extends Model
             ->where('product_id',$productID)
             ->increment('quantity',$quantity);
     }
+
+    public static function changeproductstatus($data){
+        DB::table('products')
+            ->where('product_id',$data['product_id'])
+            ->update([
+                'status' => $data['status']
+            ]);
+    }
 }
