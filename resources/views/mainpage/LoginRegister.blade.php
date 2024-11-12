@@ -78,31 +78,31 @@
                     @CSRF
                   <div class="form-input col-lg-12 my-4">
                     <input type="text" id="exampleInputName" name="first_name" placeholder="First Name" class="form-control mb-3 p-4" required>
-                    <input type="text" id="exampleInputName" name="last_name" placeholder="Last Name" class="form-control mb-3 p-4">
-                      <select type="text" id="exampleInputName" name="gender" class="form-control mb-3 p-4">
+                    <input type="text" id="exampleInputName" name="last_name" placeholder="Last Name" class="form-control mb-3 p-4" required>
+                      <select type="text" id="exampleInputName" name="gender" class="form-control mb-3 p-4" required>
                         <option selected disabled>Gender</option>
                         <option>Male</option>
                         <option>Female</option>
                         <option>Other</option>
                       </select>
-                    <input type="text" id="exampleInputEmail1" name="email_address" placeholder="Email address" class="form-control mb-3 p-4">
-                    <select class="form-control mb-3 p-4" name="province" id="province">
+                    <input type="text" id="exampleInputEmail1" name="email_address" placeholder="Email address" class="form-control mb-3 p-4" required>
+                    <select class="form-control mb-3 p-4" name="province" id="province" required>
                       <option disabled selected>Province</option>
                       @foreach($provinces as $province)
                       <option value="{{$province->province_code}}">{{$province->province_name}}</option>
                       @endforeach
                     </select>
-                    <select class="form-control mb-3 p-4" disabled name="municipality" id="municipality">
+                    <select class="form-control mb-3 p-4" disabled name="municipality" id="municipality" required>
                       <option disabled selected>Municipality</option>
                     </select>
-                    <select class="form-control mb-3 p-4" disabled name="barangay" id="barangay">
+                    <select class="form-control mb-3 p-4" disabled name="barangay" id="barangay" required>
                       <option disabled selected>Barangay</option>
                     </select>
-                    <input type="text" id="address_information" name="address_information" placeholder="Other Address Information" class="form-control mb-3 p-4">
-                    <input type="text" id="exampleInputName" name="contact_number" placeholder="Contact Number" class="form-control mb-3 p-4">
-                    <input placeholder="Birthday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mb-3 p-4" name="birthday">
-                    <input type="password" id="inputPassword1" placeholder="Set your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password">
-                    <input type="password" id="inputPassword2" placeholder="Retype your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password_confirmation">
+                    <input type="text" id="address_information" name="address_information" placeholder="Other Address Information" class="form-control mb-3 p-4" required>
+                    <input type="text" id="exampleInputName" name="contact_number" placeholder="Contact Number" class="form-control mb-3 p-4" required>
+                    <input placeholder="Birthday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mb-3 p-4" name="birthday" required>
+                    <input type="password" id="inputPassword1" placeholder="Set your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password" required>
+                    <input type="password" id="inputPassword2" placeholder="Retype your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password_confirmation" required>
 
                     {{-- <label class="py-3 d-flex flex-wrap justify-content-between">
                       <div>

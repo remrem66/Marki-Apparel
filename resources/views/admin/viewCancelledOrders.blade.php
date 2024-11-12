@@ -8,7 +8,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">All Users</h4>
+                                    <h4 class="page-title">Cancelled Orders</h4>
                                 </div>
                             </div>
                         </div>
@@ -28,23 +28,29 @@
                                                         <tr>
                                                             <th>Full Name</th>
                                                             <th>Email Address</th>
-                                                            <th>Contact Number</th>
                                                             <th>Address</th>
-                                                            <th>Birthday</th>
-                                                            <th>Gender</th>
+                                                            <th>Product Name</th>
+                                                            <th>Color</th>
+                                                            <th>Size</th>
+                                                            <th>Quantity</th>
+                                                            <th>Cancel Reason</th>
+                                                            <th>Date Cancelled</th>
                                                         </tr>
                                                     </thead>
                                                 
                                                 
                                                     <tbody>
-                                                        @foreach($users as $info)
+                                                        @foreach($data as $info)
                                                         <tr>
                                                             <td>{{$info->first_name}} {{$info->last_name}}</td>
                                                             <td>{{$info->email_address}}</td>
-                                                            <td>{{$info->contact_number}}</td>
                                                             <td>{{$info->address_information}}</td>
-                                                            <td>{{date("F j, Y",strtotime($info->birthday))}}</td>
-                                                            <td>{{$info->gender}}</td>
+                                                            <td>{{$info->product_name}}</td>
+                                                            <td>{{$info->color}}</td>
+                                                            <td>{{$info->size}}</td>
+                                                            <td>{{$info->cancel_quantity}}</td>
+                                                            <td>{{$info->cancel_reason}}</td>
+                                                            <td>{{date("F j, Y",strtotime($info->date_cancelled))}}</td>
                                                             
                                                         </tr>
                                                         @endforeach
