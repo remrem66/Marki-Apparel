@@ -584,7 +584,7 @@ class Controller extends BaseController
 
     public function test(){
 
-        return view('admin.generateSalesReport');
+        dd("Hello");
         
     }
 
