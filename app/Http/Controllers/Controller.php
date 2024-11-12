@@ -584,7 +584,7 @@ class Controller extends BaseController
 
     public function test(){
 
-        return view('admin.generateSalesReport');
+        dd("Hello");
         
     }
 
@@ -1101,4 +1101,15 @@ class Controller extends BaseController
     }
   }
 
+  public function cancelledorders(){
+    $data = DB::table('cancel_orders')
+                ->join('products', 'products.product_id', '=', 'cancel_orders.product_id')
+                ->join('users', 'users.user_id', '=', 'cancel_orders.user_id')
+                ->select('cancel_orders.*', 'products.*', 'users.*') 
+                ->get();
+    
+
+
+    return view('admin.viewCancelledOrders', compact('data'));
+}
 }
