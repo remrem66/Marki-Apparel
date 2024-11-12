@@ -107,7 +107,12 @@
                         </a>
                     </li>
                     @endif
-
+                    <li class="side-nav-item">
+                        <a href="/cancelledorders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                            <i class="dripicons-archive"></i>
+                            <span>Cancelled Orders</span>
+                        </a>
+                    </li>
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#salesanalytics" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-graph-bar"></i>

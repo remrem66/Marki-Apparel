@@ -105,6 +105,8 @@ Route::get('/audittrail', [Controller::class, 'audittrail']);
 Route::get('/showusers', [Controller::class, 'showusers']);
 Route::get('/generatemonthlysalesreport', [Controller::class, 'generatemonthlysalesreport']);
 Route::get('/orderscancelled', [Controller::class, 'orderscancelled']);
+Route::get('/cancelledorders', [Controller::class, 'cancelledorders']);
+
 
 
 Route::post('/registeruser', [Controller::class, 'registerUser']);
