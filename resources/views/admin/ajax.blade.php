@@ -178,4 +178,85 @@
             }
         }) 
     })
+
+    $('.disableproduct').click(function(e){
+
+        let product_id = $(this).attr("id");
+        let status = 0;
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "you want to disbale this product?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        }).then((willDeactivate) => {
+            if (willDeactivate.isConfirmed) {
+                Swal.fire(
+                    'Success!',
+                    'This product is now disabled!.',
+                    'success'
+                ).then((confirmDeactivate) => {
+                    if(confirmDeactivate){
+                        $.ajax({
+                            url: '/changeproductstatus',
+                            type: 'POST',
+                            data: {
+                                product_id : product_id,
+                                status : status
+                            },
+                            dataType: 'HTML',
+                            success: function(response){
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            
+            }
+        }) 
+    })
+
+    $('.enableproduct').click(function(e){
+
+        let product_id = $(this).attr("id");
+        let status = 1;
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "you want to enable this product?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        }).then((willDeactivate) => {
+            if (willDeactivate.isConfirmed) {
+                Swal.fire(
+                    'Success!',
+                    'This product is now enabled    !.',
+                    'success'
+                ).then((confirmDeactivate) => {
+                    if(confirmDeactivate){
+                        $.ajax({
+                            url: '/changeproductstatus',
+                            type: 'POST',
+                            data: {
+                                product_id : product_id,
+                                status : status
+                            },
+                            dataType: 'HTML',
+                            success: function(response){
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            
+            }
+        }) 
+    })
+
 </script>

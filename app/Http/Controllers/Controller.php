@@ -137,6 +137,7 @@ class Controller extends BaseController
                     ->groupBy('product_name')
                     ->where('category',$category)
                     ->where('quantity','>=',1)
+                    ->where('status',1)
                     ->get();
 
         return view('mainpage.shop',compact('products'));
@@ -429,6 +430,7 @@ class Controller extends BaseController
                                 'cart_status' => 0
                             ])->first();
 
+
         if($productDetails){
 
             $totalQuantity = $productDetails->cart_quantity + $info['quantity'];
@@ -443,6 +445,7 @@ class Controller extends BaseController
             Cart::addQuantityToProductCart($data);
         }
         else{
+
 
             $totalQuantity = $info['quantity'];
 
@@ -947,169 +950,198 @@ class Controller extends BaseController
         return redirect('/')->with('message', 'Successfully Edited Profile!');
     }
   
-  public function audittrail(){
+    public function audittrail(){
 
-    $info = DB::table('audittrail')
-            ->select('*')
-            ->get();
+        $info = DB::table('audittrail')
+              ->select('*')
+              ->get();
 
         return view('admin.auditTrail' ,compact('info'));
-  }
-  public function showusers(){
+    }
+
+    public function showusers(){
       
-    $users = User::all();
+        $users = User::all();
 
         return view('admin.allUsers', compact('users'));
-  }
-
-  public function postareview(Request $data){
-
-    $product = DB::table('products')
-                ->select('*')
-                ->where('product_id',$data['product_id'])
-                ->first();
-    
-    Comments::writeReview($data,session('user_id'));
-
-    return redirect('/single-product/'.$product->product_name.":".$product->category.":".$product->color.":".$product->size)->with('message', 'Successfully Posted Review!');
-  }
-
-  public function generatemonthlysalesreport(){
-
-    $years = [];
-
-    $data = DB::table('orders')
-            ->select('*')
-            ->where('order_status','Delivered')
-            ->get();
-
-    foreach($data as $info){
-        
-        array_push($years,date("Y",strtotime($info->order_date)));
-        
     }
 
-    $years = array_unique($years);
+    public function postareview(Request $data){
 
-    return view('admin.generateSalesReport',compact('years'));
-
-  }
-
-  public function monthsalesreport(Request $data){
-
-    $orderIDs = [];
-    $quantities = [];
-
-    $sales = DB::table('orders')
-                ->join('users','users.user_id','=','orders.user_id')
-                ->select('orders.*','users.first_name as userfname','users.last_name as userlname')
-                ->where('order_status','Delivered')
-                ->whereMonth('order_date',$data['month'])
-                ->whereYear('order_date',$data['year'])
-                ->get();
-    
-    foreach($sales as $info){
-        $item = explode(',',$info->items_ordered);
-        
-        for($x = 0; $x < count($item); $x++){
-            
-            $products = explode('-',$item[$x]);
-            
-            array_push($orderIDs,$products[0]);
-            array_push($quantities,$products[1]);
-        }
-    }
-        
-    $productDetails = DB::table('products')
-                        ->select('*')
-                        ->whereIn('product_id',$orderIDs)
-                        ->get();
-
-    return view('admin.monthsalesreport',compact('sales','productDetails'));
-  }
-
-  public function cancelitemorder(Request $info){
-
-    $newItemsOrdered = "";
-
-    $orderIDproductIDQuantity = explode("-",$info['productOrder']);
-
-    $itemOrdered = DB::table('orders')
-                    ->select('*')
-                    ->where('order_id',$orderIDproductIDQuantity[0])
-                    ->first();
-
-    $orderedItems = explode(",",$itemOrdered->items_ordered);
-
-    for($x = 0; $x < count($orderedItems); $x++){
-
-        $productOrdered = explode("-",$orderedItems[$x]);
-
-        if($orderIDproductIDQuantity[1] != $productOrdered[0]){
-            if($newItemsOrdered == ""){
-                $newItemsOrdered = $orderedItems[$x];
-            }
-            else{
-                $newItemsOrdered = $newItemsOrdered.",".$orderedItems[$x];
-            }
-        }
-    }
-
-    if($newItemsOrdered == ""){
-
-        $newItemsOrdered = "All items ordered are cancelled";
-        
-        Orders::cancelOrder($orderIDproductIDQuantity[0],$newItemsOrdered);
-    }
-    else{
-        
         $product = DB::table('products')
                     ->select('*')
-                    ->where('product_id',$orderIDproductIDQuantity[1])
+                    ->where('product_id',$data['product_id'])
                     ->first();
-
-        $totalProductPrice = $product->price * $orderIDproductIDQuantity[2];
-
-        $newTotal = $itemOrdered->total - $totalProductPrice;
-
-        Orders::updateOrder($orderIDproductIDQuantity[0],$newItemsOrdered,$newTotal);
-    }
-
-    CancelOrders::insertCancelItem(session('user_id'),$orderIDproductIDQuantity[1],$orderIDproductIDQuantity[2],$info['cancelReason']);
-    Products::addCancelledStock($orderIDproductIDQuantity[1],$orderIDproductIDQuantity[2]);
     
-  }
+        Comments::writeReview($data,session('user_id'));
 
-  public function orderscancelled(){
-
-    $productDetails = DB::table('cancel_orders')
-                        ->select('*')
-                        ->where('user_id',session('user_id'))
-                        ->get();
-
-    return view('mainpage.cancelledOrders',compact('productDetails'));
-  }
-
-  public function addnewproduct(){
-
-    // session('user_type) == 0  ***EXAMPLE LANG TO***
-    if(session('logged') == true){
-        return view('admin.addNewProduct');
+        return redirect('/single-product/'.$product->product_name.":".$product->category.":".$product->color.":".$product->size)->with('message', 'Successfully Posted Review!');
     }
-    else{
-        return redirect('/');
-    }
-  }
 
-  public function cancelledorders(){
-    $data = DB::table('cancel_orders')
-                ->join('products', 'products.product_id', '=', 'cancel_orders.product_id')
-                ->join('users', 'users.user_id', '=', 'cancel_orders.user_id')
-                ->select('cancel_orders.*', 'products.*', 'users.*') 
+    public function generatemonthlysalesreport(){
+
+        $years = [];
+
+        $data = DB::table('orders')
+                ->select('*')
+                ->where('order_status','Delivered')
                 ->get();
-    
+
+        foreach($data as $info){
+
+            array_push($years,date("Y",strtotime($info->order_date)));
+
+        }
+
+        $years = array_unique($years);
+
+        return view('admin.generateSalesReport',compact('years'));
+
+    }
+
+    public function monthsalesreport(Request $data){
+
+      $orderIDs = [];
+      $quantities = [];
+
+      $sales = DB::table('orders')
+                  ->join('users','users.user_id','=','orders.user_id')
+                  ->select('orders.*','users.first_name as userfname','users.last_name as userlname')
+                  ->where('order_status','Delivered')
+                  ->whereMonth('order_date',$data['month'])
+                  ->whereYear('order_date',$data['year'])
+                  ->get();
+
+      foreach($sales as $info){
+          $item = explode(',',$info->items_ordered);
+
+          for($x = 0; $x < count($item); $x++){
+
+              $products = explode('-',$item[$x]);
+
+              array_push($orderIDs,$products[0]);
+              array_push($quantities,$products[1]);
+          }
+      }
+
+      $productDetails = DB::table('products')
+                          ->select('*')
+                          ->whereIn('product_id',$orderIDs)
+                          ->get();
+
+      return view('admin.monthsalesreport',compact('sales','productDetails'));
+    }
+
+    public function cancelitemorder(Request $info){
+
+      $newItemsOrdered = "";
+
+      $orderIDproductIDQuantity = explode("-",$info['productOrder']);
+
+      $itemOrdered = DB::table('orders')
+                      ->select('*')
+                      ->where('order_id',$orderIDproductIDQuantity[0])
+                      ->first();
+
+      $orderedItems = explode(",",$itemOrdered->items_ordered);
+
+      for($x = 0; $x < count($orderedItems); $x++){
+
+          $productOrdered = explode("-",$orderedItems[$x]);
+
+          if($orderIDproductIDQuantity[1] != $productOrdered[0]){
+              if($newItemsOrdered == ""){
+                  $newItemsOrdered = $orderedItems[$x];
+              }
+              else{
+                  $newItemsOrdered = $newItemsOrdered.",".$orderedItems[$x];
+              }
+          }
+      }
+
+      if($newItemsOrdered == ""){
+
+          $newItemsOrdered = "All items ordered are cancelled";
+
+          Orders::cancelOrder($orderIDproductIDQuantity[0],$newItemsOrdered);
+      }
+      else{
+
+          $product = DB::table('products')
+                      ->select('*')
+                      ->where('product_id',$orderIDproductIDQuantity[1])
+                      ->first();
+
+          $totalProductPrice = $product->price * $orderIDproductIDQuantity[2];
+
+          $newTotal = $itemOrdered->total - $totalProductPrice;
+
+          Orders::updateOrder($orderIDproductIDQuantity[0],$newItemsOrdered,$newTotal);
+      }
+
+      CancelOrders::insertCancelItem(session('user_id'),$orderIDproductIDQuantity[1],$orderIDproductIDQuantity[2],$info['cancelReason']);
+      Products::addCancelledStock($orderIDproductIDQuantity[1],$orderIDproductIDQuantity[2]);
+
+    }
+
+    public function orderscancelled(){
+
+        $productDetails = DB::table('cancel_orders')
+                            ->join('products', 'products.product_id', '=', 'cancel_orders.product_id')
+                            ->select('products.*','cancel_orders.*')
+                            ->where('user_id',session('user_id'))
+                            ->get();
+
+        return view('mainpage.cancelledOrders',compact('productDetails'));
+    }
+
+    public function addnewproduct(){
+
+      // session('user_type) == 0  ***EXAMPLE LANG TO***
+        if(session('logged') == true){
+            return view('admin.addNewProduct');
+        }
+        else{
+            return redirect('/');
+        }
+    }
+
+    public function cancelledorders(){
+
+        $data = DB::table('cancel_orders')
+                    ->join('products', 'products.product_id', '=', 'cancel_orders.product_id')
+                    ->join('users', 'users.user_id', '=', 'cancel_orders.user_id')
+                    ->select('cancel_orders.*', 'products.*', 'users.*') 
+                    ->get();
+        
+        return view('admin.viewCancelledOrders', compact('data'));
+ 
+    }
+
+    public function changeproductstatus(Request $info){
+
+        Products::changeproductstatus($info);
+
+    }
+
+    public function dashboard(){
+
+        $customers = DB::table('users')
+                        ->select('*')
+                        ->where('user_type',1)
+                        ->count();
+        
+        $orders = DB::table('orders')
+                        ->select('*')
+                        ->count();
+
+        $productsOnLowStock = DB::table('products')
+                                ->select('*')
+                                ->where('quantity','<=',5)
+                                ->count();
+
+        return view('admin.dashboard',compact('customers','orders','productsOnLowStock'));
+    }
 
 
-    return view('admin.viewCancelledOrders', compact('data'));
-}
 }

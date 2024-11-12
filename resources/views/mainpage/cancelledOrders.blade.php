@@ -46,7 +46,7 @@
                 </td>
                 <td class="py-4 align-middle">
                   <div class="input-group product-qty align-items-center w-50">
-                    <h6>{{$product->quantity}}</h6>
+                    <h6>{{$product->cancel_quantity}}</h6>
                   </div>
                 </td>
                 <td class="py-4 align-middle">
