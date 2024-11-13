@@ -115,7 +115,7 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- <li class="side-nav-item">
+                    <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-document-layout-center"></i>
                             <span> Forms </span>
@@ -183,7 +183,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> -->
+                    </li>
 {{-- 
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarMaps" aria-expanded="false" aria-controls="sidebarMaps" class="side-nav-link">

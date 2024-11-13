@@ -47,7 +47,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <a href="#">
+                                        <a href="/viewlowstock">
                                             <div class="card widget-flat">
                                                 <div class="card-body">
                                                     <div class="float-end">
@@ -69,7 +69,20 @@
                         <!-- end row -->
 
                         <!-- end row -->
+                        <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mb-4">Bar Chart</h4>
 
+                                        <div dir="ltr">
+                                            <div class="mt-3 chartjs-chart" style="height: 320px;">
+                                                <canvas id="bar-chart-example" data-colors="#fa5c7c,#727cf5"></canvas>
+                                            </div>
+                                        </div>
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
                     </div>
                     <!-- container -->
 
