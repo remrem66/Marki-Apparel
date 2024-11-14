@@ -129,7 +129,7 @@
         <script src="{{asset('admin/assets/js/app.min.js')}}"></script>
 
         <!-- third party js -->
-        <!-- <script src="assets/js/vendor/chart.min.js"></script> -->
+        <script src="{{asset('admin/assets/js/vendor/chart.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/vendor/apexcharts.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/vendor/jquery-jvectormap-1.2.2.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/vendor/jquery-jvectormap-world-mill-en.js')}}"></script>
@@ -164,6 +164,7 @@
         <!-- demo app -->
         <script src="{{asset('admin/assets/js/pages/demo.products.js')}}"></script>
 
+        <script src="{{asset('admin/assets/js/pages/demo.chartjs.js')}}"></script>
 @include('admin.ajax')
 </body>
 

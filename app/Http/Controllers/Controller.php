@@ -89,7 +89,13 @@ class Controller extends BaseController
 
         $data = Products::all();
 
-        return view('admin.viewProduct',compact('data'));
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return view('admin.viewProduct',compact('data'));
+            }
+            else{
+                return redirect('/');
+            }
+
     }
 
     public function addproductvariation(Request $info){
@@ -120,7 +126,13 @@ class Controller extends BaseController
 
         Audittrail::addNewAction($audittrail);
 
-        return view('admin.editproduct',compact('info'));
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return view('admin.editproduct',compact('info'));
+         }
+         else{
+             return redirect('/');
+         }  
+ 
     }
 
     public function productedit(Request $info){
@@ -757,7 +769,13 @@ class Controller extends BaseController
                 ->where('product_id',$id)
                 ->first();
 
-        return view('admin.productDetails',compact('data'));
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return view('admin.productDetails',compact('data'));
+         }
+         else{
+             return redirect('/');
+         }  
+        
     }
     
     public function orders(){
@@ -835,8 +853,13 @@ class Controller extends BaseController
             $audittrail = "Admin " . session('user_name') . " changed order status of order (" . $lastProduct->order_id . ") to (" . $lastProduct->order_status . ")";
             Audittrail::addNewAction($audittrail);
         }
-
-        return view ('admin.orderStatus', compact('info'));    
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return view ('admin.orderStatus', compact('info'));       
+          }
+          else{
+              return redirect('/');
+          }
+        
     }
 
     public function selectcourier(Request $data){
@@ -858,8 +881,15 @@ class Controller extends BaseController
 
         Audittrail::addNewAction($audittrail);
 
-        return redirect('/addnewadminuser');
-    }
+
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return redirect('/addnewadminuser');
+            }
+            else{
+                return redirect('/');
+            }
+          }
+        
 
     public function viewadminusers(){
 
@@ -869,8 +899,13 @@ class Controller extends BaseController
                     ->orWhere('user_type',3)
                     ->get();
         
-        return view('admin.viewAdminUsers',compact('data'));
-        
+
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return view('admin.viewAdminUsers',compact('data'));
+            }
+            else{
+                return redirect('/');
+            }
     }
 
     public function editadminuser($id){
@@ -879,7 +914,13 @@ class Controller extends BaseController
                     ->where('user_id',$id)
                     ->first();
 
+    if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
         return view('admin.editadminuser',compact('info'));
+     }
+     else{
+         return redirect('/');
+     }       
+
     }
 
     public function adminuseredit(Request $info){
@@ -956,14 +997,29 @@ class Controller extends BaseController
               ->select('*')
               ->get();
 
-        return view('admin.auditTrail' ,compact('info'));
+    if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+        return view('admin.auditTrail' ,compact('info'));   
+      }
+      else{
+          return redirect('/');
+      }
+
     }
 
     public function showusers(){
       
-        $users = User::all();
+        $users = DB::table('users')
+                ->select('*')
+                ->where('user_type',1)
+                ->get();
 
+    if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
         return view('admin.allUsers', compact('users'));
+        }
+        else{
+            return redirect('/');
+        }
+        
     }
 
     public function postareview(Request $data){
@@ -995,7 +1051,12 @@ class Controller extends BaseController
 
         $years = array_unique($years);
 
+    if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
         return view('admin.generateSalesReport',compact('years'));
+      }
+      else{
+          return redirect('/');
+      }
 
     }
 
@@ -1029,7 +1090,13 @@ class Controller extends BaseController
                           ->whereIn('product_id',$orderIDs)
                           ->get();
 
-      return view('admin.monthsalesreport',compact('sales','productDetails'));
+     if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+        return view('admin.monthsalesreport',compact('sales','productDetails'));
+     }
+     else{
+         return redirect('/');
+     }
+
     }
 
     public function cancelitemorder(Request $info){
@@ -1092,7 +1159,13 @@ class Controller extends BaseController
                             ->where('user_id',session('user_id'))
                             ->get();
 
-        return view('mainpage.cancelledOrders',compact('productDetails'));
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return view('mainpage.cancelledOrders',compact('productDetails'));    
+          }
+          else{
+              return redirect('/');
+          }
+
     }
 
     public function addnewproduct(){
@@ -1139,9 +1212,22 @@ class Controller extends BaseController
                                 ->select('*')
                                 ->where('quantity','<=',5)
                                 ->count();
-
+                                
+    if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
         return view('admin.dashboard',compact('customers','orders','productsOnLowStock'));
+        }
+        else{
+            return redirect('/');
+        }
+      }
+        
+    public function viewlowstock(){
+
+        $data = DB::table('products')
+                                ->select('*')
+                                ->where('quantity','<=',5)
+                                ->get();
+
+      return view('admin.viewLowStock',compact('data'));
     }
-
-
 }
