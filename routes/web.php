@@ -103,7 +103,9 @@ Route::get('/generatemonthlysalesreport', [Controller::class, 'generatemonthlysa
 Route::get('/orderscancelled', [Controller::class, 'orderscancelled']);
 Route::get('/cancelledorders', [Controller::class, 'cancelledorders']);
 Route::get('/adminaccountedit', [Controller::class, 'adminaccountedit']);
-Route::get('/dashboard', [Controller::class, 'dashboard']);
+Route::get('/dashboard', [Controller::class, 'dashboard'])->name('dashboard');
+Route::get('/viewlowstock', [Controller::class, 'viewlowstock']);
+
 
 
 
