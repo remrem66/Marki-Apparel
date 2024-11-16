@@ -104,6 +104,7 @@ Route::get('/orderscancelled', [Controller::class, 'orderscancelled']);
 Route::get('/cancelledorders', [Controller::class, 'cancelledorders']);
 Route::get('/adminaccountedit', [Controller::class, 'adminaccountedit']);
 Route::get('/dashboard', [Controller::class, 'dashboard']);
+Route::get('/generatesalesforecasting', [Controller::class, 'generatesalesforecasting']);
 
 
 
@@ -131,6 +132,7 @@ Route::post('/postareview', [Controller::class, 'postareview']);
 Route::post('/monthsalesreport', [Controller::class, 'monthsalesreport']);
 Route::post('/cancelitemorder', [Controller::class, 'cancelitemorder']);
 Route::post('/changeproductstatus', [Controller::class, 'changeproductstatus']);
+Route::post('/salesforecasting', [Controller::class, 'salesforecasting']);
 
 
 
