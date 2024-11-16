@@ -35,7 +35,7 @@ class Controller extends BaseController
             'first_name' => 'required',
             'last_name' => 'required',
             'contact_number' => 'required',
-            'email_address' => 'required|email_address|unique:users,email_address',
+            'email_address' => 'required|email|unique:users,email_address',
             'password' => 'required|confirmed|min:8',
             'password_confirmation' => 'required|min:8',
             'gender' => 'required',
