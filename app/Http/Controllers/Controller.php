@@ -46,9 +46,11 @@ class Controller extends BaseController
             'birthday' => 'required',
         ]);
 
-        User::registerUser($info);
+        $userID = User::registerUser($info);
 
-        return redirect('/')->with('message', 'Successfully Created Account!');
+        $info->session()->put('temp_user_id', $userID);
+
+        return redirect()->route('emailVerification');
     }
 
     public function insertnewproduct(Request $info){
@@ -416,6 +418,16 @@ class Controller extends BaseController
                     return redirect()->route('dashboard');
                 }
                 else{
+
+                    $cartProducts = DB::table('carts')
+                        ->join('products','products.product_id','=','carts.product_id')
+                        ->select('products.*','carts.*')
+                        ->where('carts.user_id',session('user_id'))
+                        ->where('carts.cart_status',0)
+                        ->get();
+
+                    $info->session()->put('cartCount', count($cartProducts));
+                    $info->session()->put('cartItems', $cartProducts);
                     
                     return redirect('/')->with('message', 'Successful Login!');
                 }
