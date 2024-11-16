@@ -35,7 +35,7 @@ class Controller extends BaseController
             'first_name' => 'required',
             'last_name' => 'required',
             'contact_number' => 'required',
-            'email_address' => 'required|email|unique:users,email',
+            'email_address' => 'required|email|unique:users,email_address',
             'password' => 'required|confirmed|min:8',
             'password_confirmation' => 'required|min:8',
             'gender' => 'required',
@@ -722,8 +722,8 @@ class Controller extends BaseController
                         'card',
                         'gcash'
                     ],
-                    'success_url' =>'http://127.0.0.1:8000/successpayment',
-                    'cancel_url' => 'http://127.0.0.1:8000/checkoutdetails',
+                    'success_url' =>'https://markiapparel.shop/successpayment',
+                    'cancel_url' => 'https://markiapparel.shop/checkoutdetails',
                     'description' => 'Marki Apparel'
                 ],
             ]
