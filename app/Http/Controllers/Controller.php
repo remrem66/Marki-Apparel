@@ -587,7 +587,17 @@ class Controller extends BaseController
 
     public function test(){
 
-        dd("Hello");
+        $year = 2024;
+
+        $months = DB::table('orders')
+                    ->selectRaw('DISTINCT MONTH(order_date) as month')
+                    ->where('order_status','=','Delivered')
+                    ->whereYear('order_date', $year)
+                    ->orderBy('month')
+                    ->pluck('month')
+                    ->toArray();
+        
+        
         
     }
 
@@ -1142,6 +1152,7 @@ class Controller extends BaseController
 
         return view('admin.dashboard',compact('customers','orders','productsOnLowStock'));
     }
+
 
 
 }
