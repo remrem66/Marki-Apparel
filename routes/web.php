@@ -100,11 +100,13 @@ Route::get('/userprofile', [Controller::class, 'userprofile']);
 Route::get('/audittrail', [Controller::class, 'audittrail']);
 Route::get('/showusers', [Controller::class, 'showusers']);
 Route::get('/generatemonthlysalesreport', [Controller::class, 'generatemonthlysalesreport']);
+Route::get('/generatesalesforecasting', [Controller::class, 'generatesalesforecasting']);
 Route::get('/orderscancelled', [Controller::class, 'orderscancelled']);
 Route::get('/cancelledorders', [Controller::class, 'cancelledorders']);
 Route::get('/adminaccountedit', [Controller::class, 'adminaccountedit']);
-Route::get('/dashboard', [Controller::class, 'dashboard']);
-Route::get('/generatesalesforecasting', [Controller::class, 'generatesalesforecasting']);
+Route::get('/dashboard', [Controller::class, 'dashboard'])->name('dashboard');
+Route::get('/viewlowstock', [Controller::class, 'viewlowstock']);
+
 
 
 
@@ -133,8 +135,6 @@ Route::post('/monthsalesreport', [Controller::class, 'monthsalesreport']);
 Route::post('/cancelitemorder', [Controller::class, 'cancelitemorder']);
 Route::post('/changeproductstatus', [Controller::class, 'changeproductstatus']);
 Route::post('/salesforecasting', [Controller::class, 'salesforecasting']);
-
-
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

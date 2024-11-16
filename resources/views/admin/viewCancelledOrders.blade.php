@@ -27,6 +27,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Full Name</th>
+                                                            <th>Contact Number</th>
                                                             <th>Email Address</th>
                                                             <th>Address</th>
                                                             <th>Product Name</th>
@@ -43,6 +44,7 @@
                                                         @foreach($data as $info)
                                                         <tr>
                                                             <td>{{$info->first_name}} {{$info->last_name}}</td>
+                                                            <td>{{$info->contact_number}}</td>
                                                             <td>{{$info->email_address}}</td>
                                                             <td>{{$info->address_information}}</td>
                                                             <td>{{$info->product_name}}</td>
