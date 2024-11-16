@@ -112,158 +112,12 @@
                                 <li>
                                     <a href="/generatemonthlysalesreport">Generate Monthly Sales Report</a>
                                 </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
-                            <i class="uil-document-layout-center"></i>
-                            <span> Forms </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarForms">
-                            <ul class="side-nav-second-level">
                                 <li>
-                                    <a href="/formelements">Basic Elements</a>
-                                </li>
-                                <li>
-                                    <a href="/formadvance">Form Advanced</a>
-                                </li>
-                                <li>
-                                    <a href="/formvalidation">Validation</a>
-                                </li>
-                                <li>
-                                    <a href="/formwizard">Wizard</a>
-                                </li>
-                                <li>
-                                    <a href="/formfileupload">File Uploads</a>
-                                </li>
-                                <li>
-                                    <a href="/editors">Editors</a>
+                                    <a href="/generatesalesforecasting">Generate Sales Forecasting</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-
-                    <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarCharts" aria-expanded="false" aria-controls="sidebarCharts" class="side-nav-link">
-                            <i class="uil-chart"></i>
-                            <span> Charts </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarCharts">
-                            <ul class="side-nav-second-level">
-                                
-                                <li>
-                                    <a href="/chartbrite">Britecharts</a>
-                                </li>
-                                <li>
-                                    <a href="/chartjs">Chartjs</a>
-                                </li>
-                                <li>
-                                    <a href="/chartsparkline">Sparklines</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarTables" aria-expanded="false" aria-controls="sidebarTables" class="side-nav-link">
-                            <i class="uil-table"></i>
-                            <span> Tables </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarTables">
-                            <ul class="side-nav-second-level">
-                                <li>
-                                    <a href="/basictable">Basic Tables</a>
-                                </li>
-                                <li>
-                                    <a href="/datatable">Data Tables</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> -->
-{{-- 
-                    <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarMaps" aria-expanded="false" aria-controls="sidebarMaps" class="side-nav-link">
-                            <i class="uil-location-point"></i>
-                            <span> Maps </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarMaps">
-                            <ul class="side-nav-second-level">
-                                <li>
-                                    <a href="maps-google.html">Google Maps</a>
-                                </li>
-                                <li>
-                                    <a href="maps-vector.html">Vector Maps</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarMultiLevel" aria-expanded="false" aria-controls="sidebarMultiLevel" class="side-nav-link">
-                            <i class="uil-folder-plus"></i>
-                            <span> Multi Level </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarMultiLevel">
-                            <ul class="side-nav-second-level">
-                                <li class="side-nav-item">
-                                    <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel">
-                                        <span> Second Level </span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="collapse" id="sidebarSecondLevel">
-                                        <ul class="side-nav-third-level">
-                                            <li>
-                                                <a href="javascript: void(0);">Item 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript: void(0);">Item 2</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="side-nav-item">
-                                    <a data-bs-toggle="collapse" href="#sidebarThirdLevel" aria-expanded="false" aria-controls="sidebarThirdLevel">
-                                        <span> Third Level </span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="collapse" id="sidebarThirdLevel">
-                                        <ul class="side-nav-third-level">
-                                            <li>
-                                                <a href="javascript: void(0);">Item 1</a>
-                                            </li>
-                                            <li class="side-nav-item">
-                                                <a data-bs-toggle="collapse" href="#sidebarFourthLevel" aria-expanded="false" aria-controls="sidebarFourthLevel">
-                                                    <span> Item 2 </span>
-                                                    <span class="menu-arrow"></span>
-                                                </a>
-                                                <div class="collapse" id="sidebarFourthLevel">
-                                                    <ul class="side-nav-forth-level">
-                                                        <li>
-                                                            <a href="javascript: void(0);">Item 2.1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript: void(0);">Item 2.2</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul> --}}
-
-                <!-- Help Box -->
-                <!-- end Help Box -->
-                <!-- End Sidebar -->
 
                 <div class="clearfix"></div>
 
@@ -282,11 +136,6 @@
 <!-- Topbar Start -->
 <div class="navbar-custom">
     <ul class="list-unstyled topbar-menu float-end mb-0">
-        
-
-
-
-
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
@@ -341,63 +190,6 @@
     <button class="button-menu-mobile open-left">
         <i class="mdi mdi-menu"></i>
     </button>
-    <div class="app-search dropdown d-none d-lg-block">
-        
-
-        <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
-            <!-- item-->
-            <div class="dropdown-header noti-title">
-                <h5 class="text-overflow mb-2">Found <span class="text-danger">17</span> results</h5>
-            </div>
-
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                <i class="uil-notes font-16 me-1"></i>
-                <span>Analytics Report</span>
-            </a>
-
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                <i class="uil-life-ring font-16 me-1"></i>
-                <span>How can I help you?</span>
-            </a>
-
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                <i class="uil-cog font-16 me-1"></i>
-                <span>User profile settings</span>
-            </a>
-
-            <!-- item-->
-            <div class="dropdown-header noti-title">
-                <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
-            </div>
-
-            <div class="notification-list">
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <div class="d-flex">
-                        <img class="d-flex me-2 rounded-circle" src="admin/assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height="32">
-                        <div class="w-100">
-                            <h5 class="m-0 font-14">Erwin Brown</h5>
-                            <span class="font-12 mb-0">UI Designer</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <div class="d-flex">
-                        <img class="d-flex me-2 rounded-circle" src="admin/assets/images/users/avatar-5.jpg" alt="Generic placeholder image" height="32">
-                        <div class="w-100">
-                            <h5 class="m-0 font-14">Jacob Deo</h5>
-                            <span class="font-12 mb-0">Developer</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- end Topbar -->
 

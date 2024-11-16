@@ -599,7 +599,53 @@ class Controller extends BaseController
 
     public function test(){
 
-        dd("Hello");
+        $year = 2024;
+
+        $months = DB::table('orders')
+                    ->selectRaw('DISTINCT MONTH(order_date) as month')
+                    ->where('order_status','=','Delivered')
+                    ->whereYear('order_date', $year)
+                    ->orderBy('month')
+                    ->pluck('month')
+                    ->toArray();
+        
+        $lastMonth = $months[count($months) - 1];
+        $newMonth = $lastMonth + 1;
+        $months[] = $newMonth;
+
+
+        $results = DB::table('orders')
+                    ->select(DB::raw('MONTH(order_date) as month'), DB::raw('SUM(total) as total_sum'))
+                    ->where('order_status','=','Delivered')
+                    ->whereYear('order_date', $year)
+                    ->whereIn(DB::raw('MONTH(order_date)'), $months)
+                    ->groupBy(DB::raw('MONTH(order_date)'))
+                    ->get();
+
+        $totalSum = $results->sum('total_sum'); // Sum of all total_sum values
+        $count = $results->count(); // Count of items in $results
+        $average = $count > 0 ? $totalSum / $count : 0; // Avoid division by zero
+
+        $monthNames = [
+                        1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr',
+                        5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug',
+                        9 => 'Sept', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec'
+                    ];
+        
+        $mappedResults = $results->mapWithKeys(function ($item) use ($monthNames) {
+            $key = isset($monthNames[$item->month]) ? $monthNames[$item->month] : $item->month;
+            return [$key => $item->total_sum];
+        });
+        
+        $keys = $mappedResults->keys()->toArray(); 
+        $values = $mappedResults->values()->toArray();
+
+        if (isset($monthNames[$newMonth])) {
+            $keys[] = $monthNames[$newMonth]; // Add the new month dynamically
+            $values[] = $average; // Add the average to values
+        }
+
+        return view('admin.chartjs',compact('keys','values'));
         
     }
 
@@ -1229,5 +1275,83 @@ class Controller extends BaseController
                                 ->get();
 
       return view('admin.viewLowStock',compact('data'));
+    }
+
+    public function generatesalesforecasting(){
+
+        $years = [];
+
+        $data = DB::table('orders')
+                ->select('*')
+                ->where('order_status','Delivered')
+                ->get();
+
+        foreach($data as $info){
+
+            array_push($years,date("Y",strtotime($info->order_date)));
+
+        }
+
+        $years = array_unique($years);
+
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return view('admin.generateSalesForecasting',compact('years'));
+        }
+        else{
+            return redirect('/');
+        }
+        
+    }
+
+    public function salesforecasting(Request $data){
+
+        $year = $data['year'];
+
+        $months = DB::table('orders')
+                    ->selectRaw('DISTINCT MONTH(order_date) as month')
+                    ->where('order_status','=','Delivered')
+                    ->whereYear('order_date', $year)
+                    ->orderBy('month')
+                    ->pluck('month')
+                    ->toArray();
+        
+        $lastMonth = $months[count($months) - 1];
+        $newMonth = $lastMonth + 1;
+        $months[] = $newMonth;
+
+
+        $results = DB::table('orders')
+                    ->select(DB::raw('MONTH(order_date) as month'), DB::raw('SUM(total) as total_sum'))
+                    ->where('order_status','=','Delivered')
+                    ->whereYear('order_date', $year)
+                    ->whereIn(DB::raw('MONTH(order_date)'), $months)
+                    ->groupBy(DB::raw('MONTH(order_date)'))
+                    ->get();
+
+        $totalSum = $results->sum('total_sum'); // Sum of all total_sum values
+        $count = $results->count(); // Count of items in $results
+        $average = $count > 0 ? $totalSum / $count : 0; // Avoid division by zero
+
+        $monthNames = [
+                        1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr',
+                        5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug',
+                        9 => 'Sept', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec'
+                    ];
+        
+        $mappedResults = $results->mapWithKeys(function ($item) use ($monthNames) {
+            $key = isset($monthNames[$item->month]) ? $monthNames[$item->month] : $item->month;
+            return [$key => $item->total_sum];
+        });
+        
+        $keys = $mappedResults->keys()->toArray(); 
+        $values = $mappedResults->values()->toArray();
+
+        if (isset($monthNames[$newMonth])) {
+            $keys[] = $monthNames[$newMonth]; // Add the new month dynamically
+            $values[] = $average; // Add the average to values
+        }
+
+        return view('admin.salesforecasting',compact('keys','values'));
+
     }
 }
