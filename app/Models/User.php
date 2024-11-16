@@ -38,39 +38,43 @@ class User extends Authenticatable
 
         if(!empty($info['profile_picture'])){
 
-            DB::table('users')
-                ->insert([
-                    'first_name' => $info['first_name'],
-                    'last_name' => $info['last_name'],
-                    'gender' => $info['gender'],
-                    'birthday' => $info['birthday'],
-                    'province' => $info['province'],
-                    'municipality' => $info['municipality'],
-                    'barangay' => $info['barangay'],
-                    'address_information' => $info['address_information'],
-                    'email_address' => $info['email_address'],
-                    'contact_number' => $info['contact_number'],
-                    'password' => Hash::make($info['password']),
-                    'profile_picture' => $info->file('profile_picture')->getClientOriginalName()
-                ]);
+            $userID = DB::table('users')
+                        ->insertGetId([
+                            'first_name' => $info['first_name'],
+                            'last_name' => $info['last_name'],
+                            'gender' => $info['gender'],
+                            'birthday' => $info['birthday'],
+                            'province' => $info['province'],
+                            'municipality' => $info['municipality'],
+                            'barangay' => $info['barangay'],
+                            'address_information' => $info['address_information'],
+                            'email_address' => $info['email_address'],
+                            'contact_number' => $info['contact_number'],
+                            'password' => Hash::make($info['password']),
+                            'profile_picture' => $info->file('profile_picture')->getClientOriginalName()
+                        ]);
 
             $info->file('profile_picture')->move(public_path('/profile pictures'),$info->file('profile_picture')->getClientOriginalName());
+
+            return $userID;
         }
         else{
-            DB::table('users')
-                ->insert([
-                    'first_name' => $info['first_name'],
-                    'last_name' => $info['last_name'],
-                    'gender' => $info['gender'],
-                    'birthday' => $info['birthday'],
-                    'province' => $info['province'],
-                    'municipality' => $info['municipality'],
-                    'barangay' => $info['barangay'],
-                    'address_information' => $info['address_information'],
-                    'email_address' => $info['email_address'],
-                    'contact_number' => $info['contact_number'],
-                    'password' => Hash::make($info['password'])
-                ]);
+            $userID = DB::table('users')
+                        ->insertGetId([
+                            'first_name' => $info['first_name'],
+                            'last_name' => $info['last_name'],
+                            'gender' => $info['gender'],
+                            'birthday' => $info['birthday'],
+                            'province' => $info['province'],
+                            'municipality' => $info['municipality'],
+                            'barangay' => $info['barangay'],
+                            'address_information' => $info['address_information'],
+                            'email_address' => $info['email_address'],
+                            'contact_number' => $info['contact_number'],
+                            'password' => Hash::make($info['password'])
+                        ]);
+            
+            return $userID;
         }
         
     }
