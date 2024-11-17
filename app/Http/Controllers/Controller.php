@@ -103,6 +103,15 @@ class Controller extends BaseController
 
     public function addproductvariation(Request $info){
 
+        $info->validate([
+            'color' => 'required',
+            'size' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'pictures[]' => 'required',
+            
+        ]);
+
         $product = DB::table('products')
                     ->select('*')
                     ->where('product_id',$info['product_id'])
@@ -917,7 +926,15 @@ class Controller extends BaseController
     }
 
     public function insertnewadminuser(Request $info){
-
+        
+        $info->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'user_type' => 'required',
+            'email_address' => 'required|email|unique:users,email_address',
+            'contact_number' => 'required',
+            
+        ]);
         User::addnewadminuser($info);
 
         $audittrail = "Admin ".session('user_name')." added a new admin user (".$info['email_address'].")";
@@ -1037,8 +1054,9 @@ class Controller extends BaseController
     public function audittrail(){
 
         $info = DB::table('audittrail')
-              ->select('*')
-              ->get();
+                ->join('users','users.user_id','=','users.user_id')
+                ->select('audittrail.*', 'users.*') 
+                ->get();
 
     if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
         return view('admin.auditTrail' ,compact('info'));   
@@ -1255,9 +1273,13 @@ class Controller extends BaseController
                                 ->select('*')
                                 ->where('quantity','<=',5)
                                 ->count();
+
+        $cancelOrders = DB::table('cancel_orders')
+                        ->select('*')
+                        ->count();
                                 
     if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
-        return view('admin.dashboard',compact('customers','orders','productsOnLowStock'));
+        return view('admin.dashboard',compact('customers','orders','productsOnLowStock', 'cancelOrders'));
         }
         else{
             return redirect('/');

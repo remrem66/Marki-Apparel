@@ -115,14 +115,14 @@
                                     <div class="row g-2">
                                         <div class="mb-6 col-md-12">
                                             <label for="color" class="form-label">Color</label>
-                                            <input type="text" class="form-control" name="color" id="color">
+                                            <input type="text" class="form-control" name="color" id="color" required>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row g-2">
                                         <div class="mb-6 col-md-12">
                                             <label for="size" class="form-label">Size</label>
-                                            <select class="form-select" name="size" id="size">
+                                            <select class="form-select" name="size" id="size" required>
                                                 <option>S</option>
                                                 <option>M</option>
                                                 <option>L</option>
@@ -134,21 +134,21 @@
                                     <div class="row g-2">
                                         <div class="mb-6 col-md-12">
                                             <label for="price" class="form-label">Price</label>
-                                            <input type="number" min="1" class="form-control" name="price" id="price">
+                                            <input type="number" min="1" class="form-control" name="price" id="price" required>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row g-2">
                                         <div class="mb-6 col-md-12">
                                             <label for="quantity" class="form-label">Quantity</label>
-                                            <input type="number" min="1" class="form-control" name="quantity" id="quantity">
+                                            <input type="number" min="1" class="form-control" name="quantity" id="quantity" required>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row g-2">
                                         <div class="mb-6 col-md-12">
                                             <label for="formFileMultiple01" class="form-label">Pictures (Insert maximum of 3 pictures)</label>
-                                            <input class="form-control" name="pictures[]" type="file" accept="image/*" id="formFileMultiple01" multiple>
+                                            <input class="form-control" name="pictures[]" type="file" accept="image/*" id="formFileMultiple01" multiple required>
                                             <input class="form-control" name="product_id" id="product_id" type="hidden">
                                         </div>
                                     </div>
@@ -158,6 +158,15 @@
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->

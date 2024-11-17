@@ -24,30 +24,30 @@
                                 <div class="row g-2">
                                     <div class="mb-3 col-md-6">
                                         <label for="product_name" class="form-label">First Name</label>
-                                        <input type="text" class="form-control" name="first_name" id="product_name">
+                                        <input type="text" class="form-control" name="first_name" id="product_name" required>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label for="product_name" class="form-label">Last Name</label>
-                                        <input type="text" class="form-control" name="last_name" id="product_name">
+                                        <input type="text" class="form-control" name="last_name" id="product_name" required>
                                     </div>
                                 </div>
                                 <div class="row g-2">
                                     <div class="mb-3 col-md-6">
                                         <label for="category" class="form-label">Admin Type</label>
-                                        <select class="form-select" name="user_type" id="category">
+                                        <select class="form-select" name="user_type" id="category" required>
                                             <option value="2">Inventory Admin</option>
                                             <option value="3">Sales Admin</option>
                                         </select>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label for="product_name" class="form-label">Email Address</label>
-                                        <input type="text" class="form-control" name="email_address" id="product_name">
+                                        <input type="text" class="form-control" name="email_address" id="product_name" required>
                                     </div>
                                 </div>
                                 <div class="row g-2">
                                     <div class="mb-3 col-md-6">
                                         <label for="product_name" class="form-label">Contact Number</label>
-                                        <input type="text" class="form-control" name="contact_number" id="product_name">
+                                        <input type="text" class="form-control" name="contact_number" id="product_name" required>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>

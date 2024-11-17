@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Generate Monthly Sales Report</h4>
+                                    <h4 class="page-title">Generate Sales Forecasting</h4>
                                 </div>
                             </div>
                         </div>

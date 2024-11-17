@@ -61,7 +61,22 @@
                                         </a>
                                         
                                     </div> <!-- end col-->
+                                    <div class="col-sm-6">
+                                        <div class="card widget-flat">
+                                            <a href="/cancelledorders">
+                                            <div class="card-body">
+                                                <div class="float-end">
+                                                    <i class="mdi dripicons-archive widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Cancel Orders</h5>
+                                                <h3 class="mt-3 mb-3">{{$cancelOrders}}</h3>
+                                            </div> <!-- end card-body-->
+                                            </a>
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
                                 </div> <!-- end row -->
+
+                                
 
                             </div> <!-- end col -->
 
@@ -69,20 +84,6 @@
                         <!-- end row -->
 
                         <!-- end row -->
-                        <div class="col-xl-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title mb-4">Bar Chart</h4>
-
-                                        <div dir="ltr">
-                                            <div class="mt-3 chartjs-chart" style="height: 320px;">
-                                                <canvas id="bar-chart-example" data-colors="#fa5c7c,#727cf5"></canvas>
-                                            </div>
-                                        </div>
-
-                                    </div> <!-- end card body-->
-                                </div> <!-- end card -->
-                            </div><!-- end col-->
                     </div>
                     <!-- container -->
 
