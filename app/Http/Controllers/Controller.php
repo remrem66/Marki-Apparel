@@ -712,7 +712,11 @@ class Controller extends BaseController
 
     public function onlinePayment($data){
 
-        $data['total'] = $data['total']."00";
+        if(session('logged') != true){
+            return redirect('/');
+        }
+        else{
+            $data['total'] = $data['total']."00";
 
         $total = (int)$data['total'];
 
@@ -752,34 +756,40 @@ class Controller extends BaseController
 
     public function successpayment(){
         
-        $itemsOrdered = "";
-
-        foreach(session('cartItems') as $product){
-
-            if($itemsOrdered == ""){
-                $itemsOrdered = $itemsOrdered.$product->product_id."-".$product->cart_quantity;
-            }
-            else{
-                $itemsOrdered = $itemsOrdered.",".$product->product_id."-".$product->cart_quantity;
-            }
-
-            Cart::changeCartStatus($product->cart_id);
-            Products::updateStock($product->product_id,$product->cart_quantity);
+        if(session('logged') != true){
+            return redirect('/');
         }
+        else{
+            $itemsOrdered = "";
+
+            foreach(session('cartItems') as $product){
+
+                if($itemsOrdered == ""){
+                $itemsOrdered = $itemsOrdered.$product->product_id."-".$product->cart_quantity;
+                }
+                else{
+                    $itemsOrdered = $itemsOrdered.",".$product->product_id."-".$product->cart_quantity;
+                }
+
+                Cart::changeCartStatus($product->cart_id);
+                Products::updateStock($product->product_id,$product->cart_quantity);
+            }
        
-        $cartProducts = DB::table('carts')
+            $cartProducts = DB::table('carts')
                         ->join('products','products.product_id','=','carts.product_id')
                         ->select('products.*','carts.*')
                         ->where('carts.user_id',session('user_id'))
                         ->where('carts.cart_status',0)
                         ->get();
         
-        session()->put('cartCount', count($cartProducts));
-        session()->put('cartItems', $cartProducts);
+            session()->put('cartCount', count($cartProducts));
+            session()->put('cartItems', $cartProducts);
 
-        Orders::insertOrder(session('checkoutInfo'),"Success",$itemsOrdered);
+            Orders::insertOrder(session('checkoutInfo'),"Success",$itemsOrdered);
 
-        return view('mainpage.successPayment');
+            return view('mainpage.successPayment');
+        }
+        
     }
 
     public function orderstatus($status){
@@ -885,8 +895,6 @@ class Controller extends BaseController
 
                 
             }
-
-            
 
             $info[$counter] = [
                 'Item Receiver' => $product->first_name." ".$product->last_name,
@@ -1338,10 +1346,11 @@ class Controller extends BaseController
                     ->toArray();
         
         $lastMonth = $months[count($months) - 1];
-        $newMonth = $lastMonth + 1;
-        $months[] = $newMonth;
-
-
+        if($lastMonth != 12){
+            $newMonth = $lastMonth + 1;
+            $months[] = $newMonth;
+        }
+        
         $results = DB::table('orders')
                     ->select(DB::raw('MONTH(order_date) as month'), DB::raw('SUM(total) as total_sum'))
                     ->where('order_status','=','Delivered')
