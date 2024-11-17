@@ -11,7 +11,7 @@
                                                 <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
                                                     <thead>
                                                         <tr>
-                                                            <th>Audit Trail ID</th>
+                                                            <th>Admin Name</th>
                                                             <th>Action</th>
                                                             <th>Date Added</th>
                                                 
@@ -22,7 +22,7 @@
                                                     <tbody>
                                                     @foreach($info as $info)
                                                         <tr>
-                                                            <td>{{$info->audittrail_id}}</td>
+                                                            <td>{{$info->first_name}} {{$info->last_name}}</td>
                                                             <td>{{$info->action}}</td>
                                                             <td>{{$info->date_added}}</td>
                                                 
