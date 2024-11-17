@@ -718,40 +718,41 @@ class Controller extends BaseController
         else{
             $data['total'] = $data['total']."00";
 
-        $total = (int)$data['total'];
+            $total = (int)$data['total'];
 
-        $info = [
-            'data' => [
-                'attributes' => [
-                    'line_items' => [
-                        [
-                            'currency' => 'PHP',
-                            'amount' => $total,
-                            'description' => 'Marki Apparel item checkout',
-                            'name' => 'Marki Apparel',
-                            'quantity' => 1
-                        ]
+            $info = [
+                'data' => [
+                    'attributes' => [
+                        'line_items' => [
+                            [
+                                'currency' => 'PHP',
+                                'amount' => $total,
+                                'description' => 'Marki Apparel item checkout',
+                                'name' => 'Marki Apparel',
+                                'quantity' => 1
+                            ]
+                        ],
+                        'payment_method_types' => [
+                            'card',
+                            'gcash'
+                        ],
+                        'success_url' =>'http://127.0.0.1:8000/successpayment',
+                        'cancel_url' => 'http://127.0.0.1:8000/checkoutdetails',
+                        'description' => 'Marki Apparel'
                     ],
-                    'payment_method_types' => [
-                        'card',
-                        'gcash'
-                    ],
-                    'success_url' =>'http://127.0.0.1:8000/successpayment',
-                    'cancel_url' => 'http://127.0.0.1:8000/checkoutdetails',
-                    'description' => 'Marki Apparel'
-                ],
-            ]
-        ];
+                ]
+            ];
 
-        $response = Curl::to("https://api.paymongo.com/v1/checkout_sessions")
-                    ->withHeader('Content-Type: application/json')
-                    ->withHeader('accept: application/json')
-                    ->withHeader('Authorization: Basic '.env('AUTH_PAY'))
-                    ->withData($info)
-                    ->asJson()
-                    ->post();
-        
-        return $response->data->attributes->checkout_url;
+            $response = Curl::to("https://api.paymongo.com/v1/checkout_sessions")
+                        ->withHeader('Content-Type: application/json')
+                        ->withHeader('accept: application/json')
+                        ->withHeader('Authorization: Basic '.env('AUTH_PAY'))
+                        ->withData($info)
+                        ->asJson()
+                        ->post();
+
+            return $response->data->attributes->checkout_url;
+        }
     }
 
     public function successpayment(){
