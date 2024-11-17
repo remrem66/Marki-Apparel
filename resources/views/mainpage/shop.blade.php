@@ -75,19 +75,6 @@
         </main>
         <aside class="col-md-3 mt-5">
           <div class="sidebar">
-            <!-- <div class="widget-menu">
-              <div class="widget-search-bar">
-                <div class="search-bar border rounded-2 border-dark-subtle pe-3">
-                  <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Search for products" />
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                      <path fill="currentColor"
-                        d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
-                    </svg>
-                  </form>
-                </div>
-              </div>
-            </div> -->
             <div class="widget-product-categories pt-5">
               <h4 class="widget-title">Categories</h4>
               <ul class="product-categories sidebar-list list-unstyled">
