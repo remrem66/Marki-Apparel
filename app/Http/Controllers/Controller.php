@@ -219,6 +219,7 @@ class Controller extends BaseController
                         'product_name' => $itemDetails[0],
                         'color' => $itemDetails[2],
                         'size' => $itemDetails[3],
+                        'status' => 1,
                     ])->first();
     
         $products = DB::table('products')
@@ -246,6 +247,7 @@ class Controller extends BaseController
                                             'product_name' => $itemDetails[0],
                                             'color' => $colors[$x],
                                             'size' => $productsFirst->size,
+                                            'status' => 1,
                                         ])->first();
 
             if($colorQuantity){
@@ -265,6 +267,7 @@ class Controller extends BaseController
                                             'product_name' => $itemDetails[0],
                                             'color' => $productsFirst->color,
                                             'size' => $sizes[$x],
+                                            'status' => 1,
                                         ])->first();
             if($sizeQuantity){
                 $sizesStock[$sizes[$x]] = $sizeQuantity->quantity;
@@ -700,6 +703,7 @@ class Controller extends BaseController
             session()->put('cartCount', count($cartProducts));
             session()->put('cartItems', $cartProducts);
 
+
             return view('mainpage.successPayment');
         }
 
@@ -1054,8 +1058,7 @@ class Controller extends BaseController
     public function audittrail(){
 
         $info = DB::table('audittrail')
-                ->join('users','users.user_id','=','users.user_id')
-                ->select('audittrail.*', 'users.*') 
+                ->select('*') 
                 ->get();
 
     if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){

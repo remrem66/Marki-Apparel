@@ -6,8 +6,7 @@
       <div class="hero-content ">
         <h2 class="display-1 fw-bold mt-5 mb-0">Shop Product</h2>
         <nav class="breadcrumb">
-          <a class="breadcrumb-item nav-link" href="#">Home</a>
-          <a class="breadcrumb-item nav-link" href="#">Pages</a>
+          <a class="breadcrumb-item nav-link" href="/">Home</a>
           <span class="breadcrumb-item active" aria-current="page">Shop Product</span>
         </nav>
       </div>
@@ -61,13 +60,6 @@
             <div class="element-header">
               <h2 itemprop="name" class="display-6 fw-bold">{{$productsFirst->product_name}}</h2>
               <div class="rating-container d-flex gap-0 align-items-center">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
               </div>
             </div>
             <div class="product-price pt-3 pb-3">
@@ -138,7 +130,7 @@
                       <h5 class="text-capitalize m-0">Add to Cart</h5>
                     </a>
                     @else
-                    <a href="/account" class="btn-cart me-3 px-4 pt-3 pb-3">
+                    <a href="/loginregister" class="btn-cart me-3 px-4 pt-3 pb-3">
                       <h5 class="text-capitalize m-0">Login to shop!</h5>
                     </a>
                     @endif
@@ -173,6 +165,7 @@
               data-bs-target="#v-pills-reviews" type="button" role="tab" aria-controls="v-pills-reviews"
               aria-selected="true">Customer Reviews</button>
           </div>
+
           <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade active show" id="v-pills-reviews" role="tabpanel" aria-labelledby="v-pills-reviews-tab"
               tabindex="0">
@@ -202,9 +195,10 @@
                 {{-- <h4>No reviews yet for this product</h4> --}}
                 @endif
               </div>
-
+              @if(session('logged') == true)
               <div class="add-review mt-5">
                 <h3>Add a review</h3>
+                
                 <form id="form" class="form-group" method="POST" action="/postareview">
                   @CSRF
                   <div class="pb-3">
@@ -216,6 +210,8 @@
                     class="btn btn-dark btn-large text-uppercase w-100">Submit</button>
                 </form>
               </div>
+              @else
+              @endif
             </div>
           </div>
         </div>
