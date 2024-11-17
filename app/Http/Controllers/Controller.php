@@ -732,8 +732,8 @@ class Controller extends BaseController
                         'card',
                         'gcash'
                     ],
-                    'success_url' =>'https://markiapparel.shop/successpayment',
-                    'cancel_url' => 'https://markiapparel.shop/checkoutdetails',
+                    'success_url' =>'http://127.0.0.1:8000/successpayment',
+                    'cancel_url' => 'http://127.0.0.1:8000/checkoutdetails',
                     'description' => 'Marki Apparel'
                 ],
             ]
