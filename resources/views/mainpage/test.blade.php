@@ -1,127 +1,125 @@
 @include('mainpage.header')
 @include('mainpage.navbar')
-  <section id="banner" style="background-image:url(mainpage/images/banner-img2.jpg);">
+  <section id="banner" style="background-image:url({{asset('mainpage/images/banner-img2.jpg')}});">
     <div class="container padding-medium-2">
       <div class="hero-content ">
-        <h2 class="display-1 fw-bold mt-5 mb-0">Log in/Sign Up</h2>
+        <h2 class="display-1 fw-bold mt-5 mb-0">Shop</h2>
         <nav class="breadcrumb">
           <a class="breadcrumb-item nav-link" href="/">Home</a>
-          <span class="breadcrumb-item active" aria-current="page">Account</span>
+          <span class="breadcrumb-item active" aria-current="page">Shop</span>
         </nav>
       </div>
     </div>
   </section>
 
-  <section class="login-tabs">
-    <div class="container my-5 py-5">
-      <div class="row">
-        <div class="tabs-listing">
-          <nav>
-            <div class="nav nav-tabs d-flex justify-content-center border-dark-subtle mb-3" id="nav-tab" role="tablist">
-              <button class="nav-link account-tab mx-3 fs-4 border-bottom border-dark-subtle border-0 text-capitalize fw-semibold active" id="nav-sign-in-tab" data-bs-toggle="tab" data-bs-target="#nav-sign-in" type="button" role="tab"
-                aria-controls="nav-sign-in" aria-selected="true">Log In
-              </button>
+  <section id="shop">
+    <div class="container py-5 my-5">
+      <div class="row flex-md-row-reverse g-md-5 mb-5">
+
+        <main class="col-md-9">
+          <div class="filter-shop d-md-flex justify-content-between align-items-center">
+            <div class="showing-product">
+              <!-- <p class="m-0">Showing 1–9 of 55 results</p> -->
             </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
-              <div class="col-lg-8 offset-lg-2 mt-5">
-
-
-                {{-- Login --}}
-                <p class="mb-0">Log-In</p>
-                <hr class="my-1">
-
-                <form id="form1" class="form-group flex-wrap" method="POST" action="/userlogin">
-                    @CSRF
-                  <div class="form-input col-lg-12 my-4">
-
-                    <input type="text" id="exampleInputEmail1" name="email_address" placeholder="Enter email address" class="form-control mb-3 p-4">
-                    <input type="password" id="inputPassword1" name="password" placeholder="Enter password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock">
-
-                    {{-- <label class="py-3 d-flex flex-wrap justify-content-between">
-                      <div>
-                        <input type="checkbox" required="" class="d-inline">
-                        <span class="label-body ">Remember Me</span>
-                      </div>
-
-                      <div id="passwordHelpBlock" class="form-text ">
-                        <a href="#" class="text-primary  fw-bold"> Forgot Password?</a>
-                      </div>
-                    </label> --}}
-                    <div class="d-grid my-3">
-                      <button type="submit" class="btn btn-dark btn-lg rounded-1">Log In</a>
-                    </div>
-
-                  </div>
-                </form>
-                @if ($errors->has('notif'))
-                  <div class="alert alert-danger alert-dismissible" role="alert">
-                      <strong>{{ $errors->first('notif') }}</strong>
-                  </div>
-                @endif
-              </div>
-
-            </div>
-            <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
-              <div class="col-lg-8 offset-lg-2 mt-5">
-
-                {{-- Sign-Up --}}
-                <p class="mb-0">Sign-Up</p>
-                <hr class="my-1">
-
-                <form id="form1" class="form-group flex-wrap " method="POST" action="/registeruser" enctype="multipart/form-data">
-                    @CSRF
-                  <div class="form-input col-lg-12 my-4">
-                    <input type="text" id="exampleInputName" name="first_name" placeholder="First Name" class="form-control mb-3 p-4">
-                    <input type="text" id="exampleInputName" name="last_name" placeholder="Last Name" class="form-control mb-3 p-4">
-                      <select type="text" id="exampleInputName" name="gender" class="form-control mb-3 p-4">
-                        <option selected disabled>Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                      </select>
-                    <input type="text" id="exampleInputEmail1" name="email_address" placeholder="Email address" class="form-control mb-3 p-4">
-                    <select class="form-control mb-3 p-4" name="province" id="province">
-                      <option disabled selected>Province</option>
-                      @foreach($provinces as $province)
-                      <option value="{{$province->province_code}}">{{$province->province_name}}</option>
-                      @endforeach
-                    </select>
-                    <select class="form-control mb-3 p-4" disabled name="municipality" id="municipality">
-                      <option disabled selected>Municipality</option>
-                    </select>
-                    <select class="form-control mb-3 p-4" disabled name="barangay" id="barangay">
-                      <option disabled selected>Barangay</option>
-                    </select>
-                    <input type="text" id="address_information" name="address_information" placeholder="Other Address Information" class="form-control mb-3 p-4">
-                    <input type="text" id="exampleInputName" name="contact_number" placeholder="Contact Number" class="form-control mb-3 p-4">
-                    <input placeholder="Birthday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mb-3 p-4" name="birthday">
-                    <input type="password" id="inputPassword1" placeholder="Set your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password">
-                    <input type="password" id="inputPassword2" placeholder="Retype your password" class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="password_confirmation">
-                    <input type="file" id="exampleInputEmail1" name="profile_picture" placeholder="Profile Picture" class="form-control mb-3 p-4" accept="image/png, image/jpeg">
-
-                    {{-- <label class="py-3 d-flex flex-wrap justify-content-between">
-                      <div>
-                        <input type="checkbox" required="" class="d-inline">
-                        <span class="label-body ">Remember Me</span>
-                      </div>
-
-                      <div id="passwordHelpBlock" class="form-text ">
-                        <a href="#" class="text-primary  fw-bold"> Forgot Password?</a>
-                      </div>
-                    </label> --}}
-                    <div class="d-grid my-3">
-                      <button type="submit" class="btn btn-dark btn-lg rounded-1">Sign Up</button>
-                    </div>
-
-                  </div>
-                </form>
-
-              </div>
-            </div>
+            <!-- <div class="sort-by">
+              <select class="filter-categories border-0 m-0">
+                <option value="">Default sorting</option>
+                <option value="">Name (A - Z)</option>
+                <option value="">Name (Z - A)</option>
+                <option value="">Price (Low-High)</option>
+                <option value="">Price (High-Low)</option>
+                <option value="">Rating (Highest)</option>
+                <option value="">Rating (Lowest)</option>
+                <option value="">Model (A - Z)</option>
+                <option value="">Model (Z - A)</option>
+              </select>
+            </div> -->
           </div>
-        </div>
+
+          <div class="row product-store">
+            @foreach($paginator as $product)
+            <div class="col-md-6 col-lg-4 my-4">
+              <div class="product-item">
+                <div class="image-holder" style="width: 100%; height: 100%;">
+                  <a href="/single-product/{{$product->product_name}}:{{$product->category}}:{{$product->color}}:{{$product->size}}">
+                    <img src="{{asset('mainpage/images/'.$product->picture1)}}" alt="Books" class="product-image img-fluid">
+                  </a>
+                </div>
+                <div class="product-detail d-flex justify-content-between align-items-center mt-4">
+                  <h4 class="product-title mb-0">
+                    <a href="/single-product/{{$product->product_name}}:{{$product->category}}:{{$product->color}}:{{$product->size}}">{{$product->product_name}}</a>
+                  </h4>
+                  <p class="m-0 fs-5 fw-normal">₱{{$product->price}}</p>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          </div>
+
+          {{ $paginator->links('pagination::custom-pagination') }}
+          
+          {{-- <nav class="navigation paging-navigation text-center mt-5" role="navigation">
+            <div class="pagination loop-pagination d-flex justify-content-center align-items-center">
+              <a href="#" class="pagination-arrow d-flex align-items-center mx-3">
+                <iconify-icon icon="ic:baseline-keyboard-arrow-left" class="pagination-arrow fs-1"></iconify-icon>
+              </a>
+              <span aria-current="page" class="page-numbers mt-2 fs-3 mx-3 current">1</span>
+              <a class="page-numbers mt-2 fs-3 mx-3" href="#">2</a>
+              <a class="page-numbers mt-2 fs-3 mx-3" href="#">3</a>
+              <a href="#" class="pagination-arrow d-flex align-items-center mx-3">
+                <iconify-icon icon="ic:baseline-keyboard-arrow-right" class="pagination-arrow fs-1"></iconify-icon>
+              </a>
+            </div>
+          </nav> --}}
+
+        </main>
+        <aside class="col-md-3 mt-5">
+          <div class="sidebar">
+            <!-- <div class="widget-menu">
+              <div class="widget-search-bar">
+                <div class="search-bar border rounded-2 border-dark-subtle pe-3">
+                  <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
+                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Search for products" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path fill="currentColor"
+                        d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
+                    </svg>
+                  </form>
+                </div>
+              </div>
+            </div> -->
+            <div class="widget-product-categories pt-5">
+              <h4 class="widget-title">Categories</h4>
+              <ul class="product-categories sidebar-list list-unstyled">
+                <li class="cat-item">
+                  <a href="/shop/T-shirt" class="nav-link fw-semibold">T-Shirt</a>
+                </li>
+                <li class="cat-item">
+                  <a href="/shop/Polo Shirt" class="nav-link fw-semibold">Polo Shirt</a>
+                </li>
+                <li class="cat-item">
+                  <a href="/shop/Polo" class="nav-link fw-semibold">Polo</a>
+                </li>
+                <li class="cat-item">
+                  <a href="/shop/Long Sleeve" class="nav-link fw-semibold">Long Sleeve</a>
+                </li>
+                <li class="cat-item">
+                  <a href="/shop/Hoodie" class="nav-link fw-semibold">Hoodie</a>
+                </li>
+                <li class="cat-item">
+                  <a href="/shop/Jacket" class="nav-link fw-semibold">Jacket</a>
+                </li>
+                <li class="cat-item">
+                  <a href="/shop/Shorts" class="nav-link fw-semibold">Shorts</a>
+                </li>
+                <li class="cat-item">
+                  <a href="/shop/Pants" class="nav-link fw-semibold">Pants</a>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </aside>
       </div>
     </div>
   </section>
