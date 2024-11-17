@@ -37,7 +37,7 @@
           </div>
 
           <div class="row product-store">
-            @foreach($products as $product)
+            @foreach($paginator as $product)
             <div class="col-md-6 col-lg-4 my-4">
               <div class="product-item">
                 <div class="image-holder" style="width: 100%; height: 100%;">
@@ -56,7 +56,9 @@
             @endforeach
           </div>
 
-          <nav class="navigation paging-navigation text-center mt-5" role="navigation">
+          {{ $paginator->links('pagination::custom-pagination') }}
+          
+          {{-- <nav class="navigation paging-navigation text-center mt-5" role="navigation">
             <div class="pagination loop-pagination d-flex justify-content-center align-items-center">
               <a href="#" class="pagination-arrow d-flex align-items-center mx-3">
                 <iconify-icon icon="ic:baseline-keyboard-arrow-left" class="pagination-arrow fs-1"></iconify-icon>
@@ -68,7 +70,7 @@
                 <iconify-icon icon="ic:baseline-keyboard-arrow-right" class="pagination-arrow fs-1"></iconify-icon>
               </a>
             </div>
-          </nav>
+          </nav> --}}
 
         </main>
         <aside class="col-md-3 mt-5">
