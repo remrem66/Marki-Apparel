@@ -54,7 +54,7 @@ class Orders extends Model
     public static function cancelOrder($orderID,$itemsOrdered){
 
         DB::table('orders')
-            ->where('order_id', $data['orderID'])
+            ->where('order_id', $orderID)
             ->update([
                 'items_ordered' => $itemsOrdered,
                 'order_status' => "Cancelled"

@@ -18,7 +18,7 @@ class CancelOrders extends Model
             ->insert([
                 'user_id' => $user_id,
                 'product_id' => $product_id,
-                'quantity' => $quantity,
+                'cancel_quantity' => $quantity,
                 'cancel_reason' => $reason
             ]);
     }
