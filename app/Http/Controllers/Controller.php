@@ -1245,7 +1245,7 @@ class Controller extends BaseController
                             ->where('user_id',session('user_id'))
                             ->get();
 
-        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+        if(session('logged') == true){
             return view('mainpage.cancelledOrders',compact('productDetails'));    
           }
           else{
@@ -1272,8 +1272,13 @@ class Controller extends BaseController
                     ->join('users', 'users.user_id', '=', 'cancel_orders.user_id')
                     ->select('cancel_orders.*', 'products.*', 'users.*') 
                     ->get();
-        
-        return view('admin.viewCancelledOrders', compact('data'));
+
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return view('admin.viewCancelledOrders', compact('data'));
+        }
+        else{
+            return redirect('/');
+        }
  
     }
 
