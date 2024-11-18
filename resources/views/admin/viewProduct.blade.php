@@ -157,7 +157,7 @@
                                     <div class="row g-2">
                                         <div class="mb-6 col-md-12">
                                             <label for="formFileMultiple01" class="form-label">Pictures (Insert maximum of 3 pictures)</label>
-                                            <input class="form-control" name="pictures[]" type="file" accept="image/*" id="formFileMultiple01" multiple required>
+                                            <input class="form-control" name="pictures[]" type="file" accept="image/*" id="formFileMultiple01" multiple>
                                             <input class="form-control" name="product_id" id="product_id" type="hidden">
                                         </div>
                                     </div>
