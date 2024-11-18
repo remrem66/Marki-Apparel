@@ -74,14 +74,23 @@
                                                             <span class="badge bg-danger">Inactive</span>
                                                             @endif
                                                         </td>
-                    
-                                                        <td class="table-action">
                                                         
+                                                        <td class="table-action">
+                                                        @if(session('user_type') == 0)
+                                                        <a href="/productdetails/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                        <a href="/editproduct/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                        <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-archive-plus-outline addproductvariation" data-bs-toggle="modal" data-bs-target="#standard-modal" id="{{$item->product_id}}"></i></a>
+                                                        @endif
+                                                        
+
+                                                        @if(session('user_type') == 3)
                                                             <a href="/productdetails/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                             <a href="/editproduct/{{$item->product_id}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                
+                                                        @endif
+
+                                                            @if(session('user_type') == 2)
                                                             <a href="#" onclick="return false;" class="action-icon"> <i class="mdi mdi-archive-plus-outline addproductvariation" data-bs-toggle="modal" data-bs-target="#standard-modal" id="{{$item->product_id}}"></i></a>
-                                                            
+                                                            @endif
                                                             @if($item->status == 1)
                                                                 <a href="#" onclick="return false;" class="action-icon disableproduct" id="{{$item->product_id}}"> <i class="mdi mdi-close"></i></a>
                                                             @else

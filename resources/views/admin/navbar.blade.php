@@ -41,7 +41,7 @@
 
         
                     <li class="side-nav-title side-nav-item mt-1">Components</li>
-
+                    @if(session('user_type') == 0)
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                             <i class="uil-users-alt"></i>
@@ -57,7 +57,7 @@
                             </ul>
                         </div>
                     </li>
-
+                    
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#productManagement" aria-expanded="false" aria-controls="productManagement" class="side-nav-link">
                             <i class="uil-shopping-basket"></i>
@@ -70,11 +70,11 @@
                     
                                     <a href="/addnewproduct">Add New Product</a>
                                     <a href="/viewproducts">View Products</a>
+                                    <a href="/viewlowstock">Low Stock Product</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                 
                     <li class="side-nav-item">
                         <a href="/showusers" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                             <i class="dripicons-user-group"></i>
@@ -83,7 +83,7 @@
                     </li>
                     <li class="side-nav-item">
                         <a href="/audittrail" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                            <i class="dripicons-user-group"></i>
+                            <i class=" dripicons-preview"></i>
                             <span>Audit Trail</span>
                         </a>
                     </li>
@@ -94,6 +94,36 @@
                             <span> Orders </span>
                         </a>
                     </li>
+                    @endif
+
+                    @if(in_array(session('user_type'), [2, 3]))
+                    <li class="side-nav-item">
+                        <a data-bs-toggle="collapse" href="#productManagement" aria-expanded="false" aria-controls="productManagement" class="side-nav-link">
+                            <i class="uil-shopping-basket"></i>
+                            <span> Product Management </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="productManagement">
+                            <ul class="side-nav-second-level">
+                                <li>
+                    
+                                    <a href="/addnewproduct">Add New Product</a>
+                                    <a href="/viewproducts">View Products</a>
+                                    <a href="/viewlowstock">Low Stock Product</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    @endif
+                 
+                    @if(session('user_type') == 3)
+                    <li class="side-nav-item">
+                        <a href="/orders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                            <i class="uil-receipt"></i>
+                            <span> Orders </span>
+                        </a>
+                    </li>
+                    @endif
 
                     <li class="side-nav-item">
                         <a href="/cancelledorders" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
@@ -159,24 +189,6 @@
                     <i class="mdi mdi-account-circle me-1"></i>
                     <span>Edit Account</span>
                 </a>
-{{-- 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="mdi mdi-account-edit me-1"></i>
-                    <span>Settings</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="mdi mdi-lifebuoy me-1"></i>
-                    <span>Support</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="mdi mdi-lock-outline me-1"></i>
-                    <span>Lock Screen</span>
-                </a> --}}
 
                 <!-- item-->
                 <a href="/logout" class="dropdown-item notify-item">
