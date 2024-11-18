@@ -108,7 +108,6 @@ class Controller extends BaseController
             'size' => 'required',
             'price' => 'required',
             'quantity' => 'required',
-            'pictures[]' => 'required',
             
         ]);
 
@@ -122,8 +121,13 @@ class Controller extends BaseController
         $audittrail = "Admin ".session('user_name')." added a new product variation (".$info['product_name'].")";
 
         Audittrail::addNewAction($audittrail);
-
-        return redirect('/viewproducts');
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
+            return redirect('/viewproducts');
+         }
+         else{
+             return redirect('/');
+         }  
+        
     }
 
     public function editproduct($id){
