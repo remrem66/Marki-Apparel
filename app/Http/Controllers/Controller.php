@@ -826,9 +826,14 @@ class Controller extends BaseController
                         ->whereIn('product_id',$productIDs)
                         ->get();
 
-        
-
+     if(session('logged') == true){
         return view('mainpage.orderStatus',compact('productDetails','quantities','status','orderIDs'));
+     }
+     else{
+         return redirect('/');
+     }
+
+
     }
 
     public function productdetails($id){

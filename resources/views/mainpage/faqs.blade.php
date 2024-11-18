@@ -73,7 +73,7 @@
                 </h2>
                 <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven">
                   <div class="accordion-body secondary-font">
-                    You can view your order details in <a href="/orderstatus/Order Placed">Order Status</a>
+                    You can view your order details in Order Status
                   </div>
                 </div>
               </div>
