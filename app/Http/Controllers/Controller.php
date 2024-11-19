@@ -57,7 +57,7 @@ class Controller extends BaseController
     public function insertnewproduct(Request $info){
 
 
-        if((session('logged') == true) && session('user_type') == 0){
+        if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
             $validateProduct = Products::query()
                             ->where([
                                 'product_name' => $info['product_name'],
@@ -1257,7 +1257,7 @@ class Controller extends BaseController
     public function addnewproduct(){
 
       // session('user_type) == 0  ***EXAMPLE LANG TO***
-        if(session('logged') == true){
+      if(session('logged') == true && in_array(session('user_type'), [0, 2, 3])){
             return view('admin.addNewProduct');
         }
         else{
