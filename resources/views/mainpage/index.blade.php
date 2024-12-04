@@ -1,9 +1,9 @@
 @include('mainpage.header')
 @include('mainpage.navbar')
-  <section id="hero" style="background-image:url(mainpage/images/banner-img1.jpg);">
+  <section id="hero" style="background-image:url(mainpage/images/lastnato.jpg);">
     <div class="container padding-large">
       <div class="row">
-        <div class="col-md-6 col-lg-5 offset-md-2 text-center bg-black p-5">
+        <div class="col-md-10 col-lg-5 offset-md-0 text-center bg-black p-5">
           <h2 class="display-1 banner-text text-uppercase text-white mt-3">Street Wears</h2>
           <p class="text-uppercase text-white mb-4">High quality cool tshirts for street fashion</p>
           <a href="/shop/T-shirt" class="btn btn-outline-light btn-wrap">
